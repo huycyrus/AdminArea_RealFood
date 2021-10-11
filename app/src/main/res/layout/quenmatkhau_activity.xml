@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="245dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/bgrf"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/datlaimatkhau"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_marginTop="25dp"
+        android:textAlignment="center"
+        android:textColor="@color/Capdatlaimatkhau"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/noidung_quenmatkhau_screen"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:layout_marginTop="3dp"
+        android:textAlignment="center"
+        android:paddingStart="50dp"
+        android:paddingEnd="45dp"
+        android:textColor="@color/noidungquenmatkhau"/>
+
+    <EditText
+        android:id="@+id/edt_email"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="73dp"
+        android:layout_marginEnd="34dp"
+        android:background="@drawable/border_tron"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" />
+
+    <Button
+        android:id="@+id/btn_guiemailxacthuc"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/border_tron_button"
+        android:text="@string/guiemailxacthuc"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        />
+
+    <TextView
+        android:id="@+id/tv_quenmatkhau"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="51dp"
+        android:textAlignment="center"
+        android:text="@string/link_dangnhap"
+        android:textColor="@color/link"/>
+
+</LinearLayout>

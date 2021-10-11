@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:background="@color/white">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="245dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/bgrf"/>
+
+    <EditText
+        android:id="@+id/edt_taikhoan"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginTop="65dp"
+        android:background="@drawable/border_tron"
+        android:hint="@string/taikhoan"
+        android:inputType="text"
+        />
+
+    <EditText
+        android:id="@+id/edt_matkhau"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="34dp"
+        android:background="@drawable/border_tron"
+        android:hint="@string/matkhau"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/tv_quenmatkhau"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginEnd="50dp"
+        android:text="@string/link_quenmatkhau"
+        android:textColor="@color/link"/>
+
+    <Button
+        android:id="@+id/btn_dangnhap"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/border_tron_button"
+        android:text="@string/dangnhap"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        />
+
+
+</LinearLayout>

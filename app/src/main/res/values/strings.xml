@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">AdminArea_RealFood</string>
+    <string name="taikhoan">Tài khoản</string>
+    <string name="matkhau">Mật khẩu</string>
+    <string name="link_quenmatkhau"><u>Quên mật khẩu ?</u></string>
+    <string name="dangnhap">Đăng nhập</string>
+    <string name="datlaimatkhau">Đặt lại mật khẩu</string>
+    <string name="noidung_quenmatkhau_screen">Vui lòng nhập email của bạn để nhận được một liên kết để tạo mật khẩu mới qua email</string>
+    <string name="email">Email</string>
+    <string name="guiemailxacthuc">Gửi email xác thực</string>
+    <string name="link_dangnhap"><u>Đăng nhập</u></string>
 </resources>
