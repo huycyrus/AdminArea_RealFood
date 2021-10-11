@@ -1,0 +1,2 @@
+rootProject.name = "AdminArea_RealFood"
+include ':app'
