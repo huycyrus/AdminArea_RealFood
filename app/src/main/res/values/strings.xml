@@ -9,4 +9,6 @@
     <string name="email">Email</string>
     <string name="guiemailxacthuc">Gửi email xác thực</string>
     <string name="link_dangnhap"><u>Đăng nhập</u></string>
+    <string name="danhsachcuahang">Danh sách cửa hàng</string>
+    <string name="danhsachshipper">Danh sách shipper</string>
 </resources>

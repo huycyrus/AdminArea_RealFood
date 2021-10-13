@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs xmlns:app="http://schemas.android.com/apk/res-auto">
+    <tab
+        id="@+id/tab_trangchu"
+        icon="@drawable/ic_home"
+        title="Trang chủ"
+        barColorWhenSelected="#93242A" />
+
+    <tab
+        id="@+id/tab_thongbao"
+        icon="@drawable/ic_notifications"
+        title="Thông báo"
+        barColorWhenSelected="#93242A" />
+    <tab
+        id="@+id/tab_caidat"
+        icon="@drawable/ic_settings"
+        title="Cài đặt"
+        barColorWhenSelected="#93242A" />
+</tabs>
