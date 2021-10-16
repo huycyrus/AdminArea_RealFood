@@ -11,4 +11,23 @@
     <string name="link_dangnhap"><u>Đăng nhập</u></string>
     <string name="danhsachcuahang">Danh sách cửa hàng</string>
     <string name="danhsachshipper">Danh sách shipper</string>
+    <string name="loaisanpham">Loại sản phẩm</string>
+    <string name="dtcuacuahang">Doanh thu của cửa hàng</string>
+    <string name="dthethong">Doanh thu của hệ thống</string>
+    <string name="thongke">Thống kê shipper</string>
+    <string name="dskhachhang">Danh sách khách hàng</string>
+    <string name="hovaten">Họ và tên</string>
+    <string name="trangthai">Trạng thái</string>
+    <string name="gui">Gửi</string>
+    <string name="sdt">Số điện thoại</string>
+    <string name="maxe">Mã xe</string>
+    <string name="taikhoan1">Tài khoản :</string>
+    <string name="matkhau1">Mật khẩu :</string>
+    <string name="hovaten1">Họ và tên :</string>
+    <string name="ngaysinh1">Ngày sinh :</string>
+    <string name="masoxe">Mã số xe :</string>
+    <string name="cmd">CMND :</string>
+    <string name="mattruoc">Mặt trước :</string>
+    <string name="matsau">Mặt sau :</string>
+    <string name="tao">Tạo</string>
 </resources>

@@ -5,20 +5,27 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminArea_RealFood">
 
         <activity android:name=".DangNhap">
+
+        </activity>
+        <activity android:name=".QuenMatKhau"></activity>
+        <activity android:name=".TrangChu"></activity>
+        <activity android:name=".TaoTaiKhoanShipper"
+            android:label="Tạo tài khoản shipper"
+            android:parentActivityName=".DanhSachShipper"></activity>
+        <activity android:name=".DanhSachShipper"
+            android:label="Danh sách shipper"
+            android:parentActivityName=".TrangChu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".QuenMatKhau"></activity>
-        <activity android:name=".TrangChu"></activity>
     </application>
 
 </manifest>
