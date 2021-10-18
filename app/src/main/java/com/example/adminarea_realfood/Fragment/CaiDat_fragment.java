@@ -1,4 +1,4 @@
-package com.example.adminarea_realfood;
+package com.example.adminarea_realfood.Fragment;
 
 
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+
+import com.example.adminarea_realfood.R;
 
 public class CaiDat_fragment extends Fragment {
 

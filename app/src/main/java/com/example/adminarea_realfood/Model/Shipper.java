@@ -1,12 +1,12 @@
 package com.example.adminarea_realfood.Model;
 
 public class Shipper {
-    String iDShipper, taiKhoan, matKhau, hoVaTen, diaChu, khuVucHoatDong, ngaySinh, maSoXe, trangThaiHoatDong, soDienThoai, avatar;
+    String iDShipper, taiKhoan, matKhau, hoVaTen, diaChu, khuVucHoatDong, ngaySinh, maSoXe, trangThaiHoatDong, soDienThoai;
 
     public Shipper() {
     }
 
-    public Shipper(String iDShipper, String taiKhoan, String matKhau, String hoVaTen, String diaChu, String khuVucHoatDong, String ngaySinh, String maSoXe, String trangThaiHoatDong, String soDienThoai, String avatar) {
+    public Shipper(String iDShipper, String taiKhoan, String matKhau, String hoVaTen, String diaChu, String khuVucHoatDong, String ngaySinh, String maSoXe, String trangThaiHoatDong, String soDienThoai) {
         this.iDShipper = iDShipper;
         this.taiKhoan = taiKhoan;
         this.matKhau = matKhau;
@@ -17,7 +17,6 @@ public class Shipper {
         this.maSoXe = maSoXe;
         this.trangThaiHoatDong = trangThaiHoatDong;
         this.soDienThoai = soDienThoai;
-        this.avatar = avatar;
     }
 
     public String getiDShipper() {
@@ -100,11 +99,4 @@ public class Shipper {
         this.soDienThoai = soDienThoai;
     }
 
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
 }

@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/linear1">
 
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -36,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="30dp"
             android:layout_marginEnd="35dp"
             android:inputType="textEmailAddress"
             android:background="@drawable/border_edit_vuong"
@@ -64,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginStart="13dp"
+            android:layout_marginStart="33dp"
             android:layout_marginEnd="35dp"
             android:background="@drawable/border_edit_vuong"
             />
@@ -91,7 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginStart="13dp"
+            android:layout_marginStart="34dp"
             android:layout_marginEnd="35dp"
             android:background="@drawable/border_edit_vuong"
             />
@@ -118,7 +119,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginStart="11dp"
+            android:layout_marginStart="33dp"
             android:layout_marginEnd="35dp"
             android:inputType="datetime"
             android:background="@drawable/border_edit_vuong"
@@ -146,8 +147,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="35dp"
+            android:background="@drawable/border_edit_vuong"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="25dp"
+            android:text="@string/sodienthoai"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            />
+
+        <EditText
+            android:id="@+id/edt_sdt_taotaikhoan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="35dp"
+            android:inputType="number"
             android:background="@drawable/border_edit_vuong"
             />
 
@@ -207,16 +236,18 @@
 
         <ImageButton
             android:id="@+id/ib_idtruoc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="120dp"
+            android:scaleType="fitXY"
             android:layout_margin="15dp"
             android:src="@drawable/idtruoc"
             android:layout_weight="1"/>
 
         <ImageButton
             android:id="@+id/ib_idsau"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="120dp"
+            android:scaleType="fitXY"
             android:layout_margin="15dp"
             android:src="@drawable/idsau"
             android:layout_weight="1"/>

@@ -1,4 +1,4 @@
-package com.example.adminarea_realfood;
+package com.example.adminarea_realfood.Fragment;
 
 
 import android.os.Bundle;
@@ -8,7 +8,10 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-public class TrangChu_fragment extends Fragment {
+import com.example.adminarea_realfood.Fragment.TrangChu_fragment;
+import com.example.adminarea_realfood.R;
+
+public class ThongBao_fragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,7 +22,7 @@ public class TrangChu_fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public TrangChu_fragment() {
+    public ThongBao_fragment() {
         // Required empty public constructor
     }
 
@@ -54,6 +57,6 @@ public class TrangChu_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.home_fragment, container, false);
+        return inflater.inflate(R.layout.thongbao_fragment, container, false);
     }
 }

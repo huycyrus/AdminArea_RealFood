@@ -9,17 +9,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminArea_RealFood">
 
-        <activity android:name=".DangNhap">
+        <activity android:name=".Screen.DangNhap">
 
         </activity>
-        <activity android:name=".QuenMatKhau"></activity>
-        <activity android:name=".TrangChu"></activity>
-        <activity android:name=".TaoTaiKhoanShipper"
+        <activity android:name=".Screen.QuenMatKhau"></activity>
+        <activity android:name=".Screen.TrangChu"></activity>
+        <activity android:name=".Screen.TaoTaiKhoanShipper"
             android:label="Tạo tài khoản shipper"
-            android:parentActivityName=".DanhSachShipper"></activity>
-        <activity android:name=".DanhSachShipper"
+            android:parentActivityName=".Screen.DanhSachShipper">
+
+        </activity>
+        <activity android:name=".Screen.DanhSachShipper"
             android:label="Danh sách shipper"
-            android:parentActivityName=".TrangChu">
+            android:parentActivityName=".Screen.TrangChu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

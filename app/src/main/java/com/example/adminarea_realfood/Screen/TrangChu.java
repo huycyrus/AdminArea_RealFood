@@ -1,4 +1,4 @@
-package com.example.adminarea_realfood;
+package com.example.adminarea_realfood.Screen;
 
 import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +8,10 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
+import com.example.adminarea_realfood.Fragment.CaiDat_fragment;
+import com.example.adminarea_realfood.Fragment.ThongBao_fragment;
+import com.example.adminarea_realfood.Fragment.TrangChu_fragment;
+import com.example.adminarea_realfood.R;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarTab;
 import com.roughike.bottombar.OnTabSelectListener;
