@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/linear2">
+
+    <ImageButton
+        android:id="@+id/ib_image_loaisanpham"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:src="@drawable/ic_photo_library"
+        android:scaleType="fitXY"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/id"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="76dp"
+            android:layout_marginTop="50dp"/>
+
+        <EditText
+            android:id="@+id/edt_stt_taoloaisanpham"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="55dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/border_edit_vuong"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tenloai"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:id="@+id/edt_tenloai_taoloaisanpham"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="55dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/border_edit_vuong"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_tao_loaisanpham"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tao"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:background="#20D93F"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="78dp"
+        android:textSize="20dp"
+        />
+
+
+</LinearLayout>

@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.adminarea_realfood.R;
+import com.example.adminarea_realfood.Screen.DanhSachLoaiSanPham;
 import com.example.adminarea_realfood.Screen.DanhSachShipper;
 
 public class TrangChu_fragment extends Fragment {
@@ -54,6 +55,13 @@ public class TrangChu_fragment extends Fragment {
             }
         });
 
+        lnLoaisanpham.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DanhSachLoaiSanPham.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

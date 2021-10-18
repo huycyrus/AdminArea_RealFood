@@ -3,6 +3,7 @@ package com.example.adminarea_realfood;
 import android.net.Uri;
 import android.util.Log;
 
+import com.example.adminarea_realfood.Model.LoaiSanPham;
 import com.example.adminarea_realfood.Model.Shipper;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +33,10 @@ public class    Firebase_Manager {
         return mDatabase.child("Shipper").child(shipper.getiDShipper()).setValue(shipper);
     }
 
+    public Task<Void> Ghi_LoaiSanPham (LoaiSanPham loaiSanPham){
+        return mDatabase.child("LoaiSanPham").child(loaiSanPham.getiDLoai()).setValue(loaiSanPham);
+    }
+
     public void Up2MatCMND(Uri truoc, Uri sau, String iDShipper)
     {
         storageRef.child("Shipper").child(iDShipper).child("CMND_MatTruoc").putFile(truoc);
@@ -41,6 +46,11 @@ public class    Firebase_Manager {
     public UploadTask UpAvatar(Uri avatar, String shipper)
     {
         return storageRef.child("Shipper").child(shipper).child("avatar").putFile(avatar);
+    }
+
+    public UploadTask UpImageLoaiSanPham(Uri imageLoaiSanPham, String loaiSanPham)
+    {
+        return storageRef.child("LoaiSanPham").child(loaiSanPham).child("Loại sản phẩm").putFile(imageLoaiSanPham);
     }
 
     public ArrayList<Shipper> getDanhsachshipper()

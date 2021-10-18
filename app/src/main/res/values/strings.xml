@@ -31,4 +31,10 @@
     <string name="matsau">Mặt sau :</string>
     <string name="tao">Tạo</string>
     <string name="sodienthoai">Số điện thoại :</string>
+    <string name="id">ID :</string>
+    <string name="so1">1</string>
+    <string name="ten">Tên :</string>
+    <string name="a">Tên sản phẩm</string>
+    <string name="tenloai">Tên loại :</string>
+    <string name="so">Số</string>
 </resources>

@@ -11,9 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
 import com.example.adminarea_realfood.Firebase_Manager;
-import com.example.adminarea_realfood.Model.Shipper;
+import com.example.adminarea_realfood.Model.LoaiSanPham;
 import com.example.adminarea_realfood.R;
-import com.example.adminarea_realfood.adapter.ShipperAdapter;
+import com.example.adminarea_realfood.adapter.LoaiSanPhamAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,50 +21,44 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-
-public class DanhSachShipper extends AppCompatActivity {
-
-    ArrayList<Shipper> shippers;
-    ListView lvDanhsach;
-    ShipperAdapter shipperAdapter;
-    Shipper shipper;
+public class DanhSachLoaiSanPham extends AppCompatActivity {
+    ArrayList<LoaiSanPham> loaiSanPhams;
+    ListView lvDanhsachloai;
     FloatingActionButton fabThem;
     Firebase_Manager firebase_manager = new Firebase_Manager();
+    LoaiSanPhamAdapter loaiSanPhamAdapter;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.danhsachshipper_activity);
-        shippers = new ArrayList<Shipper>();
+        setContentView(R.layout.loaisanpham_activity);
+        loaiSanPhams = new ArrayList<LoaiSanPham>();
         setControl();
-        getDanhsachshipper();
+        getDanhSachLoaiSanPham();
         setEvent();
     }
 
     private void setEvent() {
-        shipperAdapter = new ShipperAdapter(this, R.layout.shipper_listview, shippers);
-        lvDanhsach.setAdapter(shipperAdapter);
-
+        loaiSanPhamAdapter = new LoaiSanPhamAdapter(this, R.layout.shipper_listview, loaiSanPhams);
+        lvDanhsachloai.setAdapter(loaiSanPhamAdapter);
 
         fabThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DanhSachShipper.this, TaoTaiKhoanShipper.class);
+                Intent intent = new Intent(DanhSachLoaiSanPham.this, TaoLoaiSanPham.class);
                 startActivity(intent);
             }
         });
     }
 
-    public void getDanhsachshipper() {
-        firebase_manager.mDatabase.child("Shipper").addValueEventListener(new ValueEventListener() {
+    public void getDanhSachLoaiSanPham() {
+        firebase_manager.mDatabase.child("LoaiSanPham").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                shippers.clear();
+                loaiSanPhams.clear();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    Shipper shipper = postSnapshot.getValue(Shipper.class);
-                    shippers.add(shipper);
-                    shipperAdapter.notifyDataSetChanged();
-
+                    LoaiSanPham loaiSanPham = postSnapshot.getValue(LoaiSanPham.class);
+                    loaiSanPhams.add(loaiSanPham);
+                    loaiSanPhamAdapter.notifyDataSetChanged();
                 }
             }
 
@@ -72,6 +66,11 @@ public class DanhSachShipper extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
+
+    private void setControl() {
+        lvDanhsachloai = findViewById(R.id.lv_danhsachloaisanpham);
+        fabThem = findViewById(R.id.fab_add);
     }
 
     @Override
@@ -96,10 +95,5 @@ public class DanhSachShipper extends AppCompatActivity {
             }
         });
         return super.onCreateOptionsMenu(menu);
-    }
-
-    private void setControl() {
-        lvDanhsach = findViewById(R.id.lv_danhsachshipper);
-        fabThem = findViewById(R.id.fab_add);
     }
 }

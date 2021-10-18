@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
-import com.example.adminarea_realfood.Model.Shipper;
+import com.example.adminarea_realfood.Model.LoaiSanPham;
 import com.example.adminarea_realfood.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,21 +22,19 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class ShipperAdapter extends ArrayAdapter {
+public class LoaiSanPhamAdapter extends ArrayAdapter {
 
     Context context;
     int resource;
-    ArrayList<Shipper> data;
+    ArrayList<LoaiSanPham> data;
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
-    public ShipperAdapter(@NonNull Context context, int resource, ArrayList<Shipper> data) {
+    public LoaiSanPhamAdapter(@NonNull Context context, int resource, ArrayList<LoaiSanPham> data) {
         super(context, resource, data);
         this.context = context;
         this.resource = resource;
         this.data = data;
     }
-
-
 
     @Override
     public int getCount() {
@@ -51,22 +47,14 @@ public class ShipperAdapter extends ArrayAdapter {
 
         convertView = LayoutInflater.from(context).inflate(resource, null);
 
+        TextView tvStt =  convertView.findViewById(R.id.tv_soTT);
+        TextView tvTenloai =  convertView.findViewById(R.id.tv_tenLoai);
+        ImageView ivImage = convertView.findViewById(R.id.image_loaisanpham);
 
-
-        TextView tvHoten = convertView.findViewById(R.id.tv_hovaten);
-        TextView tvTrangthai = convertView.findViewById(R.id.tv_trangthai);
-        TextView tvSdt = convertView.findViewById(R.id.tv_sdt);
-        TextView tvMaxe = convertView.findViewById(R.id.tv_maxe);
-        EditText edtNoidungvipham = convertView.findViewById(R.id.edt_noidungvipham);
-        Button btnGui = convertView.findViewById(R.id.btn_gui);
-        ImageView ivImage = convertView.findViewById(R.id.image_profile);
-
-        Shipper shipper = data.get(position);
-        tvHoten.setText(shipper.getHoVaTen());
-        tvTrangthai.setText(shipper.getTrangThaiHoatDong());
-        tvSdt.setText(shipper.getSoDienThoai());
-        tvMaxe.setText(shipper.getMaSoXe());
-        storageReference.child("Shipper").child(shipper.getiDShipper()).child("avatar").getDownloadUrl(  ).addOnCompleteListener(new OnCompleteListener<Uri>() {
+        LoaiSanPham loaiSanPham = data.get(position);
+        tvStt.setText(loaiSanPham.getsTT());
+        tvTenloai.setText(loaiSanPham.getTenLoai());
+        storageReference.child("LoaiSanPham").child(loaiSanPham.getiDLoai()).child("Loại sản phẩm").getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
             @Override
             public void onComplete(@NonNull Task<Uri> task) {
                 Glide.with(context)
@@ -74,7 +62,6 @@ public class ShipperAdapter extends ArrayAdapter {
                         .into(ivImage);
             }
         });
-
 
         return convertView;
     }
