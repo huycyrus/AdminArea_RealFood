@@ -17,7 +17,9 @@
 
         <activity android:name=".Screen.QuenMatKhau"></activity>
 
-        <activity android:name=".Screen.TrangChu"></activity>
+        <activity android:name=".Screen.TrangChu">
+
+        </activity>
 
         <activity android:name=".Screen.TaoTaiKhoanShipper"
             android:label="Tạo tài khoản shipper"
@@ -32,16 +34,23 @@
         <activity android:name=".Screen.DanhSachLoaiSanPham"
                 android:label="Loại sản phẩm"
                 android:parentActivityName=".Screen.TrangChu">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".Screen.TaoLoaiSanPham"
                 android:label="Tạo loại sản phẩm"
                 android:parentActivityName=".Screen.DanhSachLoaiSanPham"></activity>
+
+        <activity android:name=".Screen.ThongTinChiTietShipper"
+            android:parentActivityName=".Screen.DanhSachShipper">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"

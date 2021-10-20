@@ -2,24 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Screen.TrangChu">
+    tools:context=".Screen.ThongTinChiTietShipper">
 
     <FrameLayout
-        android:id="@+id/fragment"
+        android:id="@+id/fragment_shipper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="9"/>
 
     <com.roughike.bottombar.BottomBar
-        android:id="@+id/bottomBar"
+        android:id="@+id/bottomBar_shipper"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="bottom"
-        app:bb_tabXmlResource="@xml/bottombar_tabs_home"
+        app:bb_tabXmlResource="@xml/bottombar_tabs_ttctshipper"
         app:bb_inActiveTabColor="#B3B1B1"
         app:bb_activeTabColor="@color/white"
         />
+
 </LinearLayout>

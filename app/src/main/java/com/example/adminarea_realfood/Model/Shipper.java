@@ -1,14 +1,14 @@
 package com.example.adminarea_realfood.Model;
 
 public class Shipper {
-    String iDShipper, taiKhoan, matKhau, hoVaTen, diaChi, khuVucHoatDong, ngaySinh, maSoXe, trangThaiHoatDong, soDienThoai;
+    String iDShipper, eMail, matKhau, hoVaTen, diaChi, khuVucHoatDong, ngaySinh, maSoXe, trangThaiHoatDong, soDienThoai;
 
     public Shipper() {
     }
 
-    public Shipper(String iDShipper, String taiKhoan, String matKhau, String hoVaTen, String diaChi, String khuVucHoatDong, String ngaySinh, String maSoXe, String trangThaiHoatDong, String soDienThoai) {
+    public Shipper(String iDShipper, String eMail, String matKhau, String hoVaTen, String diaChi, String khuVucHoatDong, String ngaySinh, String maSoXe, String trangThaiHoatDong, String soDienThoai) {
         this.iDShipper = iDShipper;
-        this.taiKhoan = taiKhoan;
+        this.eMail = eMail;
         this.matKhau = matKhau;
         this.hoVaTen = hoVaTen;
         this.diaChi = diaChi;
@@ -27,12 +27,12 @@ public class Shipper {
         this.iDShipper = iDShipper;
     }
 
-    public String getTaiKhoan() {
-        return taiKhoan;
+    public String geteMail() {
+        return eMail;
     }
 
-    public void setTaiKhoan(String taiKhoan) {
-        this.taiKhoan = taiKhoan;
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
     }
 
     public String getMatKhau() {
@@ -98,5 +98,4 @@ public class Shipper {
     public void setSoDienThoai(String soDienThoai) {
         this.soDienThoai = soDienThoai;
     }
-
 }

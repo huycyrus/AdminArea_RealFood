@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.developer.kalert.KAlertDialog;
@@ -16,14 +17,14 @@ import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.Shipper;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.Validate;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
 import com.vansuita.pickimage.bean.PickResult;
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.dialog.PickImageDialog;
 import com.vansuita.pickimage.listeners.IPickCancel;
 import com.vansuita.pickimage.listeners.IPickResult;
-
-import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -118,20 +119,29 @@ public class TaoTaiKhoanShipper extends AppCompatActivity {
                 if (Validated_Form()) {
                     KAlertDialog kAlertDialog = new KAlertDialog(TaoTaiKhoanShipper.this, KAlertDialog.PROGRESS_TYPE).setContentText("Loading");
                     kAlertDialog.show();
-
-                    String uuid = UUID.randomUUID().toString().replace("-", "");
-                    Shipper shipper = new Shipper(uuid, edtTaikhoan.getText().toString(), edtMatkhau.getText().toString(), edtHoten.getText().toString(),"","", edtNgaysinh.getText().toString(), edtMasoxe.getText().toString(),"",edtSdt.getText().toString());
-                    firebase_manager.Ghi_Shipper(shipper).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    firebase_manager.auth.createUserWithEmailAndPassword(edtTaikhoan.getText().toString(),edtMatkhau.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
-                        public void onSuccess(Void unused) {
-                            kAlertDialog.changeAlertType(KAlertDialog.SUCCESS_TYPE);
-                            kAlertDialog.setContentText("Đã tạo tài khoản thành công");
+                        public void onSuccess(AuthResult authResult) {
+                            String uuid = authResult.getUser().getUid();
+                            Shipper shipper = new Shipper(uuid, edtTaikhoan.getText().toString(), edtMatkhau.getText().toString(), edtHoten.getText().toString(),"","", edtNgaysinh.getText().toString(), edtMasoxe.getText().toString(),"",edtSdt.getText().toString());
+                            firebase_manager.Ghi_Shipper(shipper).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    kAlertDialog.changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                                    kAlertDialog.setContentText("Đã tạo tài khoản thành công");
+                                    firebase_manager.Up2MatCMND(cmndTrc,cmndSau,uuid);
+                                    firebase_manager.UpAvatar(avaTar,uuid);
+                                    clearForm(viewGroup);
+                                }
+                            });
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            kAlertDialog.changeAlertType(KAlertDialog.ERROR_TYPE);
+                            kAlertDialog.setContentText(e.getMessage());
                         }
                     });
-                    firebase_manager.Up2MatCMND(cmndTrc,cmndSau,uuid);
-                    firebase_manager.UpAvatar(avaTar,uuid);
-                    clearForm(viewGroup);
-
                 }
             }
         });
