@@ -1,17 +1,17 @@
 package com.example.adminarea_realfood.Model;
 
 public class Shipper {
-    String iDShipper, taiKhoan, matKhau, hoVaTen, diaChu, khuVucHoatDong, ngaySinh, maSoXe, trangThaiHoatDong, soDienThoai;
+    String iDShipper, taiKhoan, matKhau, hoVaTen, diaChi, khuVucHoatDong, ngaySinh, maSoXe, trangThaiHoatDong, soDienThoai;
 
     public Shipper() {
     }
 
-    public Shipper(String iDShipper, String taiKhoan, String matKhau, String hoVaTen, String diaChu, String khuVucHoatDong, String ngaySinh, String maSoXe, String trangThaiHoatDong, String soDienThoai) {
+    public Shipper(String iDShipper, String taiKhoan, String matKhau, String hoVaTen, String diaChi, String khuVucHoatDong, String ngaySinh, String maSoXe, String trangThaiHoatDong, String soDienThoai) {
         this.iDShipper = iDShipper;
         this.taiKhoan = taiKhoan;
         this.matKhau = matKhau;
         this.hoVaTen = hoVaTen;
-        this.diaChu = diaChu;
+        this.diaChi = diaChi;
         this.khuVucHoatDong = khuVucHoatDong;
         this.ngaySinh = ngaySinh;
         this.maSoXe = maSoXe;
@@ -51,12 +51,12 @@ public class Shipper {
         this.hoVaTen = hoVaTen;
     }
 
-    public String getDiaChu() {
-        return diaChu;
+    public String getDiaChi() {
+        return diaChi;
     }
 
-    public void setDiaChu(String diaChu) {
-        this.diaChu = diaChu;
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
     }
 
     public String getKhuVucHoatDong() {

@@ -38,7 +38,7 @@ public class DanhSachLoaiSanPham extends AppCompatActivity {
     }
 
     private void setEvent() {
-        loaiSanPhamAdapter = new LoaiSanPhamAdapter(this, R.layout.shipper_listview, loaiSanPhams);
+        loaiSanPhamAdapter = new LoaiSanPhamAdapter(this, R.layout.loaisanpham_listview, loaiSanPhams);
         lvDanhsachloai.setAdapter(loaiSanPhamAdapter);
 
         fabThem.setOnClickListener(new View.OnClickListener() {
