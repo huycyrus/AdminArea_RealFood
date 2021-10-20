@@ -1,6 +1,7 @@
 package com.example.adminarea_realfood.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +18,12 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.example.adminarea_realfood.Model.Shipper;
 import com.example.adminarea_realfood.R;
+import com.example.adminarea_realfood.Screen.ThongTinChiTietShipper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -75,6 +78,16 @@ public class ShipperAdapter extends ArrayAdapter {
             }
         });
 
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ThongTinChiTietShipper.class);
+                Gson gson = new Gson();
+                String data = gson.toJson(shipper);
+                intent.putExtra("Shipper", data);
+                getContext().startActivity(intent);
+            }
+        });
 
         return convertView;
     }

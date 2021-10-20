@@ -1,5 +1,6 @@
 package com.example.adminarea_realfood.Screen;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,7 +13,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.adminarea_realfood.Fragment.BaoCaoShipper_fragment;
 import com.example.adminarea_realfood.Fragment.ThongTinChiTietShipper_fragment;
+import com.example.adminarea_realfood.Model.Shipper;
 import com.example.adminarea_realfood.R;
+import com.google.gson.Gson;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
@@ -21,6 +24,7 @@ public class ThongTinChiTietShipper extends AppCompatActivity {
     FrameLayout frameLayout;
     BottomBar bottomBar;
     public static Fragment fragment;
+    Shipper shipper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,12 @@ public class ThongTinChiTietShipper extends AppCompatActivity {
         setContentView(R.layout.ttctshipper_activity);
         setTitle("Nguyễn Văn A");
         setControl();
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            Intent intent = getIntent();
+            String dataShipper = intent.getStringExtra("Shipper");
+            Gson gson = new Gson();
+            shipper = gson.fromJson(dataShipper, Shipper.class);
+        }
         setEvent();
     }
 
@@ -47,7 +57,7 @@ public class ThongTinChiTietShipper extends AppCompatActivity {
                 switch (tabId)
                 {
                     case R.id.tab_ttct:
-                        ThongTinChiTietShipper_fragment thongTinChiTietShipper_fragment = new ThongTinChiTietShipper_fragment();
+                        ThongTinChiTietShipper_fragment thongTinChiTietShipper_fragment = new ThongTinChiTietShipper_fragment(shipper);
                         loadFragment(thongTinChiTietShipper_fragment);
                         break;
                     case R.id.tab_baocao:
