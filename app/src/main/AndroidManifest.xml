@@ -9,47 +9,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminArea_RealFood">
-        tools:replace="android:icon">
-
+        <activity android:name=".Screen.DanhSachShop"
+                android:label="Danh sách shop"
+                android:parentActivityName=".Screen.TrangChu"></activity>
         <activity android:name=".Screen.DangNhap">
+
+        </activity>
+        <activity android:name=".Screen.QuenMatKhau" />
+        <activity android:name=".Screen.TrangChu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".Screen.QuenMatKhau"></activity>
-
-        <activity android:name=".Screen.TrangChu">
-
-        </activity>
-
-        <activity android:name=".Screen.TaoTaiKhoanShipper"
+        <activity
+            android:name=".Screen.TaoTaiKhoanShipper"
             android:label="Tạo tài khoản shipper"
-            android:parentActivityName=".Screen.DanhSachShipper"></activity>
-
-        <activity android:name=".Screen.DanhSachShipper"
+            android:parentActivityName=".Screen.DanhSachShipper" />
+        <activity
+            android:name=".Screen.DanhSachShipper"
             android:label="Danh sách shipper"
-            android:parentActivityName=".Screen.TrangChu">
-
-        </activity>
-
-        <activity android:name=".Screen.DanhSachLoaiSanPham"
-                android:label="Loại sản phẩm"
-                android:parentActivityName=".Screen.TrangChu">
-
-        </activity>
-
-        <activity android:name=".Screen.TaoLoaiSanPham"
-                android:label="Tạo loại sản phẩm"
-                android:parentActivityName=".Screen.DanhSachLoaiSanPham"></activity>
-
-        <activity android:name=".Screen.ThongTinChiTietShipper"
-            android:parentActivityName=".Screen.DanhSachShipper">
-
-
-        </activity>
+            android:parentActivityName=".Screen.TrangChu"></activity>
+        <activity
+            android:name=".Screen.DanhSachLoaiSanPham"
+            android:label="Loại sản phẩm"
+            android:parentActivityName=".Screen.TrangChu"></activity>
+        <activity
+            android:name=".Screen.TaoLoaiSanPham"
+            android:label="Tạo loại sản phẩm"
+            android:parentActivityName=".Screen.DanhSachLoaiSanPham" />
+        <activity
+            android:name=".Screen.ThongTinChiTietShipper"
+            android:parentActivityName=".Screen.DanhSachShipper"></activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"

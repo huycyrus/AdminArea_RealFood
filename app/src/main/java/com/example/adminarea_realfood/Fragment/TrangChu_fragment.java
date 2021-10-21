@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.Screen.DanhSachLoaiSanPham;
 import com.example.adminarea_realfood.Screen.DanhSachShipper;
+import com.example.adminarea_realfood.Screen.DanhSachShop;
 
 public class TrangChu_fragment extends Fragment {
 
@@ -59,6 +60,14 @@ public class TrangChu_fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), DanhSachLoaiSanPham.class);
+                startActivity(intent);
+            }
+        });
+
+        lnDanhsachcuahang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DanhSachShop.class);
                 startActivity(intent);
             }
         });
