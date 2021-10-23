@@ -9,17 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.adminarea_realfood.Model.Shipper;
 import com.example.adminarea_realfood.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -59,11 +56,11 @@ public class ThongTinChiTietShipper_fragment extends Fragment {
         btnXoa = view.findViewById(R.id.btn_xoa_ttctshipper);
         btnKhoa = view.findViewById(R.id.btn_khoa_ttctshipper);
 
-        storageReference.child("Shipper").child(shipper.getiDShipper()).child("avatar").getDownloadUrl(  ).addOnCompleteListener(new OnCompleteListener<Uri>() {
+        storageReference.child("Shipper").child(shipper.getiDShipper()).child("avatar").getDownloadUrl(  ).addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
-            public void onComplete(@NonNull Task<Uri> task) {
+            public void onSuccess(Uri uri) {
                 Glide.with(getContext())
-                        .load(task.getResult().toString())
+                        .load(uri.toString())
                         .into(civImage);
             }
         });
@@ -73,19 +70,19 @@ public class ThongTinChiTietShipper_fragment extends Fragment {
         edtNgaysinh.setText(shipper.getNgaySinh());
         edtMaxe.setText(shipper.getMaSoXe());
         edtSdt.setText(shipper.getSoDienThoai());
-        storageReference.child("Shipper").child(shipper.getiDShipper()).child("CMND_MatTruoc").getDownloadUrl(  ).addOnCompleteListener(new OnCompleteListener<Uri>() {
+        storageReference.child("Shipper").child(shipper.getiDShipper()).child("CMND_MatTruoc").getDownloadUrl(  ).addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
-            public void onComplete(@NonNull Task<Uri> task) {
+            public void onSuccess(Uri uri) {
                 Glide.with(getContext())
-                        .load(task.getResult().toString())
+                        .load(uri.toString())
                         .into(ibTrc);
             }
         });
-        storageReference.child("Shipper").child(shipper.getiDShipper()).child("CMND_MatSau").getDownloadUrl(  ).addOnCompleteListener(new OnCompleteListener<Uri>() {
+        storageReference.child("Shipper").child(shipper.getiDShipper()).child("CMND_MatSau").getDownloadUrl(  ).addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
-            public void onComplete(@NonNull Task<Uri> task) {
+            public void onSuccess(Uri uri) {
                 Glide.with(getContext())
-                        .load(task.getResult().toString())
+                        .load(uri.toString())
                         .into(ibSau);
             }
         });

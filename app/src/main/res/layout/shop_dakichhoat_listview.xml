@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +36,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/tencuahang"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/tv_trangthai_shop"
@@ -60,7 +62,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/tenchu"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/tv_sdt_shop"
@@ -68,7 +71,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
                     android:text="@string/sdt"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -78,29 +82,23 @@
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
-                <com.skydoves.powerspinner.PowerSpinnerView
+                <Spinner
                     android:id="@+id/sn_noidungvipham_shop"
-                    android:layout_width="match_parent"
+                    android:layout_width="220dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
+                    android:entries="@array/noidungvipham"
+                    android:background="@drawable/border_edit_vuong"
                     android:padding="10dp"
-                    android:textSize="13sp"
-                    app:spinner_arrow_gravity="end"
-                    app:spinner_arrow_padding="8dp"
-                    app:spinner_divider_show="true"
-                    app:spinner_divider_size="0.4dp"
-                    app:spinner_item_array="@array/noidungvipham"
-                    app:spinner_popup_animation="dropdown"
-                    app:spinner_popup_elevation="14dp" />
+                    android:layout_marginTop="1dp"
+                    />
 
                 <Button
                     android:id="@+id/btn_gui_shop"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
                     android:text="@string/gui"
                     android:textAllCaps="false"
+
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     />

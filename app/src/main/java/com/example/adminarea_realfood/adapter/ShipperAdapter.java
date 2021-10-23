@@ -19,8 +19,7 @@ import com.bumptech.glide.Glide;
 import com.example.adminarea_realfood.Model.Shipper;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.Screen.ThongTinChiTietShipper;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
@@ -69,11 +68,11 @@ public class ShipperAdapter extends ArrayAdapter {
         tvTrangthai.setText(shipper.getTrangThaiHoatDong());
         tvSdt.setText(shipper.getSoDienThoai());
         tvMaxe.setText(shipper.getMaSoXe());
-        storageReference.child("Shipper").child(shipper.getiDShipper()).child("avatar").getDownloadUrl(  ).addOnCompleteListener(new OnCompleteListener<Uri>() {
+        storageReference.child("Shipper").child(shipper.getiDShipper()).child("avatar").getDownloadUrl(  ).addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
-            public void onComplete(@NonNull Task<Uri> task) {
+            public void onSuccess(Uri uri) {
                 Glide.with(context)
-                        .load(task.getResult().toString())
+                        .load(uri.toString())
                         .into(ivImage);
             }
         });

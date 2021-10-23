@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs xmlns:app="http://schemas.android.com/apk/res-auto">
+    <tab
+        id="@+id/tab_ttct"
+        icon="@drawable/ic_description"
+        title="Thông tin chi tiết"
+        barColorWhenSelected="#93242A" />
+
+    <tab
+        id="@+id/tab_baocao"
+        icon="@drawable/ic_notifications"
+        title="Báo cáo"
+        barColorWhenSelected="#93242A" />
+</tabs>

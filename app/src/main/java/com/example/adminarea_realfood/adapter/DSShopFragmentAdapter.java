@@ -8,11 +8,11 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.adminarea_realfood.Fragment.DSChuaKichHoat_fragment;
 import com.example.adminarea_realfood.Fragment.DSDaKichHoat_fragment;
-import com.example.adminarea_realfood.Model.Shop;
+import com.example.adminarea_realfood.Model.CuaHang;
 
 public class DSShopFragmentAdapter extends FragmentStateAdapter {
 
-    Shop shops;
+    CuaHang cuaHangs;
 
     public DSShopFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
@@ -28,7 +28,7 @@ public class DSShopFragmentAdapter extends FragmentStateAdapter {
                 return new DSChuaKichHoat_fragment();
         }
 
-        return new DSDaKichHoat_fragment(shops);
+        return new DSDaKichHoat_fragment(cuaHangs);
     }
 
     @Override

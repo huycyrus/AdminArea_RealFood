@@ -43,10 +43,39 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tencuahang">Tên cửa hàng</string>
     <string name="tenchu">Tên chủ</string>
+    <string name="chonthongbao">Chọn thông báo</string>
+    <string name="nguoiquanli">Người quản lí :</string>
+    <string name="tennguoiquanli">Tên người quản lí</string>
+    <string name="diachi">Địa chỉ :</string>
+    <string name="diachi1">Địa chỉ</string>
+    <string name="email1">Email :</string>
+    <string name="gokhoa">Gỡ khóa</string>
+    <string name="kichhoat">kích hoạt</string>
+    <string name="chan">Chặn</string>
+    <string name="thongtincanhan">Thông tin cá nhân</string>
+    <string name="sua"><u>Sửa</u></string>
+    <string name="tenadmin">Tên admin</string>
+    <string name="ngaysinh">Ngày sinh</string>
+    <string name="gioitinh">Giới tính</string>
+    <string name="nd2">Một chút thông tin về tôi</string>
+    <string name="doimatkhau">Đổi mật khẩu</string>
+    <string name="nhapmatkhaucu">Nhập mật khẩu cũ</string>
+    <string name="nhapmatkhaumoi">Nhập mật khẩu mới</string>
+    <string name="nhaplai">Nhập lại mật khẩu mới</string>
+    <string name="luu">Lưu</string>
+    <string name="thongtinkhac">Thông tin khác</string>
+    <string name="trogiup">Trợ giúp</string>
+    <string name="riengtu">Riêng tư</string>
+    <string name="nd3">Dịch vụ và chính sách</string>
+    <string name="dangxuat">Đăng xuất</string>
+    <string name="gioitinh1">Giới tính :</string>
+    <string name="nam">Nam</string>
+    <string name="nu">Nữ</string>
     <array name="noidungvipham">
         <item>Mời đóng phí</item>
-        <item>Mời đóng phí</item>
-        <item>Mời đóng phí</item>
-        <item>Mời đóng phí</item>
+        <item>Cửa hàng bị khóa 3 ngày</item>
+        <item>Cửa hàng bị khóa 7 ngày</item>
+        <item>Cửa hàng bị khóa vĩnh viễn</item>
+        <item>Cửa hàng bị báo cáo vi phạm</item>
     </array>
 </resources>

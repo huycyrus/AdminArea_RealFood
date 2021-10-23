@@ -3,6 +3,7 @@ package com.example.adminarea_realfood;
 import android.net.Uri;
 import android.util.Log;
 
+import com.example.adminarea_realfood.Model.Admin;
 import com.example.adminarea_realfood.Model.LoaiSanPham;
 import com.example.adminarea_realfood.Model.Shipper;
 import com.google.android.gms.tasks.Task;
@@ -33,6 +34,10 @@ public class    Firebase_Manager {
         return mDatabase.child("Shipper").child(shipper.getiDShipper()).setValue(shipper);
     }
 
+    public Task<Void> Ghi_Admin (Admin admin){
+        return mDatabase.child("Admin").setValue(admin);
+    }
+
     public Task<Void> Ghi_LoaiSanPham (LoaiSanPham loaiSanPham){
         return mDatabase.child("LoaiSanPham").child(loaiSanPham.getiDLoai()).setValue(loaiSanPham);
     }
@@ -46,6 +51,11 @@ public class    Firebase_Manager {
     public UploadTask UpAvatar(Uri avatar, String shipper)
     {
         return storageRef.child("Shipper").child(shipper).child("avatar").putFile(avatar);
+    }
+
+    public UploadTask UpAvatarAdmin(Uri AvatarAdmin, String admin)
+    {
+        return storageRef.child("Admin").child(admin).child("AvatarAdmin").putFile(AvatarAdmin);
     }
 
     public UploadTask UpImageLoaiSanPham(Uri imageLoaiSanPham, String loaiSanPham)

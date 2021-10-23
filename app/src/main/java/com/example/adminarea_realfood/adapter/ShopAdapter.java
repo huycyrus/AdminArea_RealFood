@@ -1,6 +1,7 @@
 package com.example.adminarea_realfood.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,19 +9,20 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
-import com.example.adminarea_realfood.Model.Shop;
+import com.example.adminarea_realfood.Model.CuaHang;
 import com.example.adminarea_realfood.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.adminarea_realfood.Screen.ThongTinChiTietShop;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.skydoves.powerspinner.PowerSpinnerView;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -28,19 +30,19 @@ public class ShopAdapter extends ArrayAdapter {
 
     Context context;
     int resource;
-    ArrayList<Shop> shops;
+    ArrayList<CuaHang> cuaHangs;
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
-    public ShopAdapter(@NonNull Context context, int resource, ArrayList<Shop> shops) {
-        super(context, resource, shops);
+    public ShopAdapter(@NonNull Context context, int resource, ArrayList<CuaHang> cuaHangs) {
+        super(context, resource, cuaHangs);
         this.context = context;
         this.resource = resource;
-        this.shops = shops;
+        this.cuaHangs = cuaHangs;
     }
 
     @Override
     public int getCount() {
-        return shops.size();
+        return cuaHangs.size();
     }
 
     @NonNull
@@ -53,22 +55,34 @@ public class ShopAdapter extends ArrayAdapter {
         TextView tvTenChu = convertView.findViewById(R.id.tv_tenchu_shop);
         TextView tvTrangThai = convertView.findViewById(R.id.tv_trangthai_shop);
         TextView tvSdt = convertView.findViewById(R.id.tv_sdt_shop);
-        PowerSpinnerView snNoiDung = convertView.findViewById(R.id.sn_noidungvipham_shop);
+        Spinner snNoiDung = convertView.findViewById(R.id.sn_noidungvipham_shop);
         Button btnGui = convertView.findViewById(R.id.btn_gui_shop);
         ImageView ivImage = convertView.findViewById(R.id.image_profile_shop);
 
-        Shop shop = shops.get(position);
-        tvTenCuaHang.setText(shop.getTenCuaHang());
-        tvTenChu.setText(shop.getChuSoHuu());
-        tvSdt.setText(shop.getSoDienThoai());
-        storageReference.child("Cuahang").child(shop.getIDCuaHang()).child("avatar").getDownloadUrl(  ).addOnCompleteListener(new OnCompleteListener<Uri>() {
+        CuaHang cuaHang = cuaHangs.get(position);
+        tvTenCuaHang.setText(cuaHang.getTenCuaHang());
+        tvTenChu.setText(cuaHang.getChuSoHuu());
+        tvSdt.setText(cuaHang.getSoDienThoai());
+        storageReference.child("CuaHang").child(cuaHang.getIDCuaHang()).child("Avatar").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
-            public void onComplete(@NonNull Task<Uri> task) {
+            public void onSuccess(Uri uri) {
                 Glide.with(context)
-                        .load(task.getResult().toString())
+                        .load(uri.toString())
                         .into(ivImage);
             }
         });
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ThongTinChiTietShop.class);
+                Gson gson = new Gson();
+                String data = gson.toJson(cuaHang);
+                intent.putExtra("CuaHang", data);
+                getContext().startActivity(intent);
+            }
+        });
+
 
         return convertView;
     }
