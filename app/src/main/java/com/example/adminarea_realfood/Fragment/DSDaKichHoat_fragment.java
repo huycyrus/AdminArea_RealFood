@@ -6,11 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import android.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.CuaHang;
 import com.example.adminarea_realfood.R;
+import com.example.adminarea_realfood.TrangThai.TrangThaiCuaHang;
 import com.example.adminarea_realfood.adapter.ShopAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +26,7 @@ public class DSDaKichHoat_fragment extends Fragment {
     ArrayList<CuaHang> cuaHangs = new ArrayList<CuaHang>();
     ShopAdapter shopAdapter;
 
+
     public DSDaKichHoat_fragment(CuaHang cuaHang) {
         // Required empty public constructor
     }
@@ -35,10 +38,27 @@ public class DSDaKichHoat_fragment extends Fragment {
         View view = inflater.inflate(R.layout.dsdakichhoat_fragment, container, false);
 
         ListView lvDanhSach = (ListView) view.findViewById(R.id.lv_danhsachshop);
+        SearchView svView = view.findViewById(R.id.searchView_DSShop_DKH);
 
         shopAdapter = new ShopAdapter(getContext(), R.layout.shop_dakichhoat_listview, cuaHangs);
         lvDanhSach.setAdapter(shopAdapter);
         getDanhsachshop();
+
+        svView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                shopAdapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                shopAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+
 
 
         // Inflate the layout for this fragment
@@ -46,16 +66,18 @@ public class DSDaKichHoat_fragment extends Fragment {
     }
 
     public void getDanhsachshop() {
-        firebase_manager.mDatabase.child("CuaHang").orderByChild("trangThaiCuaHang").equalTo("DaKichHoat").addValueEventListener(new ValueEventListener() {
+        firebase_manager.mDatabase.child("CuaHang").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 cuaHangs.clear();
+
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     CuaHang shop = postSnapshot.getValue(CuaHang.class);
-                    cuaHangs.add(shop);
-                    shopAdapter.notifyDataSetChanged();
-
+                    if(shop.getTrangThaiCuaHang() != TrangThaiCuaHang.ChuaKichHoat){
+                        cuaHangs.add(shop);
+                    }
                 }
+                shopAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -64,5 +86,12 @@ public class DSDaKichHoat_fragment extends Fragment {
         });
     }
 
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getDanhsachshop();
+    }
 }
 

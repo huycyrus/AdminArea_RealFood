@@ -71,6 +71,20 @@ public class ThongTinChiTietShop extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+
+        int fragments = getSupportFragmentManager().getBackStackEntryCount();
+        if (fragments == 1) {
+            finish();
+        } else if (getFragmentManager().getBackStackEntryCount() > 1) {
+            getFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+
+    }
+
     private void setControl() {
         bottomBar = (BottomBar) findViewById(R.id.bottomBar_shop);
         frameLayout = findViewById(R.id.fragment_shop);

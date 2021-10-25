@@ -68,4 +68,9 @@ public class DSChuaKichHoat_fragment extends Fragment {
             }
         });
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        getDanhsachshop();
+    }
 }

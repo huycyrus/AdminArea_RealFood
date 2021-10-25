@@ -1,10 +1,12 @@
 package com.example.adminarea_realfood.Screen;
 
+import android.app.DatePickerDialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -26,10 +28,12 @@ import com.vansuita.pickimage.dialog.PickImageDialog;
 import com.vansuita.pickimage.listeners.IPickCancel;
 import com.vansuita.pickimage.listeners.IPickResult;
 
+import java.util.Calendar;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class TaoTaiKhoanShipper extends AppCompatActivity {
+public class TaoTaiKhoanShipper extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
 
     EditText edtTaikhoan, edtMatkhau, edtHoten, edtNgaysinh, edtMasoxe, edtSdt;
     CircleImageView avatar;
@@ -53,6 +57,13 @@ public class TaoTaiKhoanShipper extends AppCompatActivity {
     }
 
     private void setEvent() {
+        edtNgaysinh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDataPickerDailog();
+            }
+        });
+
         ibMattruoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,13 +150,31 @@ public class TaoTaiKhoanShipper extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             kAlertDialog.changeAlertType(KAlertDialog.ERROR_TYPE);
-                            kAlertDialog.setContentText(e.getMessage());
+                            kAlertDialog.setContentText("Email đã được sử dụng bởi người dùng khác");
                         }
                     });
                 }
             }
         });
     }
+
+    private void showDataPickerDailog() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                this,
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.show();
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        String date = dayOfMonth + "/" + month + "/" + year;
+        edtNgaysinh.setText(date);
+    }
+
     private boolean Validated_Form() {
         boolean result = false;
         if (!validate.isBlank(edtTaikhoan) && validate.isEmail(edtTaikhoan)

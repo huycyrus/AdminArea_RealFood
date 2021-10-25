@@ -53,9 +53,9 @@ public class    Firebase_Manager {
         return storageRef.child("Shipper").child(shipper).child("avatar").putFile(avatar);
     }
 
-    public UploadTask UpAvatarAdmin(Uri AvatarAdmin, String admin)
+    public UploadTask UpAvatarAdmin(Uri AvatarAdmin)
     {
-        return storageRef.child("Admin").child(admin).child("AvatarAdmin").putFile(AvatarAdmin);
+        return storageRef.child("Admin").child("AvatarAdmin").putFile(AvatarAdmin);
     }
 
     public UploadTask UpImageLoaiSanPham(Uri imageLoaiSanPham, String loaiSanPham)

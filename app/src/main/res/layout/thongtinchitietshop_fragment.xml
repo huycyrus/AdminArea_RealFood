@@ -282,6 +282,7 @@
                         android:textColor="@color/white"
                         android:layout_marginTop="10dp"
                         android:textSize="20dp"
+                        android:visibility="gone"
                         />
 
                     <Button
@@ -297,46 +298,24 @@
                         android:textColor="@color/white"
                         android:layout_marginTop="10dp"
                         android:textSize="20dp"
+                        android:visibility="gone"
                         />
 
-                    <LinearLayout
+                    <Button
+                        android:id="@+id/btn_kichhoat_ttshop"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/btn_kichhoat_ttshop"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/kichhoat"
-                            android:textAllCaps="false"
-                            android:textStyle="bold"
-                            android:background="#37E861"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginEnd="20dp"
-                            android:textColor="@color/white"
-                            android:layout_marginTop="10dp"
-                            android:layout_weight="1"
-                            android:textSize="20dp"
-                            />
-
-                        <Button
-                            android:id="@+id/btn_chan_ttshop"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/chan"
-                            android:textAllCaps="false"
-                            android:textStyle="bold"
-                            android:background="#FF1A1A"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginEnd="20dp"
-                            android:textColor="@color/white"
-                            android:layout_marginTop="10dp"
-                            android:layout_weight="1"
-                            android:textSize="20dp"
-                            />
-
-                    </LinearLayout>
+                        android:text="@string/kichhoat"
+                        android:textAllCaps="false"
+                        android:textStyle="bold"
+                        android:background="#37E861"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginEnd="40dp"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="10dp"
+                        android:textSize="20dp"
+                        android:visibility="gone"
+                        />
 
                 </LinearLayout>
             </LinearLayout>

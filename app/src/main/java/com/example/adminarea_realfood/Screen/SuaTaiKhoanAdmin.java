@@ -13,11 +13,15 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.developer.kalert.KAlertDialog;
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.Admin;
 import com.example.adminarea_realfood.R;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.vansuita.pickimage.bean.PickResult;
@@ -26,9 +30,10 @@ import com.vansuita.pickimage.dialog.PickImageDialog;
 import com.vansuita.pickimage.listeners.IPickCancel;
 import com.vansuita.pickimage.listeners.IPickResult;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -49,6 +54,32 @@ public class SuaTaiKhoanAdmin extends AppCompatActivity implements DatePickerDia
         setControl();
         edtEmail.setText(firebase_manager.auth.getCurrentUser().getEmail());
         setEvent();
+        LoadData();
+    }
+
+    private void LoadData() {
+        storageReference.child("Admin").child("AvatarAdmin").getDownloadUrl(  ).addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(getApplication())
+                        .load(uri.toString())
+                        .into(civImage);
+            }
+        });
+        firebase_manager.mDatabase.child("Admin").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                admin = snapshot.getValue(Admin.class);
+                edtHoTen.setText(admin.getHoTen());
+                edtNgaySinh.setText(admin.getNgaySinh());
+                edtSdt.setText(admin.getsDT());
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void setEvent() {
@@ -120,10 +151,13 @@ public class SuaTaiKhoanAdmin extends AppCompatActivity implements DatePickerDia
         Context context = this;
         switch (item.getItemId()){
             case R.id.action_Save:
+                if(avatarAdmin != null){
+                    firebase_manager.UpAvatarAdmin(avatarAdmin);
+                }
                 KAlertDialog kAlertDialog = new KAlertDialog(SuaTaiKhoanAdmin.this, KAlertDialog.PROGRESS_TYPE).setContentText("Loading");
                 kAlertDialog.show();
 
-                Admin admin = new Admin( edtEmail.getText().toString(), edtHoTen.getText().toString(), edtNgaySinh.getText().toString(), edtSdt.getText().toString());
+                Admin admin = new Admin(  edtHoTen.getText().toString(), edtEmail.getText().toString(), edtSdt.getText().toString(), edtNgaySinh.getText().toString());
                 firebase_manager.Ghi_Admin(admin).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
@@ -131,7 +165,6 @@ public class SuaTaiKhoanAdmin extends AppCompatActivity implements DatePickerDia
                         kAlertDialog.setContentText("Đã lưu thành công");
                     }
                 });
-                firebase_manager.UpAvatarAdmin(avatarAdmin,uuid);
         }
 
 

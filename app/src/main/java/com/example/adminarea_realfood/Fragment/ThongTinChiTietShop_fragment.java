@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.developer.kalert.KAlertDialog;
+import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.CuaHang;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.TrangThai.TrangThaiCuaHang;
@@ -26,9 +28,10 @@ public class ThongTinChiTietShop_fragment extends Fragment {
     ImageView ivWallpaper, ivTruoc, ivSau;
     CircleImageView civAvatar;
     TextView tvTenCuaHang, tvTenQuanLi, tvSDT, tvDiaChi, tvEmail;
-    Button btnKhoa, btnGoKhoa, btnKichHoat, btnChan;
+    Button btnKhoa, btnGoKhoa, btnKichHoat;
     CuaHang cuaHang;
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+    Firebase_Manager firebase_manager = new Firebase_Manager();
 
     public ThongTinChiTietShop_fragment(CuaHang cuaHang) {
         this.cuaHang = cuaHang;
@@ -57,7 +60,6 @@ public class ThongTinChiTietShop_fragment extends Fragment {
         btnKhoa = view.findViewById(R.id.btn_khoa_ttshop);
         btnGoKhoa = view.findViewById(R.id.btn_gokhoa_ttshop);
         btnKichHoat = view.findViewById(R.id.btn_kichhoat_ttshop);
-        btnChan = view.findViewById(R.id.btn_chan_ttshop);
 
         storageReference.child("CuaHang").child(cuaHang.getIDCuaHang()).child("WallPaper").getDownloadUrl(  ).addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
@@ -97,32 +99,76 @@ public class ThongTinChiTietShop_fragment extends Fragment {
             }
         });
 
-        if(cuaHang.getTrangThaiCuaHang() == TrangThaiCuaHang.ChuaKichHoat){
-            btnKhoa.setVisibility(View.GONE);
-            btnGoKhoa.setVisibility(View.GONE);
-        }
-        if(cuaHang.getTrangThaiCuaHang() == TrangThaiCuaHang.DaKichHoat){
-            btnChan.setVisibility(View.GONE);
-            btnGoKhoa.setVisibility(View.GONE);
-            btnKichHoat.setVisibility(View.GONE);
-        }
+        LoadButton();
+
+        btnKichHoat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                KAlertDialog kAlertDialog = new KAlertDialog(getActivity(), KAlertDialog.PROGRESS_TYPE).setContentText("Loading");
+                kAlertDialog.show();
+                cuaHang.setTrangThaiCuaHang(TrangThaiCuaHang.DaKichHoat);
+                firebase_manager.mDatabase.child("CuaHang").child(cuaHang.getIDCuaHang()).setValue(cuaHang).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        LoadButton();
+                        kAlertDialog.changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                        kAlertDialog.setContentText("Đã kích hoạt thành công");
+                    }
+                });
+            }
+        });
 
         btnKhoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnKhoa.setVisibility(View.GONE);
-                btnGoKhoa.setVisibility(View.VISIBLE);
+                KAlertDialog kAlertDialog = new KAlertDialog(getActivity(), KAlertDialog.PROGRESS_TYPE).setContentText("Loading");
+                kAlertDialog.show();
+                cuaHang.setTrangThaiCuaHang(TrangThaiCuaHang.BiKhoa);
+                firebase_manager.mDatabase.child("CuaHang").child(cuaHang.getIDCuaHang()).setValue(cuaHang).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        LoadButton();
+                        kAlertDialog.changeAlertType(KAlertDialog.WARNING_TYPE);
+                        kAlertDialog.setContentText("Cửa hàng bị khóa");
+                    }
+                });
             }
         });
 
         btnGoKhoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnGoKhoa.setVisibility(View.GONE);
-                btnKhoa.setVisibility(View.VISIBLE);
+                KAlertDialog kAlertDialog = new KAlertDialog(getActivity(), KAlertDialog.PROGRESS_TYPE).setContentText("Loading");
+                kAlertDialog.show();
+                cuaHang.setTrangThaiCuaHang(TrangThaiCuaHang.DaKichHoat);
+                firebase_manager.mDatabase.child("CuaHang").child(cuaHang.getIDCuaHang()).setValue(cuaHang).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        LoadButton();
+                        kAlertDialog.changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                        kAlertDialog.setContentText("Cửa hàng được gỡ khóa");
+                    }
+                });
             }
         });
 
         return view;
     }
+
+    private void LoadButton() {
+        btnKhoa.setVisibility(View.GONE);
+        btnKichHoat.setVisibility(View.GONE);
+        btnGoKhoa.setVisibility(View.GONE);
+        if(cuaHang.getTrangThaiCuaHang() == TrangThaiCuaHang.ChuaKichHoat){
+            btnKichHoat.setVisibility(View.VISIBLE);
+        }
+        if(cuaHang.getTrangThaiCuaHang() == TrangThaiCuaHang.DaKichHoat){
+            btnKhoa.setVisibility(View.VISIBLE);
+        }
+        if(cuaHang.getTrangThaiCuaHang() == TrangThaiCuaHang.BiKhoa){
+            btnGoKhoa.setVisibility(View.VISIBLE);
+        }
+    }
+
+
 }
