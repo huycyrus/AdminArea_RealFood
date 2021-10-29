@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Fragment.BaoCaoShipper_fragment;
 import com.example.adminarea_realfood.Fragment.ThongTinChiTietShipper_fragment;
 import com.example.adminarea_realfood.Model.Shipper;
@@ -25,12 +26,13 @@ public class ThongTinChiTietShipper extends AppCompatActivity {
     BottomBar bottomBar;
     public static Fragment fragment;
     Shipper shipper;
+    Firebase_Manager firebase_manager = new Firebase_Manager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ttctshipper_activity);
-        setTitle("Nguyễn Văn A");
+        setTitle("Thông tin chi tiết");
         setControl();
         if (getIntent() != null && getIntent().getExtras() != null) {
             Intent intent = getIntent();

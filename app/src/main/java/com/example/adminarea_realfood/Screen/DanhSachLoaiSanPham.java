@@ -1,5 +1,6 @@
 package com.example.adminarea_realfood.Screen;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -73,6 +74,7 @@ public class DanhSachLoaiSanPham extends AppCompatActivity {
         fabThem = findViewById(R.id.fab_add);
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -85,12 +87,13 @@ public class DanhSachLoaiSanPham extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                loaiSanPhamAdapter.getFilter().filter(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
+                loaiSanPhamAdapter.getFilter().filter(newText);
                 return false;
             }
         });

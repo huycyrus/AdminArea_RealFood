@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,12 +27,14 @@ import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ShipperAdapter extends ArrayAdapter {
+public class ShipperAdapter extends ArrayAdapter implements Filterable {
 
     Context context;
     int resource;
     ArrayList<Shipper> data;
+    ArrayList<Shipper> data1;
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
     public ShipperAdapter(@NonNull Context context, int resource, ArrayList<Shipper> data) {
@@ -38,6 +42,7 @@ public class ShipperAdapter extends ArrayAdapter {
         this.context = context;
         this.resource = resource;
         this.data = data;
+        this.data1 = data;
     }
 
 
@@ -89,5 +94,36 @@ public class ShipperAdapter extends ArrayAdapter {
         });
 
         return convertView;
+    }
+
+    @NonNull
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String keyWord = constraint.toString();
+                if(keyWord.isEmpty()){
+                    data = data1;
+                }else {
+                    List<Shipper> list = new ArrayList<>();
+                    for (Shipper shipper : data1){
+                        if(shipper.getHoVaTen().toLowerCase().contains(keyWord.toLowerCase())){
+                            list.add(shipper);
+                        }
+                    }
+                    data = (ArrayList<Shipper>) list;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = data;
+                return filterResults    ;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                data = (ArrayList<Shipper>) results.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }

@@ -7,15 +7,17 @@
     tools:context=".Fragment.DSChuaKichHoat_fragment">
 
     <SearchView
-        android:id="@+id/searchView_DSShop_DKH"
+        android:id="@+id/searchView_DSShop_CKH"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@drawable/custom_searchview" />
 
+
     <ListView
         android:id="@+id/lv_danhsachshop_chuakichhoat"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 
 </LinearLayout>

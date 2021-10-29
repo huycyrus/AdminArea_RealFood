@@ -1,6 +1,6 @@
 package com.example.adminarea_realfood.Model;
 
-public class LoaiSanPham {
+public class LoaiSanPham extends CuaHang {
     String iDLoai, sTT, tenLoai;
 
     public LoaiSanPham() {

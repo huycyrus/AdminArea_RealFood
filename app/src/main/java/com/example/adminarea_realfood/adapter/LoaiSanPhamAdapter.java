@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,11 +23,12 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class LoaiSanPhamAdapter extends ArrayAdapter {
+public class LoaiSanPhamAdapter extends ArrayAdapter implements Filterable {
 
     Context context;
     int resource;
     ArrayList<LoaiSanPham> data;
+    ArrayList<LoaiSanPham> data1;
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
     public LoaiSanPhamAdapter(@NonNull Context context, int resource, ArrayList<LoaiSanPham> data) {
@@ -33,6 +36,7 @@ public class LoaiSanPhamAdapter extends ArrayAdapter {
         this.context = context;
         this.resource = resource;
         this.data = data;
+        this.data1 = data;
     }
 
     @Override
@@ -63,5 +67,36 @@ public class LoaiSanPhamAdapter extends ArrayAdapter {
         });
 
         return convertView;
+    }
+
+    @NonNull
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String keyWord = constraint.toString();
+                if(keyWord.isEmpty()){
+                    data = data1;
+                }else {
+                    ArrayList<LoaiSanPham> list = new ArrayList<>();
+                    for (LoaiSanPham loaiSanPham : data1){
+                        if(loaiSanPham.getTenLoai().toLowerCase().contains(keyWord.toLowerCase())){
+                            list.add(loaiSanPham);
+                        }
+                    }
+                    data = list;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = data;
+                return filterResults    ;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                data = (ArrayList<LoaiSanPham>) results.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }

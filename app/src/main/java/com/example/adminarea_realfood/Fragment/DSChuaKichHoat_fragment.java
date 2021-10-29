@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import androidx.fragment.app.Fragment;
 
@@ -40,11 +41,25 @@ public class DSChuaKichHoat_fragment extends Fragment {
         View view = inflater.inflate(R.layout.dschuakichhoat_fragment, container, false);
 
         ListView lvDanhSach = (ListView) view.findViewById(R.id.lv_danhsachshop_chuakichhoat);
+        SearchView svView = view.findViewById(R.id.searchView_DSShop_CKH);
 
         shopAdapter = new ShopAdapter(getContext(), R.layout.shop_chuakichhoat_listview, cuaHangs);
         lvDanhSach.setAdapter(shopAdapter);
         getDanhsachshop();
 
+        svView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                shopAdapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                shopAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
 
         // Inflate the layout for this fragment
         return view;

@@ -28,7 +28,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Screen.QuenMatKhau" />
-        <activity android:name=".Screen.TrangChu"></activity>
+        <activity android:name=".Screen.TrangChu">
+
+        </activity>
         <activity
             android:name=".Screen.TaoTaiKhoanShipper"
             android:label="Tạo tài khoản shipper"
