@@ -104,7 +104,7 @@ public class ThongTinChiTietShop_fragment extends Fragment {
         btnKichHoat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                KAlertDialog kAlertDialog = new KAlertDialog(getActivity(), KAlertDialog.PROGRESS_TYPE).setContentText("Loading");
+                KAlertDialog kAlertDialog = new KAlertDialog(getContext(), KAlertDialog.PROGRESS_TYPE).setContentText("Loading");
                 kAlertDialog.show();
                 cuaHang.setTrangThaiCuaHang(TrangThaiCuaHang.DaKichHoat);
                 firebase_manager.mDatabase.child("CuaHang").child(cuaHang.getIDCuaHang()).setValue(cuaHang).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -121,7 +121,7 @@ public class ThongTinChiTietShop_fragment extends Fragment {
         btnKhoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                KAlertDialog kAlertDialog = new KAlertDialog(getActivity(), KAlertDialog.PROGRESS_TYPE).setContentText("Loading");
+                KAlertDialog kAlertDialog = new KAlertDialog(getContext(), KAlertDialog.PROGRESS_TYPE).setContentText("Loading");
                 kAlertDialog.show();
                 cuaHang.setTrangThaiCuaHang(TrangThaiCuaHang.BiKhoa);
                 firebase_manager.mDatabase.child("CuaHang").child(cuaHang.getIDCuaHang()).setValue(cuaHang).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -138,7 +138,7 @@ public class ThongTinChiTietShop_fragment extends Fragment {
         btnGoKhoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                KAlertDialog kAlertDialog = new KAlertDialog(getActivity(), KAlertDialog.PROGRESS_TYPE).setContentText("Loading");
+                KAlertDialog kAlertDialog = new KAlertDialog(getContext(), KAlertDialog.PROGRESS_TYPE).setContentText("Loading");
                 kAlertDialog.show();
                 cuaHang.setTrangThaiCuaHang(TrangThaiCuaHang.DaKichHoat);
                 firebase_manager.mDatabase.child("CuaHang").child(cuaHang.getIDCuaHang()).setValue(cuaHang).addOnSuccessListener(new OnSuccessListener<Void>() {
