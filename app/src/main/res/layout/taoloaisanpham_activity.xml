@@ -15,6 +15,7 @@
         android:layout_marginTop="40dp"/>
 
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -80,7 +81,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
         android:textColor="@color/white"
-        android:layout_marginTop="78dp"
+        android:layout_marginTop="50dp"
         android:textSize="20dp"
         />
 

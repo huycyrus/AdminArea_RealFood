@@ -91,8 +91,7 @@ public class TaoLoaiSanPham extends AppCompatActivity {
 
     private boolean Validated_Form() {
         boolean result = false;
-        if (!validate.isBlank(edtStt) && validate.isNumber(edtStt)
-                &&!validate.isBlank(edtTenloai)
+        if (!validate.isBlank(edtTenloai)
         ){
             result = true;
             if (imageLoaiSP == null)

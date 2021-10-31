@@ -16,14 +16,13 @@
             android:padding="5dp"
             android:scaleType="fitXY"
             android:src="@mipmap/ic_launcher"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             >
-
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -47,13 +46,11 @@
                     android:textColor="@color/black" />
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="20dp">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -62,7 +59,6 @@
                     android:textColor="@color/black"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp" />
-
                 <TextView
                     android:id="@+id/tv_tenLoai"
                     android:layout_width="match_parent"

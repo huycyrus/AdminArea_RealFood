@@ -31,9 +31,15 @@ public class DangNhap extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         auth = FirebaseAuth.getInstance();
         setContentView(R.layout.dangnhap_activity);
-        this.getSupportActionBar().hide();
         setControl();
         setEvent();
+        this.getSupportActionBar().hide();
+        if(auth.getCurrentUser() != null){
+            Intent intent = new Intent(getApplicationContext(), TrangChu.class);
+            edtTK.setText(auth.getCurrentUser().getEmail());
+            startActivity(intent);
+        }
+
     }
 
     private void setEvent() {
