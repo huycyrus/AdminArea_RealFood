@@ -1,6 +1,7 @@
 package com.example.adminarea_realfood.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +18,11 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.example.adminarea_realfood.Model.LoaiSanPham;
 import com.example.adminarea_realfood.R;
+import com.example.adminarea_realfood.Screen.SuaLoaiSanPham;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -63,6 +66,17 @@ public class LoaiSanPhamAdapter extends ArrayAdapter implements Filterable {
                 Glide.with(context)
                         .load(uri.toString())
                         .into(ivImage);
+            }
+        });
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), SuaLoaiSanPham.class);
+                Gson gson = new Gson();
+                String data = gson.toJson(loaiSanPham);
+                intent.putExtra("LoaiSanPham", data);
+                getContext().startActivity(intent);
             }
         });
 

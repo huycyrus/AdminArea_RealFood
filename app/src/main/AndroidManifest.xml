@@ -9,9 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminArea_RealFood">
-        <activity android:name=".Screen.SuaTaiKhoanAdmin"
+        <activity
+            android:name=".Screen.SuaLoaiSanPham"
+            android:label="Sửa loại sản phẩm"
+            android:parentActivityName=".Screen.DanhSachLoaiSanPham"></activity>
+        <activity
+            android:name=".Screen.SuaTaiKhoanAdmin"
             android:label="Sửa tài khoản"
-            android:parentActivityName=".Screen.TrangChu"></activity>
+            android:parentActivityName=".Screen.TrangChu" />
         <activity
             android:name=".Screen.ThongTinChiTietShop"
             android:label="Thông tin chi tiết"
@@ -28,9 +33,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Screen.QuenMatKhau" />
-        <activity android:name=".Screen.TrangChu">
-
-        </activity>
+        <activity android:name=".Screen.TrangChu"></activity>
         <activity
             android:name=".Screen.TaoTaiKhoanShipper"
             android:label="Tạo tài khoản shipper"
