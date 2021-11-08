@@ -10,9 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminArea_RealFood">
         <activity
+            android:name=".Screen.ThongTinChiTietKhachHang"
+            android:label="Thông tin chi tiết khách hàng"
+            android:parentActivityName=".Screen.DanhSachKhachHang"></activity>
+        <activity
+            android:name=".Screen.DanhSachKhachHang"
+            android:label="Danh sách khách hàng"
+            android:parentActivityName=".Screen.TrangChu" />
+        <activity
             android:name=".Screen.SuaLoaiSanPham"
             android:label="Sửa loại sản phẩm"
-            android:parentActivityName=".Screen.DanhSachLoaiSanPham"></activity>
+            android:parentActivityName=".Screen.DanhSachLoaiSanPham" />
         <activity
             android:name=".Screen.SuaTaiKhoanAdmin"
             android:label="Sửa tài khoản"
@@ -33,7 +41,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Screen.QuenMatKhau" />
-        <activity android:name=".Screen.TrangChu"></activity>
+        <activity android:name=".Screen.TrangChu" />
         <activity
             android:name=".Screen.TaoTaiKhoanShipper"
             android:label="Tạo tài khoản shipper"

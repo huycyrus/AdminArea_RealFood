@@ -71,6 +71,7 @@
     <string name="gioitinh1">Giới tính :</string>
     <string name="nam">Nam</string>
     <string name="nu">Nữ</string>
+    <string name="tenkhachhang">Tên khách hàng</string>
     <array name="noidungvipham">
         <item>Mời đóng phí</item>
         <item>Cửa hàng bị khóa 3 ngày</item>

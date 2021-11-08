@@ -11,13 +11,14 @@ import android.widget.LinearLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.adminarea_realfood.R;
+import com.example.adminarea_realfood.Screen.DanhSachKhachHang;
 import com.example.adminarea_realfood.Screen.DanhSachLoaiSanPham;
 import com.example.adminarea_realfood.Screen.DanhSachShipper;
 import com.example.adminarea_realfood.Screen.DanhSachShop;
 
 public class TrangChu_fragment extends Fragment {
 
-    LinearLayout lnDanhsachcuahang, lnShipper, lnDanhsachkhang, lnDoanhthuhethong, lnDoanhthucuahang, lnThongke, lnLoaisanpham;
+    LinearLayout lnDanhsachcuahang, lnShipper, lnDanhsachkhanhhang, lnDoanhthuhethong, lnDoanhthucuahang, lnThongke, lnLoaisanpham;
 
     public TrangChu_fragment() {
         // Required empty public constructor
@@ -42,7 +43,7 @@ public class TrangChu_fragment extends Fragment {
         View view =  inflater.inflate(R.layout.home_fragment, container, false);
         lnDanhsachcuahang = view.findViewById(R.id.ln_danhsachcuahang);
         lnShipper = view.findViewById(R.id.ln_danhsachshipper);
-        lnDanhsachkhang = view.findViewById(R.id.ln_danhsachkhachhang);
+        lnDanhsachkhanhhang = view.findViewById(R.id.ln_danhsachkhachhang);
         lnDoanhthuhethong = view.findViewById(R.id.ln_dthethong);
         lnDoanhthucuahang = view.findViewById(R.id.ln_dtcuahang);
         lnThongke = view.findViewById(R.id.lnThongke);
@@ -68,6 +69,14 @@ public class TrangChu_fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), DanhSachShop.class);
+                startActivity(intent);
+            }
+        });
+
+        lnDanhsachkhanhhang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DanhSachKhachHang.class);
                 startActivity(intent);
             }
         });
