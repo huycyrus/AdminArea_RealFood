@@ -3,7 +3,6 @@ package com.example.adminarea_realfood.Screen;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import androidx.annotation.IdRes;
@@ -32,7 +31,6 @@ public class ThongTinChiTietShipper extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ttctshipper_activity);
-        setTitle("Thông tin chi tiết");
         setControl();
         if (getIntent() != null && getIntent().getExtras() != null) {
             Intent intent = getIntent();

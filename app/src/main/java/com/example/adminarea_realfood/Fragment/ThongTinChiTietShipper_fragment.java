@@ -96,6 +96,7 @@ public class ThongTinChiTietShipper_fragment extends Fragment implements DatePic
                 Glide.with(getContext())
                         .load(uri.toString())
                         .into(civImage);
+                avaTar = uri;
             }
         });
         passWord = shipper.getMatKhau();
@@ -111,6 +112,7 @@ public class ThongTinChiTietShipper_fragment extends Fragment implements DatePic
                 Glide.with(getContext())
                         .load(uri.toString())
                         .into(ibTrc);
+                cmndTrc = uri;
             }
         });
         storageReference.child("Shipper").child(shipper.getiDShipper()).child("CMND_MatSau").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -119,6 +121,7 @@ public class ThongTinChiTietShipper_fragment extends Fragment implements DatePic
                 Glide.with(getContext())
                         .load(uri.toString())
                         .into(ibSau);
+                cmndSau = uri;
             }
         });
 
@@ -182,7 +185,6 @@ public class ThongTinChiTietShipper_fragment extends Fragment implements DatePic
         civImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "ssss", Toast.LENGTH_SHORT).show();
                 PickImageDialog.build(new PickSetup())
                         .setOnPickResult(new IPickResult() {
                             @Override
@@ -204,10 +206,8 @@ public class ThongTinChiTietShipper_fragment extends Fragment implements DatePic
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Toast.makeText(getContext(), "ok", Toast.LENGTH_SHORT).show();
         switch (item.getItemId()) {
             case R.id.action_Save:
-                Toast.makeText(getContext(), "oke", Toast.LENGTH_SHORT).show();
                 if (Validated_Form()) {
                     KAlertDialog kAlertDialog = new KAlertDialog(getContext(), KAlertDialog.PROGRESS_TYPE).setContentText("Loading");
                     kAlertDialog.show();
@@ -263,7 +263,9 @@ public class ThongTinChiTietShipper_fragment extends Fragment implements DatePic
                         });
                     }
                 }
-
+            case android.R.id.home:
+                getActivity().finish();
+                return true;
         }
 
         return true;

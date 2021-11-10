@@ -47,10 +47,10 @@ public class    Firebase_Manager {
         return  mDatabase.child("TaiKhoanNganHangAdmin").child(taiKhoanNganHangAdmin.getId()).setValue(taiKhoanNganHangAdmin);
     }
 
-    public void Up2MatCMND(Uri truoc, Uri sau, String iDShipper)
+    public void Up2MatCMND(Uri cmndTrc, Uri cmndSau, String iDShipper)
     {
-        storageRef.child("Shipper").child(iDShipper).child("CMND_MatTruoc").putFile(truoc);
-        storageRef.child("Shipper").child(iDShipper).child("CMND_MatSau").putFile(sau);
+        storageRef.child("Shipper").child(iDShipper).child("CMND_MatTruoc").putFile(cmndTrc);
+        storageRef.child("Shipper").child(iDShipper).child("CMND_MatSau").putFile(cmndSau);
     }
 
     public UploadTask UpAvatar(Uri avatar, String shipper)

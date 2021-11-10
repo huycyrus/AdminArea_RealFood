@@ -64,6 +64,7 @@
             android:parentActivityName=".Screen.DanhSachLoaiSanPham" />
         <activity
             android:name=".Screen.ThongTinChiTietShipper"
+            android:label="Thông tin chi tiết shipper"
             android:parentActivityName=".Screen.DanhSachShipper" />
 
         <provider
