@@ -6,6 +6,7 @@ import android.util.Log;
 import com.example.adminarea_realfood.Model.Admin;
 import com.example.adminarea_realfood.Model.LoaiSanPham;
 import com.example.adminarea_realfood.Model.Shipper;
+import com.example.adminarea_realfood.Model.TaiKhoanNganHang;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -40,6 +41,10 @@ public class    Firebase_Manager {
 
     public Task<Void> Ghi_LoaiSanPham (LoaiSanPham loaiSanPham){
         return mDatabase.child("LoaiSanPham").child(loaiSanPham.getiDLoai()).setValue(loaiSanPham);
+    }
+    public Task<Void> Ghi_NganHang(TaiKhoanNganHang taiKhoanNganHangAdmin)
+    {
+        return  mDatabase.child("TaiKhoanNganHangAdmin").child(taiKhoanNganHangAdmin.getId()).setValue(taiKhoanNganHangAdmin);
     }
 
     public void Up2MatCMND(Uri truoc, Uri sau, String iDShipper)

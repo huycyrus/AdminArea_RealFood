@@ -72,6 +72,8 @@
     <string name="nam">Nam</string>
     <string name="nu">Nữ</string>
     <string name="tenkhachhang">Tên khách hàng</string>
+    <string name="phuongthucthanhtoan">Phương thức thánh toán</string>
+    <string name="taikhoannganhang">Tài khoản ngân hàng</string>
     <array name="noidungvipham">
         <item>Mời đóng phí</item>
         <item>Cửa hàng bị khóa 3 ngày</item>

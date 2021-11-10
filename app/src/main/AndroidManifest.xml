@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminArea_RealFood">
         <activity
+            android:name=".Screen.TaiKhoanNganHangAdmin"
+            android:label="Tài khoản ngân hàng"
+            android:parentActivityName=".Screen.TrangChu"></activity>
+        <activity
             android:name=".Screen.ThongTinChiTietKhachHang"
             android:label="Thông tin chi tiết khách hàng"
-            android:parentActivityName=".Screen.DanhSachKhachHang"></activity>
+            android:parentActivityName=".Screen.DanhSachKhachHang" />
         <activity
             android:name=".Screen.DanhSachKhachHang"
             android:label="Danh sách khách hàng"

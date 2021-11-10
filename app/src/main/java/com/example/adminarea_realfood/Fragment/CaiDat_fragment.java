@@ -20,6 +20,7 @@ import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.Admin;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.Screen.SuaTaiKhoanAdmin;
+import com.example.adminarea_realfood.Screen.TaiKhoanNganHangAdmin;
 import com.example.adminarea_realfood.Validate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -41,7 +42,7 @@ public class CaiDat_fragment extends Fragment {
 
     CircleImageView civImage;
     Button btnLuu, btnDangXuat;
-    TextView tvSua, tvTen, tvNgaySinh, tvSdt, tvEmail, tvTroGiup, tvRiengTu, tvChinhSach;
+    TextView tvSua, tvTen, tvNgaySinh, tvSdt, tvEmail, tvTaiKhoanNH, tvTroGiup, tvRiengTu, tvChinhSach;
     EditText edtMKCu, edtMKMoi, edtNhapLai;
     Admin admin;
     Firebase_Manager firebase_manager = new Firebase_Manager();
@@ -72,6 +73,7 @@ public class CaiDat_fragment extends Fragment {
         tvEmail = view.findViewById(R.id.tv_email_admin);
         tvNgaySinh = view.findViewById(R.id.tv_ngaysinh_admin);
         tvSdt = view.findViewById(R.id.tv_sdt_admin);
+        tvTaiKhoanNH = view.findViewById(R.id.tv_TaiKhoanNganHang_admin);
         tvTroGiup = view.findViewById(R.id.tv_trogiup_admin);
         tvRiengTu = view.findViewById(R.id.tv_riengtu_admin);
         tvChinhSach = view.findViewById(R.id.tv_dvvacs_admin);
@@ -80,6 +82,7 @@ public class CaiDat_fragment extends Fragment {
         edtNhapLai = view.findViewById(R.id.edt_nhaplai_admin);
         btnDangXuat = view.findViewById(R.id.btn_dangxuat_admin);
         btnLuu = view.findViewById(R.id.btn_luu_admin);
+
 
         tvSua.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +121,14 @@ public class CaiDat_fragment extends Fragment {
             public void onClick(View v) {
                 firebase_manager.auth.signOut();
                 getActivity().finish();
+            }
+        });
+
+        tvTaiKhoanNH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), TaiKhoanNganHangAdmin.class);
+                startActivity(intent);
             }
         });
 

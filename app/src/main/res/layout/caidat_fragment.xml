@@ -270,6 +270,48 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:textStyle="bold"
+                        android:background="#7EBDBDBD"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/phuongthucthanhtoan"
+                        android:textSize="15dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_TaiKhoanNganHang_admin"
+                        android:drawablePadding="10dp"
+                        android:paddingLeft="20dp"
+                        android:drawableLeft="@drawable/ic_credit_card"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/taikhoannganhang"
+                        android:textSize="15dp"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/border_linear_vuong"
+                    android:orientation="horizontal">
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -278,7 +320,9 @@
                         android:text="@string/thongtinkhac"
                         android:textColor="@color/black"
                         android:textSize="15dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"/>
+
+
 
                 </LinearLayout>
 
@@ -286,20 +330,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:src="@drawable/ic_error" />
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tv_trogiup_admin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
+                        android:drawablePadding="10dp"
+                        android:paddingLeft="20dp"
+                        android:drawableLeft="@drawable/ic_error"
                         android:text="@string/trogiup"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
@@ -312,18 +351,13 @@
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:src="@drawable/ic_lock" />
-
                     <TextView
                         android:id="@+id/tv_riengtu_admin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
+                        android:drawablePadding="10dp"
+                        android:paddingLeft="20dp"
+                        android:drawableLeft="@drawable/ic_lock"
                         android:text="@string/riengtu"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
@@ -336,18 +370,13 @@
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:src="@drawable/ic_file" />
-
                     <TextView
                         android:id="@+id/tv_dvvacs_admin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
+                        android:drawablePadding="10dp"
+                        android:paddingLeft="20dp"
+                        android:drawableLeft="@drawable/ic_file"
                         android:text="@string/nd3"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
