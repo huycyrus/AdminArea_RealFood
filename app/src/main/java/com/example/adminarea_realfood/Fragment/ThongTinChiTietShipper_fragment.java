@@ -1,9 +1,12 @@
 package com.example.adminarea_realfood.Fragment;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,12 +69,13 @@ public class ThongTinChiTietShipper_fragment extends Fragment implements DatePic
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        setHasOptionsMenu(true);
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.thongtinchitietshipper_fragment, container, false);
         civImage = view.findViewById(R.id.profile_image_ttctshipper);
@@ -120,6 +124,11 @@ public class ThongTinChiTietShipper_fragment extends Fragment implements DatePic
 
         setEvent();
         return view;
+    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // TODO Add your menu entries here
+        inflater.inflate(R.menu.menu_save, menu);
     }
 
     private void setEvent() {
@@ -173,6 +182,7 @@ public class ThongTinChiTietShipper_fragment extends Fragment implements DatePic
         civImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getContext(), "ssss", Toast.LENGTH_SHORT).show();
                 PickImageDialog.build(new PickSetup())
                         .setOnPickResult(new IPickResult() {
                             @Override
@@ -191,10 +201,13 @@ public class ThongTinChiTietShipper_fragment extends Fragment implements DatePic
         });
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Toast.makeText(getContext(), "ok", Toast.LENGTH_SHORT).show();
         switch (item.getItemId()) {
             case R.id.action_Save:
+                Toast.makeText(getContext(), "oke", Toast.LENGTH_SHORT).show();
                 if (Validated_Form()) {
                     KAlertDialog kAlertDialog = new KAlertDialog(getContext(), KAlertDialog.PROGRESS_TYPE).setContentText("Loading");
                     kAlertDialog.show();
@@ -253,7 +266,7 @@ public class ThongTinChiTietShipper_fragment extends Fragment implements DatePic
 
         }
 
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     private void showDataPickerDailog() {

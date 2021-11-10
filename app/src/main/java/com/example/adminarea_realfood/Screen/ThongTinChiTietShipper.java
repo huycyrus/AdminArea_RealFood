@@ -41,6 +41,7 @@ public class ThongTinChiTietShipper extends AppCompatActivity {
             shipper = gson.fromJson(dataShipper, Shipper.class);
         }
         setEvent();
+
     }
 
     private void loadFragment(Fragment   fragment) {
@@ -78,12 +79,6 @@ public class ThongTinChiTietShipper extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.menu_save,menu);
-
-        MenuItem menuItem = menu.findItem(R.id.action_Save);
-
-
         return super.onCreateOptionsMenu(menu);
     }
 
