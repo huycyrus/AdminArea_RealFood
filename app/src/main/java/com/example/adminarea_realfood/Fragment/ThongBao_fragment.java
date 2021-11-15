@@ -5,58 +5,132 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.adminarea_realfood.Fragment.TrangChu_fragment;
+import com.example.adminarea_realfood.Firebase_Manager;
+import com.example.adminarea_realfood.Model.BaoCao;
+import com.example.adminarea_realfood.Model.ThongBao;
 import com.example.adminarea_realfood.R;
+import com.example.adminarea_realfood.TrangThai.TrangThaiThongBao;
+import com.example.adminarea_realfood.adapter.ThongBaoAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 
 public class ThongBao_fragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    ArrayList<ThongBao> thongBaos = new ArrayList<>();
+    Firebase_Manager firebase_manager = new Firebase_Manager();
+    LinearLayoutManager linearLayoutManager;
+    ThongBaoAdapter thongBaoAdapter;
+    TextView tvAlert;
+    LinearLayout lnLayout;
+    Button btnDaDanhDau;
+    ProgressBar pdLoad;
+    RecyclerView rvThongBao;
+    BaoCao baoCao = new BaoCao();
+    ArrayList<BaoCao> baoCaos = new ArrayList<>();
 
     public ThongBao_fragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static TrangChu_fragment newInstance(String param1, String param2) {
-        TrangChu_fragment fragment = new TrangChu_fragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.thongbao_fragment, container, false);
+        View view = inflater.inflate(R.layout.thongbao_fragment, container, false);
+        tvAlert = view.findViewById(R.id.tv_Alert);
+        lnLayout = view.findViewById(R.id.lnLayout);
+        btnDaDanhDau = view.findViewById(R.id.btn_DanhDauLaDaDoc);
+        pdLoad = view.findViewById(R.id.pd_Load);
+        rvThongBao = view.findViewById(R.id.rv_ThongBao);
+
+        thongBaoAdapter = new ThongBaoAdapter(getActivity(), R.layout.thongbao_item, thongBaos);
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        LoadData();
+
+        return view;
+    }
+
+    private void LoadAlert() {
+        if (thongBaos.isEmpty()) {
+            tvAlert.setVisibility(View.VISIBLE);
+            lnLayout.setVisibility(View.GONE);
+        }
+    }
+
+    private void LoadData() {
+        btnDaDanhDau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pdLoad.setVisibility(View.VISIBLE);
+                thongBaos.forEach(thongBao -> {
+                    if (thongBao.getTrangThaiThongBao() == TrangThaiThongBao.ChuaXem) {
+                        thongBao.setTrangThaiThongBao(TrangThaiThongBao.DaXem);
+                        firebase_manager.Ghi_ThongBao(thongBao);
+                        pdLoad.setVisibility(View.GONE);
+                    }
+                    thongBaoAdapter.notifyDataSetChanged();
+                });
+                pdLoad.setVisibility(View.GONE);
+            }
+        });
+        firebase_manager.mDatabase.child("ThongBao").child(firebase_manager.auth.getUid()).orderByChild("trangThaiThongBao").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    thongBaos.clear();
+                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                        ThongBao thongBao = postSnapshot.getValue(ThongBao.class);
+                        thongBaos.add(thongBao);
+                        thongBaoAdapter.notifyDataSetChanged();
+                    }
+                    rvThongBao.setLayoutManager(linearLayoutManager);
+                    rvThongBao.setAdapter(thongBaoAdapter);
+                    pdLoad.setVisibility(View.GONE);
+                    LoadAlert();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+        firebase_manager.mDatabase.child("BaoCao").child(baoCao.getIDCuaHang()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    BaoCao baoCao1 = postSnapshot.getValue(BaoCao.class);
+                    baoCaos.add(baoCao1);
+                    thongBaoAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
     }
 }

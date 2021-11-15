@@ -278,6 +278,45 @@
 
                             </LinearLayout>
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:background="@drawable/border_edit_vuong2">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/danhsachsanpham"
+                                    android:textColor="@color/black"
+                                    android:textSize="18dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_gravity="center"/>
+
+                                <ImageButton
+                                    android:id="@+id/ib_down_ttctshop"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_arrow_down"
+                                    android:background="#F2F2F2"
+                                    android:paddingStart="180dp"
+                                    android:paddingEnd="10dp"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/rv_danhsachsanpham_ttctshop"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical" />
+
+                            </LinearLayout>
+
                             <Button
                                 android:id="@+id/btn_khoa_ttshop"
                                 android:layout_width="match_parent"
@@ -327,6 +366,8 @@
                                 />
 
                         </LinearLayout>
+
+
 
                     </LinearLayout>
 

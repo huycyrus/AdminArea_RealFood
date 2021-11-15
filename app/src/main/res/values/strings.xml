@@ -74,6 +74,15 @@
     <string name="tenkhachhang">Tên khách hàng</string>
     <string name="phuongthucthanhtoan">Phương thức thánh toán</string>
     <string name="taikhoannganhang">Tài khoản ngân hàng</string>
+    <string name="thongbao">Thông báo</string>
+    <string name="danhdauladoc">Đánh dấu là đã đọc</string>
+    <string name="noidungchuaco">Bạn chua có thông báo nào cả :3</string>
+    <string name="tieude">Tiêu Đề</string>
+    <string name="noidungthongbao">Nội dung</string>
+    <string name="ngaythongbao">18/10/2021</string>
+    <string name="danhsachsanpham">Danh sách sản phẩm</string>
+    <string name="tensanpham">Tên sản phẩm</string>
+    <string name="gia">Giá</string>
     <array name="noidungvipham">
         <item>Mời đóng phí</item>
         <item>Cửa hàng bị khóa 3 ngày</item>

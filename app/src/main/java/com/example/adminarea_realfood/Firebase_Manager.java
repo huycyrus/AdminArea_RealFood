@@ -1,24 +1,19 @@
 package com.example.adminarea_realfood;
 
 import android.net.Uri;
-import android.util.Log;
 
 import com.example.adminarea_realfood.Model.Admin;
 import com.example.adminarea_realfood.Model.LoaiSanPham;
 import com.example.adminarea_realfood.Model.Shipper;
 import com.example.adminarea_realfood.Model.TaiKhoanNganHang;
+import com.example.adminarea_realfood.Model.ThongBao;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
-import java.util.ArrayList;
 
 public class    Firebase_Manager {
     public  DatabaseReference mDatabase ;
@@ -46,6 +41,10 @@ public class    Firebase_Manager {
     {
         return  mDatabase.child("TaiKhoanNganHangAdmin").child(taiKhoanNganHangAdmin.getId()).setValue(taiKhoanNganHangAdmin);
     }
+    public Task<Void> Ghi_ThongBao(ThongBao thongBao)
+    {
+        return  mDatabase.child("ThongBao").child(auth.getUid()).child(thongBao.getIDThongBao()).setValue(thongBao);
+    }
 
     public void Up2MatCMND(Uri cmndTrc, Uri cmndSau, String iDShipper)
     {
@@ -68,26 +67,6 @@ public class    Firebase_Manager {
         return storageRef.child("LoaiSanPham").child(loaiSanPham).child("Loại sản phẩm").putFile(imageLoaiSanPham);
     }
 
-    public ArrayList<Shipper> getDanhsachshipper()
-    {
-        ArrayList<Shipper> shippers = new ArrayList<>();
-        mDatabase.child("Shipper").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                shippers.clear();
-                Log.d("a",dataSnapshot.toString());
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    Shipper shipper = postSnapshot.getValue(Shipper.class);
-                    shippers.add(shipper);
-                    Log.d("a",shipper.getiDShipper()+shippers.size());
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
-        return shippers;
-    }
 
 }

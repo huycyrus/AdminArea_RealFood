@@ -1,19 +1,18 @@
 package com.example.adminarea_realfood.Screen;
 
+import android.os.Bundle;
+import android.widget.FrameLayout;
+
 import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.os.Bundle;
-import android.widget.FrameLayout;
 
 import com.example.adminarea_realfood.Fragment.CaiDat_fragment;
 import com.example.adminarea_realfood.Fragment.ThongBao_fragment;
 import com.example.adminarea_realfood.Fragment.TrangChu_fragment;
 import com.example.adminarea_realfood.R;
 import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.BottomBarTab;
 import com.roughike.bottombar.OnTabSelectListener;
 
 public class TrangChu extends AppCompatActivity {
@@ -30,8 +29,6 @@ public class TrangChu extends AppCompatActivity {
         setContentView(R.layout.trangchu_activity);
         setControl();
         setEvent();
-        BottomBarTab nearby = bottomBar.getTabWithId(R.id.tab_thongbao);
-        nearby.setBadgeCount(5);
     }
 
     private void loadFragment(Fragment   fragment) {

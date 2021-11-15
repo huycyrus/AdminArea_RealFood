@@ -1,5 +1,5 @@
 package com.example.adminarea_realfood.TrangThai;
 
 public enum TrangThaiCuaHang {
-    ChuaKichHoat,DaKichHoat,BiKhoa,AN,ChuaDongPhi,DaDongPhi,GoKhoa
+    ChuaKichHoat,DaKichHoat,BiKhoa,AN,ChuaDongPhi,DaDongPhi
 }
