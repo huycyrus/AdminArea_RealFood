@@ -19,7 +19,6 @@ import com.example.adminarea_realfood.Model.SanPham;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.SetOnLongClick;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -30,7 +29,6 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.MyViewHo
     private Activity context;
     private int resource;
     private ArrayList<SanPham> arrayList;
-    private ArrayList<SanPham> source;
     public SetOnLongClick setOnLongClick;
 
     public SetOnLongClick getSetOnLongClick() {
@@ -42,13 +40,12 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.MyViewHo
     }
 
     StorageReference storageRef  = FirebaseStorage.getInstance().getReference();
-    FirebaseAuth auth= FirebaseAuth.getInstance();
+
 
     public SanPhamAdapter(Activity context, int resource, ArrayList<SanPham> arrayList) {
         this.context = context;
         this.resource = resource;
         this.arrayList = arrayList;
-        source = arrayList;
     }
 
 
@@ -73,15 +70,16 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.MyViewHo
             float parseFloat = Float.parseFloat(sanPham.getGia());
             String price =format.format(parseFloat);
             holder.tvGia.setText(price);
-            storageRef.child("SanPham").child(sanPham.getIDSanPham()).child(sanPham.getImages().get(0)).
+            storageRef.child("SanPham").child(sanPham.getIDCuaHang()).child(sanPham.getIDSanPham()).child(sanPham.getImages().get(0)).
                     getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
                     Glide.with(context)
                             .load(uri.toString())
-                            .into(holder.imageView);
+                            .into(holder.ivAnhSP);
                     holder.pdLoad.setVisibility(View.GONE);
                     Log.d("link",uri.toString());
+
                 }
             });
 
@@ -113,7 +111,6 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.MyViewHo
 
     //Define RecylerVeiw Holder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        public ImageView imageView;
         TextView tvTenSanPham;
         TextView tvGia;
         ImageView ivAnhSP;

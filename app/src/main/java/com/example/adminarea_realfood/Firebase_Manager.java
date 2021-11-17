@@ -3,17 +3,25 @@ package com.example.adminarea_realfood;
 import android.net.Uri;
 
 import com.example.adminarea_realfood.Model.Admin;
+import com.example.adminarea_realfood.Model.CuaHang;
 import com.example.adminarea_realfood.Model.LoaiSanPham;
+import com.example.adminarea_realfood.Model.SanPham;
 import com.example.adminarea_realfood.Model.Shipper;
 import com.example.adminarea_realfood.Model.TaiKhoanNganHang;
 import com.example.adminarea_realfood.Model.ThongBao;
+import com.example.adminarea_realfood.adapter.SanPhamAdapter;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.util.ArrayList;
 
 public class    Firebase_Manager {
     public  DatabaseReference mDatabase ;
@@ -67,6 +75,25 @@ public class    Firebase_Manager {
         return storageRef.child("LoaiSanPham").child(loaiSanPham).child("Loại sản phẩm").putFile(imageLoaiSanPham);
     }
 
+    public void GetSanPham(ArrayList arrayList, SanPhamAdapter sanPhamAdapter, CuaHang cuaHang) {
+        mDatabase.child("SanPham").orderByChild("idcuaHang").equalTo(cuaHang.getIDCuaHang()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                arrayList.clear();
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    SanPham sanPham = postSnapshot.getValue(SanPham.class);
+                    arrayList.add(sanPham);
+                    if (sanPhamAdapter != null) {
+                        sanPhamAdapter.notifyDataSetChanged();
 
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
 
 }

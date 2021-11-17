@@ -69,6 +69,9 @@ public class ShopAdapter extends ArrayAdapter implements Filterable {
         tvTenCuaHang.setText(cuaHang.getTenCuaHang());
         tvTenChu.setText(cuaHang.getChuSoHuu());
         tvSdt.setText(cuaHang.getSoDienThoai());
+
+
+
         storageReference.child("CuaHang").child(cuaHang.getIDCuaHang()).child("Avatar").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {

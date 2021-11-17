@@ -2,24 +2,33 @@ package com.example.adminarea_realfood.Fragment;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.developer.kalert.KAlertDialog;
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.CuaHang;
+import com.example.adminarea_realfood.Model.SanPham;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.TrangThai.TrangThaiCuaHang;
+import com.example.adminarea_realfood.adapter.SanPhamAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -32,6 +41,14 @@ public class ThongTinChiTietShop_fragment extends Fragment {
     CuaHang cuaHang;
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     Firebase_Manager firebase_manager = new Firebase_Manager();
+    SanPham sanPham;
+    ArrayList<SanPham> sanPhams = new ArrayList<>();
+    RecyclerView rv_danhsachsp;
+    SanPhamAdapter sanPhamAdapter;
+    GridLayoutManager gridLayoutManager ;
+    ImageButton ib_down;
+    LinearLayoutManager linearLayoutManager;
+
 
     public ThongTinChiTietShop_fragment(CuaHang cuaHang) {
         this.cuaHang = cuaHang;
@@ -40,6 +57,15 @@ public class ThongTinChiTietShop_fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        //GetSanPham();
+        //GetDanhSachDanhMuc();
+        sanPhamAdapter.notifyDataSetChanged();
+        super.onResume();
+        Log.d("a","oke");
     }
 
     @Override
@@ -60,6 +86,9 @@ public class ThongTinChiTietShop_fragment extends Fragment {
         btnKhoa = view.findViewById(R.id.btn_khoa_ttshop);
         btnGoKhoa = view.findViewById(R.id.btn_gokhoa_ttshop);
         btnKichHoat = view.findViewById(R.id.btn_kichhoat_ttshop);
+        rv_danhsachsp = view.findViewById(R.id.rv_danhsachsanpham_ttctshop);
+        ib_down = view.findViewById(R.id.ib_down_ttctshop);
+
 
         storageReference.child("CuaHang").child(cuaHang.getIDCuaHang()).child("WallPaper").getDownloadUrl(  ).addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
@@ -151,9 +180,25 @@ public class ThongTinChiTietShop_fragment extends Fragment {
                 });
             }
         });
+        LoadInfoSP();
 
         return view;
     }
+
+
+    private void LoadInfoSP() {
+        sanPhamAdapter = new SanPhamAdapter(getActivity(), R.layout.sanpham_item, sanPhams);
+
+        linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        gridLayoutManager = new GridLayoutManager(getActivity(),2);
+        rv_danhsachsp.setLayoutManager(gridLayoutManager);
+        rv_danhsachsp.setLayoutManager(linearLayoutManager);
+        rv_danhsachsp.setAdapter(sanPhamAdapter);
+        firebase_manager.GetSanPham(sanPhams,sanPhamAdapter,cuaHang);
+
+    }
+
 
     private void LoadButton() {
         btnKhoa.setVisibility(View.GONE);

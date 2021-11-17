@@ -2,15 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linear3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Fragment.ThongTinChiTietShop_fragment"
-    android:id="@+id/linear3">
+    tools:context=".Fragment.ThongTinChiTietShop_fragment">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -26,22 +27,26 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="256dp">
+
                     <ImageView
                         android:id="@+id/iv_wallpaper"
                         android:layout_width="match_parent"
-                        android:scaleType="centerCrop"
                         android:layout_height="200dp"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/ic_launcher_background" />
 
                 </FrameLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="-120dp"
                     android:orientation="horizontal">
+
                     <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
+
                         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:id="@+id/civ_avatar_ttshop"
                             android:layout_width="120dp"
@@ -53,6 +58,7 @@
                             app:civ_border_width="2dp" />
 
                     </FrameLayout>
+
                     <TextView
                         android:id="@+id/tv_tencuahang_ttshop"
                         style="@style/Title"
@@ -62,6 +68,7 @@
                         android:text="@string/tencuahang"
                         android:textStyle="bold" />
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -71,7 +78,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:orientation="horizontal"/>
+                    android:orientation="horizontal" />
 
                 <View
                     android:layout_width="match_parent"
@@ -101,23 +108,21 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/nguoiquanli"
-                                    android:textColor="@color/black"
-                                    android:textSize="18dp"
                                     android:layout_marginLeft="25dp"
                                     android:layout_marginTop="20dp"
-                                    />
+                                    android:text="@string/nguoiquanli"
+                                    android:textColor="@color/black"
+                                    android:textSize="18dp" />
 
                                 <TextView
                                     android:id="@+id/tv_tenquanli_ttshop"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/tennguoiquanli"
-                                    android:textColor="@color/black"
-                                    android:textSize="18dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginTop="20dp"
-                                    />
+                                    android:text="@string/tennguoiquanli"
+                                    android:textColor="@color/black"
+                                    android:textSize="18dp" />
 
                             </LinearLayout>
 
@@ -129,23 +134,21 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/sodienthoai"
-                                    android:textColor="@color/black"
-                                    android:textSize="18dp"
                                     android:layout_marginLeft="25dp"
                                     android:layout_marginTop="10dp"
-                                    />
+                                    android:text="@string/sodienthoai"
+                                    android:textColor="@color/black"
+                                    android:textSize="18dp" />
 
                                 <TextView
                                     android:id="@+id/tv_sdt_ttshop"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/sdt"
-                                    android:textColor="@color/black"
-                                    android:textSize="18dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginTop="10dp"
-                                    />
+                                    android:text="@string/sdt"
+                                    android:textColor="@color/black"
+                                    android:textSize="18dp" />
 
                             </LinearLayout>
 
@@ -157,23 +160,21 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/diachi"
-                                    android:textColor="@color/black"
-                                    android:textSize="18dp"
                                     android:layout_marginLeft="25dp"
                                     android:layout_marginTop="10dp"
-                                    />
+                                    android:text="@string/diachi"
+                                    android:textColor="@color/black"
+                                    android:textSize="18dp" />
 
                                 <TextView
                                     android:id="@+id/tv_diachi_ttshop"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/diachi1"
-                                    android:textColor="@color/black"
-                                    android:textSize="18dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginTop="10dp"
-                                    />
+                                    android:text="@string/diachi1"
+                                    android:textColor="@color/black"
+                                    android:textSize="18dp" />
 
                             </LinearLayout>
 
@@ -185,23 +186,21 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/email1"
-                                    android:textColor="@color/black"
-                                    android:textSize="18dp"
                                     android:layout_marginLeft="25dp"
                                     android:layout_marginTop="10dp"
-                                    />
+                                    android:text="@string/email1"
+                                    android:textColor="@color/black"
+                                    android:textSize="18dp" />
 
                                 <TextView
                                     android:id="@+id/tv_email_ttshop"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/email"
-                                    android:textColor="@color/black"
-                                    android:textSize="18dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginTop="10dp"
-                                    />
+                                    android:text="@string/email"
+                                    android:textColor="@color/black"
+                                    android:textSize="18dp" />
 
                             </LinearLayout>
 
@@ -213,42 +212,39 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
                                     android:layout_marginLeft="25dp"
+                                    android:layout_marginTop="10dp"
                                     android:text="@string/cmd"
                                     android:textColor="@color/black"
-                                    android:textSize="18dp"
-                                    />
+                                    android:textSize="18dp" />
 
                             </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_marginTop="10dp">
+                                android:layout_marginTop="10dp"
+                                android:orientation="horizontal">
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="8dp"
                                     android:layout_marginLeft="40dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_weight="1"
                                     android:text="@string/mattruoc"
                                     android:textColor="@color/black"
-                                    android:textSize="18dp"
-                                    android:layout_weight="1"
-                                    />
+                                    android:textSize="18dp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="8dp"
                                     android:layout_marginLeft="40dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_weight="1"
                                     android:text="@string/matsau"
                                     android:textColor="@color/black"
-                                    android:textSize="18dp"
-                                    android:layout_weight="1"
-                                    />
+                                    android:textSize="18dp" />
 
                             </LinearLayout>
 
@@ -261,19 +257,19 @@
                                     android:id="@+id/ib_idtruoc_ttshop"
                                     android:layout_width="150dp"
                                     android:layout_height="120dp"
-                                    android:scaleType="fitXY"
                                     android:layout_margin="15dp"
-                                    android:src="@drawable/idtruoc"
-                                    android:layout_weight="1"/>
+                                    android:layout_weight="1"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/idtruoc" />
 
                                 <ImageView
                                     android:id="@+id/ib_idsau_ttshop"
                                     android:layout_width="150dp"
                                     android:layout_height="120dp"
-                                    android:scaleType="fitXY"
                                     android:layout_margin="15dp"
-                                    android:src="@drawable/idsau"
-                                    android:layout_weight="1"/>
+                                    android:layout_weight="1"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/idsau" />
                                 />
 
                             </LinearLayout>
@@ -281,92 +277,74 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:background="@drawable/border_edit_vuong2">
+                                android:background="@drawable/border_edit_vuong2"
+                                android:orientation="horizontal">
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="15dp"
                                     android:text="@string/danhsachsanpham"
                                     android:textColor="@color/black"
-                                    android:textSize="18dp"
-                                    android:layout_marginLeft="15dp"
-                                    android:layout_gravity="center"/>
+                                    android:textSize="18dp" />
 
-                                <ImageButton
-                                    android:id="@+id/ib_down_ttctshop"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_arrow_down"
-                                    android:background="#F2F2F2"
-                                    android:paddingStart="180dp"
-                                    android:paddingEnd="10dp"/>
 
                             </LinearLayout>
 
-                            <LinearLayout
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rv_danhsachsanpham_ttctshop"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
+                                android:layout_height="wrap_content" />
 
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/rv_danhsachsanpham_ttctshop"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical" />
-
-                            </LinearLayout>
 
                             <Button
                                 android:id="@+id/btn_khoa_ttshop"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="40dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="40dp"
+                                android:background="#FF1A1A"
                                 android:text="@string/khoa"
                                 android:textAllCaps="false"
-                                android:textStyle="bold"
-                                android:background="#FF1A1A"
-                                android:layout_marginStart="40dp"
-                                android:layout_marginEnd="40dp"
                                 android:textColor="@color/white"
-                                android:layout_marginTop="10dp"
                                 android:textSize="20dp"
-                                android:visibility="gone"
-                                />
+                                android:textStyle="bold"
+                                android:visibility="gone" />
 
                             <Button
                                 android:id="@+id/btn_gokhoa_ttshop"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="40dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="40dp"
+                                android:background="#B8B8B8"
                                 android:text="@string/gokhoa"
                                 android:textAllCaps="false"
-                                android:textStyle="bold"
-                                android:background="#B8B8B8"
-                                android:layout_marginStart="40dp"
-                                android:layout_marginEnd="40dp"
                                 android:textColor="@color/white"
-                                android:layout_marginTop="10dp"
                                 android:textSize="20dp"
-                                android:visibility="gone"
-                                />
+                                android:textStyle="bold"
+                                android:visibility="gone" />
 
                             <Button
                                 android:id="@+id/btn_kichhoat_ttshop"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="40dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="40dp"
+                                android:background="#37E861"
                                 android:text="@string/kichhoat"
                                 android:textAllCaps="false"
-                                android:textStyle="bold"
-                                android:background="#37E861"
-                                android:layout_marginStart="40dp"
-                                android:layout_marginEnd="40dp"
                                 android:textColor="@color/white"
-                                android:layout_marginTop="10dp"
                                 android:textSize="20dp"
-                                android:visibility="gone"
-                                />
+                                android:textStyle="bold"
+                                android:visibility="gone" />
 
                         </LinearLayout>
-
 
 
                     </LinearLayout>
