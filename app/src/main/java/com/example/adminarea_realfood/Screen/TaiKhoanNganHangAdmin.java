@@ -24,7 +24,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner;
@@ -36,9 +35,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TaiKhoanNganHangAdmin extends AppCompatActivity {
 
-    EditText edtTenChiNhanh,edtSoTaiKhoan,edtTenChuTaiKhoan,edtSoCMND;
+    EditText edtTenChiNhanh, edtSoTaiKhoan, edtTenChuTaiKhoan, edtSoCMND;
     SearchableSpinner spDSNganHang;
-    NganHangAdapter nganHangAdapter ;
+    NganHangAdapter nganHangAdapter;
     Button btnLuuThongTin;
     Validate validate = new Validate();
     Firebase_Manager firebase_manager = new Firebase_Manager();
@@ -57,16 +56,17 @@ public class TaiKhoanNganHangAdmin extends AppCompatActivity {
     }
 
     private void LoadData() {
-        firebase_manager.mDatabase.child("TaiKhoanNganHangAdmin").orderByChild("idTaiKhoan").equalTo(firebase_manager.auth.getUid())
+        firebase_manager.mDatabase.child("TaiKhoanNganHangAdmin").child("admin")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                            TaiKhoanNganHang taiKhoanNganHang = postSnapshot.getValue(TaiKhoanNganHang.class);
-                            nganHang = taiKhoanNganHang;
-                            SetValueToAllField();
-                        }
+
+                        TaiKhoanNganHang taiKhoanNganHang = snapshot.getValue(TaiKhoanNganHang.class);
+                        nganHang = taiKhoanNganHang;
+                        SetValueToAllField();
+
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
@@ -75,23 +75,23 @@ public class TaiKhoanNganHangAdmin extends AppCompatActivity {
     }
 
     private void SetValueToAllField() {
-        edtSoCMND.setText(nganHang.getSoCMND());
-        edtTenChuTaiKhoan.setText(nganHang.getTenChuTaiKhoan());
-        edtSoTaiKhoan.setText(nganHang.getSoTaiKhoan());
-        edtTenChiNhanh.setText(nganHang.getTenChiNhanh());
-        edtSoCMND.setText(nganHang.getSoCMND());
-        AtomicInteger positon = new AtomicInteger();
-        arrayList.forEach(temp -> {
-            if (temp.getName().equals(nganHang.getTenNganHang()))
-            {
-                spDSNganHang.setSelected(true);
-                spDSNganHang.setActivated(true);
-                spDSNganHang.dispatchSetSelected(true);
-                spDSNganHang.setSelectedItem(positon.get());
-            }
-            positon.getAndIncrement();
-        });
-
+        if (nganHang != null){
+            edtSoCMND.setText(nganHang.getSoCMND());
+            edtTenChuTaiKhoan.setText(nganHang.getTenChuTaiKhoan());
+            edtSoTaiKhoan.setText(nganHang.getSoTaiKhoan());
+            edtTenChiNhanh.setText(nganHang.getTenChiNhanh());
+            edtSoCMND.setText(nganHang.getSoCMND());
+            AtomicInteger positon = new AtomicInteger();
+            arrayList.forEach(temp -> {
+                if (temp.getName().equals(nganHang.getTenNganHang())) {
+                    spDSNganHang.setSelected(true);
+                    spDSNganHang.setActivated(true);
+                    spDSNganHang.dispatchSetSelected(true);
+                    spDSNganHang.setSelectedItem(positon.get());
+                }
+                positon.getAndIncrement();
+            });
+        }
     }
 
     private void setEvent() {
@@ -99,20 +99,18 @@ public class TaiKhoanNganHangAdmin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!validate.isBlank(edtTenChiNhanh)
-                        &&spDSNganHang.getSelectedItem()!=null
-                        &&!validate.isBlank(edtSoTaiKhoan)&&!validate.isBlank(edtTenChuTaiKhoan)
-                        &&!validate.isBlank(edtSoCMND)&&validate.isCMND(edtSoCMND)){
+                        && spDSNganHang.getSelectedItem() != null
+                        && !validate.isBlank(edtSoTaiKhoan) && !validate.isBlank(edtTenChuTaiKhoan)
+                        && !validate.isBlank(edtSoCMND) && validate.isCMND(edtSoCMND)) {
 
-                    if (nganHang==null)
-                    {
-                        KAlertDialog kAlertDialog = new KAlertDialog(TaiKhoanNganHangAdmin.this,KAlertDialog.PROGRESS_TYPE)
+                    if (nganHang == null) {
+                        KAlertDialog kAlertDialog = new KAlertDialog(TaiKhoanNganHangAdmin.this, KAlertDialog.PROGRESS_TYPE)
                                 .setContentText("Loading");
                         kAlertDialog.show();
-                        String uuid = UUID.randomUUID().toString().replace("-", "");
-                        String tenNganHang =nganHangAdapter.getItem(spDSNganHang.getSelectedPosition()).getName() ;
+                        String tenNganHang = nganHangAdapter.getItem(spDSNganHang.getSelectedPosition()).getName();
                         TaiKhoanNganHang temp =
-                                new TaiKhoanNganHang(uuid,tenNganHang,edtTenChiNhanh.getText().toString()
-                                        ,edtSoTaiKhoan.getText().toString(),edtTenChuTaiKhoan.getText().toString(),edtSoCMND.getText().toString(),firebase_manager.auth.getUid());
+                                new TaiKhoanNganHang("admin", tenNganHang, edtTenChiNhanh.getText().toString()
+                                        , edtSoTaiKhoan.getText().toString(), edtTenChuTaiKhoan.getText().toString(), edtSoCMND.getText().toString(), "admin");
                         nganHang = temp;
                         firebase_manager.Ghi_NganHang(nganHang).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
@@ -122,16 +120,15 @@ public class TaiKhoanNganHangAdmin extends AppCompatActivity {
                                 kAlertDialog.showConfirmButton(false);
                             }
                         });
-                    }
-                    else {
-                        KAlertDialog kAlertDialog = new KAlertDialog(TaiKhoanNganHangAdmin.this,KAlertDialog.PROGRESS_TYPE)
+                    } else {
+                        KAlertDialog kAlertDialog = new KAlertDialog(TaiKhoanNganHangAdmin.this, KAlertDialog.PROGRESS_TYPE)
                                 .setContentText("Loading");
                         kAlertDialog.show();
                         String uuid = nganHang.getId();
-                        String tenNganHang =nganHangAdapter.getItem(spDSNganHang.getSelectedPosition()).getName() ;
+                        String tenNganHang = nganHangAdapter.getItem(spDSNganHang.getSelectedPosition()).getName();
                         TaiKhoanNganHang temp =
-                                new TaiKhoanNganHang(uuid,tenNganHang,edtTenChiNhanh.getText().toString()
-                                        ,edtSoTaiKhoan.getText().toString(),edtTenChuTaiKhoan.getText().toString(),edtSoCMND.getText().toString(),firebase_manager.auth.getUid());
+                                new TaiKhoanNganHang(uuid, tenNganHang, edtTenChiNhanh.getText().toString()
+                                        , edtSoTaiKhoan.getText().toString(), edtTenChuTaiKhoan.getText().toString(), edtSoCMND.getText().toString(), "admin");
                         nganHang = temp;
                         firebase_manager.Ghi_NganHang(nganHang).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
@@ -155,19 +152,19 @@ public class TaiKhoanNganHangAdmin extends AppCompatActivity {
         call.enqueue(new Callback<NganHangWrapper<NganHang>>() {
             @Override
             public void onResponse(Call<NganHangWrapper<NganHang>> call, Response<NganHangWrapper<NganHang>> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     NganHangWrapper<NganHang> wrapper = response.body();
-                    assert wrapper !=null;
+                    assert wrapper != null;
                     arrayList.addAll(wrapper.items);
-                    arrayList.forEach(nganHang -> Log.d("NganHang",nganHang.getName()));
-                    nganHangAdapter = new NganHangAdapter(TaiKhoanNganHangAdmin.this,R.layout.sp_nganhang_item,R.id.tv_tennganhang,arrayList);
+                    arrayList.forEach(nganHang -> Log.d("NganHang", nganHang.getName()));
+                    nganHangAdapter = new NganHangAdapter(TaiKhoanNganHangAdmin.this, R.layout.sp_nganhang_item, R.id.tv_tennganhang, arrayList);
                     spDSNganHang.setAdapter(nganHangAdapter);
-                    if (nganHang!= null)
-                    {
+                    if (nganHang != null) {
                         LoadData();
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<NganHangWrapper<NganHang>> call, Throwable t) {
             }

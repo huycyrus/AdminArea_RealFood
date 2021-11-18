@@ -98,7 +98,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/gui"
                     android:textAllCaps="false"
-
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     />

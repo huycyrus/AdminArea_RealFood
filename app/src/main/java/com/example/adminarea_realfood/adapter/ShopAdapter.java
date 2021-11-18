@@ -18,16 +18,31 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
+import com.developer.kalert.KAlertDialog;
+import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.CuaHang;
+import com.example.adminarea_realfood.Model.TaiKhoanNganHang;
+import com.example.adminarea_realfood.Model.ThongBao;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.Screen.ThongTinChiTietShop;
+import com.example.adminarea_realfood.TrangThai.TrangThaiCuaHang;
+import com.example.adminarea_realfood.TrangThai.TrangThaiThongBao;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 public class ShopAdapter extends ArrayAdapter implements Filterable {
 
@@ -36,6 +51,8 @@ public class ShopAdapter extends ArrayAdapter implements Filterable {
     ArrayList<CuaHang> cuaHangs;
     ArrayList<CuaHang> cuaHangs01;
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+    Firebase_Manager firebase_manager = new Firebase_Manager();
+
 
     public ShopAdapter(@NonNull Context context, int resource, ArrayList<CuaHang> cuaHangs) {
         super(context, resource, cuaHangs);
@@ -69,18 +86,48 @@ public class ShopAdapter extends ArrayAdapter implements Filterable {
         tvTenCuaHang.setText(cuaHang.getTenCuaHang());
         tvTenChu.setText(cuaHang.getChuSoHuu());
         tvSdt.setText(cuaHang.getSoDienThoai());
-        tvTrangThai.setText(cuaHang.getTrangThaiCuaHang().toString());
+        if(cuaHang.getTrangThaiCuaHang() == TrangThaiCuaHang.DaKichHoat){
+            tvTrangThai.setText(cuaHang.getTrangThaiCuaHang().toString());
 
-        btnGui.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (snNoiDung.getSelectedItemPosition()){
-                    case 0:
+            btnGui.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    switch (snNoiDung.getSelectedItemPosition()) {
+                        case 0:
+                            firebase_manager.mDatabase.child("TaiKhoanNganHangAdmin").child("admin")
+                                    .addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        break;
+                                            TaiKhoanNganHang taiKhoanNganHang = snapshot.getValue(TaiKhoanNganHang.class);
+                                            String uuid_ThongBao = UUID.randomUUID().toString().replace("-", "");
+                                            ThongBao thongBao = new ThongBao(uuid_ThongBao, "Vui lòng đóng tiền cho hệ thống để duy trì tài khoản, với số tiền là 99.999 VND vào số tài khoản :" + taiKhoanNganHang.getSoTaiKhoan() + ". Xin cảm ơn !!!", "Đóng phí duy trì", "", cuaHang.getIDCuaHang(),
+                                                    "", TrangThaiThongBao.ChuaXem, new Date());
+                                            firebase_manager.Ghi_ThongBao_CuaHang(thongBao, cuaHang.getIDCuaHang()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                                    KAlertDialog kAlertDialog = new KAlertDialog(context, KAlertDialog.SUCCESS_TYPE).setContentText("Đã gửi thành công !");
+                                                    kAlertDialog.show();
+                                                }
+                                            });
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                            break;
+                        case 1:
+
+                            break;
+                    }
                 }
-            }
-        });
+            });
+        }
+
+
+
 
 
         storageReference.child("CuaHang").child(cuaHang.getIDCuaHang()).child("Avatar").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -104,8 +151,6 @@ public class ShopAdapter extends ArrayAdapter implements Filterable {
         });
 
 
-
-
         return convertView;
     }
 
@@ -116,12 +161,12 @@ public class ShopAdapter extends ArrayAdapter implements Filterable {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 String keyWord = constraint.toString();
-                if(keyWord.isEmpty()){
+                if (keyWord.isEmpty()) {
                     cuaHangs = cuaHangs01;
-                }else {
+                } else {
                     List<CuaHang> list = new ArrayList<>();
-                    for (CuaHang cuaHang : cuaHangs01){
-                        if(cuaHang.getTenCuaHang().toLowerCase().contains(keyWord.toLowerCase())){
+                    for (CuaHang cuaHang : cuaHangs01) {
+                        if (cuaHang.getTenCuaHang().toLowerCase().contains(keyWord.toLowerCase())) {
                             list.add(cuaHang);
                         }
                     }
@@ -129,7 +174,7 @@ public class ShopAdapter extends ArrayAdapter implements Filterable {
                 }
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = cuaHangs;
-                return filterResults    ;
+                return filterResults;
             }
 
             @Override
