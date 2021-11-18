@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.adminarea_realfood.Firebase_Manager;
-import com.example.adminarea_realfood.Model.BaoCao;
 import com.example.adminarea_realfood.Model.ThongBao;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.TrangThai.TrangThaiThongBao;
@@ -40,8 +39,7 @@ public class ThongBao_fragment extends Fragment {
     Button btnDaDanhDau;
     ProgressBar pdLoad;
     RecyclerView rvThongBao;
-    BaoCao baoCao = new BaoCao();
-    ArrayList<BaoCao> baoCaos = new ArrayList<>();
+
 
     public ThongBao_fragment() {
         // Required empty public constructor
@@ -95,7 +93,7 @@ public class ThongBao_fragment extends Fragment {
                 pdLoad.setVisibility(View.GONE);
             }
         });
-        firebase_manager.mDatabase.child("ThongBao").child(firebase_manager.auth.getUid()).orderByChild("trangThaiThongBao").addValueEventListener(new ValueEventListener() {
+        firebase_manager.mDatabase.child("ThongBao").child("admin").orderByChild("trangThaiThongBao").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -117,20 +115,6 @@ public class ThongBao_fragment extends Fragment {
 
             }
         });
-        firebase_manager.mDatabase.child("BaoCao").child(baoCao.getIDCuaHang()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                    BaoCao baoCao1 = postSnapshot.getValue(BaoCao.class);
-                    baoCaos.add(baoCao1);
-                    thongBaoAdapter.notifyDataSetChanged();
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-            }
-        });
     }
 }

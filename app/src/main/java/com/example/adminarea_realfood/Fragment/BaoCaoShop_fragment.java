@@ -4,62 +4,101 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.adminarea_realfood.Firebase_Manager;
+import com.example.adminarea_realfood.Model.BaoCaoShop;
+import com.example.adminarea_realfood.Model.CuaHang;
 import com.example.adminarea_realfood.R;
+import com.example.adminarea_realfood.adapter.BaoCaoShopAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link BaoCaoShop_fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+
 public class BaoCaoShop_fragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    ArrayList<BaoCaoShop> baoCaoShops = new ArrayList<>();
+    Firebase_Manager firebase_manager = new Firebase_Manager();
+    LinearLayoutManager linearLayoutManager;
+    BaoCaoShopAdapter baoCaoShopAdapter;
+    BaoCaoShop baoCaoShop;
+    TextView tvAlert;
+    LinearLayout lnLayout;
+    ProgressBar pdLoad;
+    RecyclerView rvBaoCaoShop;
+    CuaHang cuaHang;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public BaoCaoShop_fragment() {
+    public BaoCaoShop_fragment(CuaHang cuaHang) {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BaoCaoShop_fragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static BaoCaoShop_fragment newInstance(String param1, String param2) {
-        BaoCaoShop_fragment fragment = new BaoCaoShop_fragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+        this.cuaHang = cuaHang;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.baocaoshop_fragment, container, false);
+        View view =  inflater.inflate(R.layout.baocaoshop_fragment, container, false);
+
+        tvAlert = view.findViewById(R.id.tv_Alert_baocaoshop);
+        lnLayout = view.findViewById(R.id.lnBaoCaoShop);
+        pdLoad = view.findViewById(R.id.pd_Load_baocaoshop);
+        rvBaoCaoShop = view.findViewById(R.id.rv_baocaoshop);
+
+        baoCaoShopAdapter = new BaoCaoShopAdapter(getActivity(), R.layout.baocaoshop_item, baoCaoShops);
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        rvBaoCaoShop.setLayoutManager(linearLayoutManager);
+        rvBaoCaoShop.setAdapter(baoCaoShopAdapter);
+        LoadData();
+
+        return view;
+    }
+
+    private void LoadAlert() {
+        if (!baoCaoShops.isEmpty()) {
+            tvAlert.setVisibility(View.GONE);
+            lnLayout.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void LoadData() {
+
+        firebase_manager.mDatabase.child("BaoCao").orderByChild("idcuaHang").equalTo(cuaHang.getIDCuaHang()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    baoCaoShops.clear();
+                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                        BaoCaoShop baoCaoShop = postSnapshot.getValue(BaoCaoShop.class);
+                        baoCaoShops.add(baoCaoShop);
+                        baoCaoShopAdapter.notifyDataSetChanged();
+                    }
+                    LoadAlert();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
     }
 }

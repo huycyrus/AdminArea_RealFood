@@ -62,7 +62,7 @@ public class ThongTinChiTietShipper extends AppCompatActivity {
                         loadFragment(thongTinChiTietShipper_fragment);
                         break;
                     case R.id.tab_baocao:
-                        BaoCaoShipper_fragment baoCaoShipper_fragment = new BaoCaoShipper_fragment();
+                        BaoCaoShipper_fragment baoCaoShipper_fragment = new BaoCaoShipper_fragment(shipper);
                         loadFragment(baoCaoShipper_fragment);
                         break;
                 }

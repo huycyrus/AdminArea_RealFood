@@ -83,6 +83,7 @@
     <string name="danhsachsanpham">Danh sách sản phẩm</string>
     <string name="tensanpham">Tên sản phẩm</string>
     <string name="gia">Giá</string>
+    <string name="noidungchuaco2">Chưa có báo cáo nào :3</string>
     <array name="noidungvipham">
         <item>Mời đóng phí</item>
         <item>Cửa hàng bị khóa 3 ngày</item>

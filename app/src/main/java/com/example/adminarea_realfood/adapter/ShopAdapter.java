@@ -69,7 +69,18 @@ public class ShopAdapter extends ArrayAdapter implements Filterable {
         tvTenCuaHang.setText(cuaHang.getTenCuaHang());
         tvTenChu.setText(cuaHang.getChuSoHuu());
         tvSdt.setText(cuaHang.getSoDienThoai());
+        tvTrangThai.setText(cuaHang.getTrangThaiCuaHang().toString());
 
+        btnGui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (snNoiDung.getSelectedItemPosition()){
+                    case 0:
+
+                        break;
+                }
+            }
+        });
 
 
         storageReference.child("CuaHang").child(cuaHang.getIDCuaHang()).child("Avatar").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -91,6 +102,8 @@ public class ShopAdapter extends ArrayAdapter implements Filterable {
                 getContext().startActivity(intent);
             }
         });
+
+
 
 
         return convertView;

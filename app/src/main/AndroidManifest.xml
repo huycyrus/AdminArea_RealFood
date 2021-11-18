@@ -31,7 +31,7 @@
             android:parentActivityName=".Screen.TrangChu" />
         <activity
             android:name=".Screen.ThongTinChiTietShop"
-            android:label="Thông tin chi tiết"
+            android:label="Thông tin chi tiết cửa hàng"
             android:parentActivityName=".Screen.DanhSachShop" />
         <activity
             android:name=".Screen.DanhSachShop"

@@ -2,7 +2,6 @@ package com.example.adminarea_realfood.adapter;
 
 import android.app.Activity;
 import android.graphics.Color;
-import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -24,7 +22,6 @@ import com.example.adminarea_realfood.Model.ThongBao;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.SetOnLongClick;
 import com.example.adminarea_realfood.TrangThai.TrangThaiThongBao;
-import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -59,9 +56,8 @@ public class ThongBaoAdapter  extends RecyclerView.Adapter<ThongBaoAdapter.MyVie
     @NotNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = context.getLayoutInflater();
-        CardView cardView = (CardView) layoutInflater.inflate(viewType, parent, false);
-        return new MyViewHolder(cardView);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.thongbao_item, parent,false);
+        return new MyViewHolder(view);
     }
 
     @Override
@@ -75,17 +71,17 @@ public class ThongBaoAdapter  extends RecyclerView.Adapter<ThongBaoAdapter.MyVie
         {
             holder.linearLayout.setBackgroundColor(Color.WHITE);
         }
-        firebase_manager.storageRef.child(cuaHang.getIDCuaHang()).child("Avatar").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Log.d("link",uri.toString());
-                Glide.with(context)
-                        .load(uri.toString())
-                        .into(holder.imageView);
-                holder.progressBar.setVisibility(View.GONE);
 
-            }
-        });
+        if(holder.imageView == null){
+            holder.progressBar.setVisibility(View.VISIBLE);
+        }else {
+            Glide.with(context)
+                    .load(thongBao.getImage())
+                    .into(holder.imageView);
+            holder.progressBar.setVisibility(View.GONE);
+        }
+
+        Log.d("Uri", thongBao.getImage());
         Date now = new Date();
         if (thongBao.getDate().getDate()== now.getDate())
         {

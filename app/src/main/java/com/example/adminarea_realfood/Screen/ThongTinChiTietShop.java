@@ -30,7 +30,6 @@ public class ThongTinChiTietShop extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ttctshop_activity);
-        setTitle("Cua Hang");
         setControl();
         if (getIntent() != null && getIntent().getExtras() != null) {
             Intent intent = getIntent();
@@ -63,7 +62,7 @@ public class ThongTinChiTietShop extends AppCompatActivity {
                         loadFragment(thongTinChiTietShop_fragment);
                         break;
                     case R.id.tab_baocao:
-                        BaoCaoShop_fragment baoCaoShop_fragment = new BaoCaoShop_fragment();
+                        BaoCaoShop_fragment baoCaoShop_fragment = new BaoCaoShop_fragment(cuaHang);
                         loadFragment(baoCaoShop_fragment);
                         break;
                 }

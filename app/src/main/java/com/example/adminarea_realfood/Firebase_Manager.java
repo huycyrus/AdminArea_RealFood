@@ -51,7 +51,12 @@ public class    Firebase_Manager {
     }
     public Task<Void> Ghi_ThongBao(ThongBao thongBao)
     {
-        return  mDatabase.child("ThongBao").child(auth.getUid()).child(thongBao.getIDThongBao()).setValue(thongBao);
+        return  mDatabase.child("ThongBao").child("admin").child(thongBao.getIDThongBao()).setValue(thongBao);
+    }
+
+    public Task<Void> Ghi_ThongBao_CuaHang(ThongBao thongBao, String cuaHang)
+    {
+        return  mDatabase.child("ThongBao").child(cuaHang).child(thongBao.getIDThongBao()).setValue(thongBao);
     }
 
     public void Up2MatCMND(Uri cmndTrc, Uri cmndSau, String iDShipper)

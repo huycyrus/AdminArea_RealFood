@@ -87,8 +87,6 @@ public class ThongTinChiTietShop_fragment extends Fragment {
         btnGoKhoa = view.findViewById(R.id.btn_gokhoa_ttshop);
         btnKichHoat = view.findViewById(R.id.btn_kichhoat_ttshop);
         rv_danhsachsp = view.findViewById(R.id.rv_danhsachsanpham_ttctshop);
-        ib_down = view.findViewById(R.id.ib_down_ttctshop);
-
 
         storageReference.child("CuaHang").child(cuaHang.getIDCuaHang()).child("WallPaper").getDownloadUrl(  ).addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override

@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:id="@+id/lnLayout"
-            android:background="#CAC9C9"
+            android:id="@+id/lnLayout_baocaoshop"
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -22,16 +22,14 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:scaleType="fitCenter"
                     android:src="@drawable/baseline_image_black_48dp"
-                    android:id="@+id/image_noti"
-                    android:layout_marginLeft="5dp"
-                    />
+                    android:id="@+id/image_baocaoshop"
+                    android:layout_marginLeft="5dp"/>
                 <ProgressBar
-                    android:id="@+id/progessbar"
+                    android:id="@+id/progessbar_baocaoshop"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"/>
             </FrameLayout>
             <LinearLayout
                 android:orientation="vertical"
@@ -44,7 +42,7 @@
                     android:textStyle="bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_TieuDe_ThongBao"
+                    android:id="@+id/tv_TieuDe_baocaoshop"
                     android:text="@string/tieude"/>
                 <TextView
                     android:layout_margin="5dp"
@@ -52,7 +50,7 @@
                     android:textSize="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_NoiDung_ThongBao"
+                    android:id="@+id/tv_NoiDung_baocaoshop"
                     android:text="@string/noidungthongbao"/>
                 <TextView
                     android:layout_margin="5dp"
@@ -60,7 +58,7 @@
                     android:textSize="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_ThoiGian_ThongBao"
+                    android:id="@+id/tv_ThoiGian_baocaoshop"
                     android:text="@string/ngaythongbao"/>
             </LinearLayout>
         </LinearLayout>
