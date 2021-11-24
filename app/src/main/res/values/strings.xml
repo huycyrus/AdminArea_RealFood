@@ -84,6 +84,7 @@
     <string name="tensanpham">Tên sản phẩm</string>
     <string name="gia">Giá</string>
     <string name="noidungchuaco2">Chưa có báo cáo nào :3</string>
+    <string name="m_i_ng_ph">Mời đóng phí</string>
     <array name="noidungvipham">
         <item>Mời đóng phí</item>
         <item>Cửa hàng bị khóa 3 ngày</item>

@@ -82,24 +82,14 @@
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
-                <Spinner
-                    android:id="@+id/sn_noidungvipham_shop"
-                    android:layout_width="220dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/noidungvipham"
-                    android:background="@drawable/border_edit_vuong"
-                    android:padding="10dp"
-                    android:layout_marginTop="1dp"
-                    />
-
                 <Button
-                    android:id="@+id/btn_gui_shop"
+                    android:id="@+id/btn_moidongphi_shop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/gui"
+                    android:text="@string/m_i_ng_ph"
                     android:textAllCaps="false"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="150dp"
+                    android:layout_marginEnd="30dp"
                     />
 
             </LinearLayout>

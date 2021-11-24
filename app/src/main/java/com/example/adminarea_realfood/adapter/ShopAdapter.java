@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -78,56 +77,45 @@ public class ShopAdapter extends ArrayAdapter implements Filterable {
         TextView tvTenChu = convertView.findViewById(R.id.tv_tenchu_shop);
         TextView tvTrangThai = convertView.findViewById(R.id.tv_trangthai_shop);
         TextView tvSdt = convertView.findViewById(R.id.tv_sdt_shop);
-        Spinner snNoiDung = convertView.findViewById(R.id.sn_noidungvipham_shop);
-        Button btnGui = convertView.findViewById(R.id.btn_gui_shop);
+        Button btnDongPhi = convertView.findViewById(R.id.btn_moidongphi_shop);
         ImageView ivImage = convertView.findViewById(R.id.image_profile_shop);
 
         CuaHang cuaHang = cuaHangs.get(position);
         tvTenCuaHang.setText(cuaHang.getTenCuaHang());
         tvTenChu.setText(cuaHang.getChuSoHuu());
         tvSdt.setText(cuaHang.getSoDienThoai());
-        if(cuaHang.getTrangThaiCuaHang() == TrangThaiCuaHang.DaKichHoat){
+        if (cuaHang.getTrangThaiCuaHang() == TrangThaiCuaHang.DaKichHoat) {
             tvTrangThai.setText(cuaHang.getTrangThaiCuaHang().toString());
 
-            btnGui.setOnClickListener(new View.OnClickListener() {
+            btnDongPhi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    switch (snNoiDung.getSelectedItemPosition()) {
-                        case 0:
-                            firebase_manager.mDatabase.child("TaiKhoanNganHangAdmin").child("admin")
-                                    .addValueEventListener(new ValueEventListener() {
+                    firebase_manager.mDatabase.child("TaiKhoanNganHangAdmin").child("admin")
+                            .addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                    TaiKhoanNganHang taiKhoanNganHang = snapshot.getValue(TaiKhoanNganHang.class);
+                                    String uuid_ThongBao = UUID.randomUUID().toString().replace("-", "");
+                                    ThongBao thongBao = new ThongBao(uuid_ThongBao, "Vui lòng đóng tiền cho hệ thống để duy trì tài khoản, với số tiền là 99.999 VND vào số tài khoản :" + taiKhoanNganHang.getSoTaiKhoan() + ". Xin cảm ơn !!!", "Đóng phí duy trì", "", cuaHang.getIDCuaHang(),
+                                            "", TrangThaiThongBao.ChuaXem, new Date());
+                                    firebase_manager.Ghi_ThongBao_CuaHang(thongBao, cuaHang.getIDCuaHang()).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                                            TaiKhoanNganHang taiKhoanNganHang = snapshot.getValue(TaiKhoanNganHang.class);
-                                            String uuid_ThongBao = UUID.randomUUID().toString().replace("-", "");
-                                            ThongBao thongBao = new ThongBao(uuid_ThongBao, "Vui lòng đóng tiền cho hệ thống để duy trì tài khoản, với số tiền là 99.999 VND vào số tài khoản :" + taiKhoanNganHang.getSoTaiKhoan() + ". Xin cảm ơn !!!", "Đóng phí duy trì", "", cuaHang.getIDCuaHang(),
-                                                    "", TrangThaiThongBao.ChuaXem, new Date());
-                                            firebase_manager.Ghi_ThongBao_CuaHang(thongBao, cuaHang.getIDCuaHang()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                                    KAlertDialog kAlertDialog = new KAlertDialog(context, KAlertDialog.SUCCESS_TYPE).setContentText("Đã gửi thành công !");
-                                                    kAlertDialog.show();
-                                                }
-                                            });
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
-
+                                        public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                            KAlertDialog kAlertDialog = new KAlertDialog(context, KAlertDialog.SUCCESS_TYPE).setContentText("Đã gửi thành công !");
+                                            kAlertDialog.show();
                                         }
                                     });
-                            break;
-                        case 1:
+                                }
 
-                            break;
-                    }
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
                 }
             });
         }
-
-
-
 
 
         storageReference.child("CuaHang").child(cuaHang.getIDCuaHang()).child("Avatar").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {

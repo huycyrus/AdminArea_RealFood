@@ -1,6 +1,7 @@
 package com.example.adminarea_realfood.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +16,11 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.example.adminarea_realfood.Model.KhachHang;
 import com.example.adminarea_realfood.R;
+import com.example.adminarea_realfood.Screen.ThongTinChiTietKhachHang;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,16 +73,16 @@ public class KhachHangAdapter extends ArrayAdapter {
             }
         });
 
-//        convertView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getContext(), ThongTinChiTietShipper.class);
-//                Gson gson = new Gson();
-//                String data = gson.toJson(khachHang);
-//                intent.putExtra("KhachHang", data);
-//                getContext().startActivity(intent);
-//            }
-//        });
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ThongTinChiTietKhachHang.class);
+                Gson gson = new Gson();
+                String data = gson.toJson(khachHang);
+                intent.putExtra("KhachHang", data);
+                getContext().startActivity(intent);
+            }
+        });
 
         return convertView;
     }

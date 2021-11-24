@@ -43,7 +43,8 @@ public class ThongTinChiTietKhachHang extends AppCompatActivity {
         edtTenKH.setText(khachHang.getTenKhachHang());
         edtSdtKH.setText(khachHang.getSoDienThoai());
         edtEmailKH.setText(khachHang.getEmail());
-        edtEmailKH.setText(khachHang.getNgaySinh());
+        edtNgaySinh.setText(khachHang.getNgaySinh());
+        edtDiaChiKH.setText(khachHang.getDiaChi());
         storageReference.child("KhachHang").child(khachHang.getIDKhachHang()).child("AvatarKhachHang").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
