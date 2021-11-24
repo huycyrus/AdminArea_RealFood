@@ -86,7 +86,16 @@ public class DSDaKichHoat_fragment extends Fragment {
         });
     }
 
+    public DSDaKichHoat_fragment() {
+    }
 
+    public static DSDaKichHoat_fragment newInstance(String id) {
+        Bundle args = new Bundle();
+        args.putString("id", id);
+        DSDaKichHoat_fragment f = new DSDaKichHoat_fragment();
+        f.setArguments(args);
+        return f;
+    }
 
     @Override
     public void onResume() {

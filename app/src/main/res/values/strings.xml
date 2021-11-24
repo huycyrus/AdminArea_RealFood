@@ -85,6 +85,14 @@
     <string name="gia">Giá</string>
     <string name="noidungchuaco2">Chưa có báo cáo nào :3</string>
     <string name="m_i_ng_ph">Mời đóng phí</string>
+    <string name="xuly">Xử lý</string>
+    <string name="n_i_dung_t_c_o">Nội dung tố cáo</string>
+    <string name="khoacuahang">Khóa cửa hàng</string>
+    <string name="boqua">Bỏ qua</string>
+    <string name="tocao">Tố cáo</string>
+    <string name="id1">Id</string>
+    <string name="bitocao">Bị tố cáo</string>
+    <string name="noidungtocao">Nội dung tố cáo</string>
     <array name="noidungvipham">
         <item>Mời đóng phí</item>
         <item>Cửa hàng bị khóa 3 ngày</item>

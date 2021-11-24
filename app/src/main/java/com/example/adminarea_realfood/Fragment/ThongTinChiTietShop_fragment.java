@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,8 +26,13 @@ import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.TrangThai.TrangThaiCuaHang;
 import com.example.adminarea_realfood.adapter.SanPhamAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -104,11 +110,7 @@ public class ThongTinChiTietShop_fragment extends Fragment {
                         .into(civAvatar);
             }
         });
-        tvTenCuaHang.setText(cuaHang.getTenCuaHang());
-        tvTenQuanLi.setText(cuaHang.getChuSoHuu());
-        tvSDT.setText(cuaHang.getSoDienThoai());
-        tvDiaChi.setText(cuaHang.getDiaChi());
-        tvEmail.setText(cuaHang.getEmail());
+
         storageReference.child("CuaHang").child(cuaHang.getIDCuaHang()).child("CMND_MatTruoc").getDownloadUrl(  ).addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -126,7 +128,24 @@ public class ThongTinChiTietShop_fragment extends Fragment {
             }
         });
 
-        LoadButton();
+        firebase_manager.mDatabase.child("CuaHang").child(cuaHang.getIDCuaHang()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                CuaHang temp  = snapshot.getValue(CuaHang.class);
+                cuaHang = temp;
+                tvTenCuaHang.setText(cuaHang.getTenCuaHang());
+                tvTenQuanLi.setText(cuaHang.getChuSoHuu());
+                tvSDT.setText(cuaHang.getSoDienThoai());
+                tvDiaChi.setText(cuaHang.getDiaChi());
+                tvEmail.setText(cuaHang.getEmail());
+                LoadButton();
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
 
         btnKichHoat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,6 +230,17 @@ public class ThongTinChiTietShop_fragment extends Fragment {
         if(cuaHang.getTrangThaiCuaHang() == TrangThaiCuaHang.BiKhoa){
             btnGoKhoa.setVisibility(View.VISIBLE);
         }
+    }
+
+    public ThongTinChiTietShop_fragment() {
+    }
+
+    public static ThongTinChiTietShop_fragment newInstance(String id) {
+        Bundle args = new Bundle();
+        args.putString("id", id);
+        ThongTinChiTietShop_fragment f = new ThongTinChiTietShop_fragment();
+        f.setArguments(args);
+        return f;
     }
 
 

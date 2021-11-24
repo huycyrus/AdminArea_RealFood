@@ -101,4 +101,15 @@ public class BaoCaoShop_fragment extends Fragment {
         });
 
     }
+
+    public BaoCaoShop_fragment() {
+    }
+
+    public static BaoCaoShop_fragment newInstance(String id) {
+        Bundle args = new Bundle();
+        args.putString("id", id);
+        BaoCaoShop_fragment f = new BaoCaoShop_fragment();
+        f.setArguments(args);
+        return f;
+    }
 }

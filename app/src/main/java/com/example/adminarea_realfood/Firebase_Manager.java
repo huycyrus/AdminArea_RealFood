@@ -3,6 +3,7 @@ package com.example.adminarea_realfood;
 import android.net.Uri;
 
 import com.example.adminarea_realfood.Model.Admin;
+import com.example.adminarea_realfood.Model.BaoCaoShop;
 import com.example.adminarea_realfood.Model.CuaHang;
 import com.example.adminarea_realfood.Model.LoaiSanPham;
 import com.example.adminarea_realfood.Model.SanPham;
@@ -57,6 +58,11 @@ public class    Firebase_Manager {
     public Task<Void> Ghi_ThongBao_CuaHang(ThongBao thongBao, String cuaHang)
     {
         return  mDatabase.child("ThongBao").child(cuaHang).child(thongBao.getIDThongBao()).setValue(thongBao);
+    }
+
+    public Task<Void> Ghi_BaoCao(BaoCaoShop baoCaoShop)
+    {
+        return  mDatabase.child("BaoCao").child(baoCaoShop.getIDBaoCao()).setValue(baoCaoShop);
     }
 
     public void Up2MatCMND(Uri cmndTrc, Uri cmndSau, String iDShipper)

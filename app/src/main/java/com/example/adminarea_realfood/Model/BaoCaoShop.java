@@ -2,12 +2,15 @@ package com.example.adminarea_realfood.Model;
 
 import android.widget.ImageView;
 
+import com.example.adminarea_realfood.TrangThai.TrangThaiBaoCao;
+
 import java.util.Date;
 
 public class BaoCaoShop {
-    String IDBaoCao,IDKhachHang,IDCuaHang,lyDo,tieuDe;
+    String IDBaoCao, IDKhachHang, IDCuaHang, lyDo, tieuDe;
     ImageView ivBaoCao;
     Date ngayBaoCao;
+    TrangThaiBaoCao trangThaiBaoCao;
 
     public BaoCaoShop() {
     }
@@ -20,6 +23,7 @@ public class BaoCaoShop {
         this.tieuDe = tieuDe;
         this.ivBaoCao = ivBaoCao;
         this.ngayBaoCao = ngayBaoCao;
+        this.trangThaiBaoCao = trangThaiBaoCao;
     }
 
     public String getIDBaoCao() {
@@ -76,5 +80,13 @@ public class BaoCaoShop {
 
     public void setNgayBaoCao(Date ngayBaoCao) {
         this.ngayBaoCao = ngayBaoCao;
+    }
+
+    public TrangThaiBaoCao getTrangThaiBaoCao() {
+        return trangThaiBaoCao;
+    }
+
+    public void setTrangThaiBaoCao(TrangThaiBaoCao trangThaiBaoCao) {
+        this.trangThaiBaoCao = trangThaiBaoCao;
     }
 }
