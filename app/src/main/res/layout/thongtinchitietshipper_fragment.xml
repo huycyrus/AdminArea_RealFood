@@ -203,6 +203,33 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginLeft="25dp"
+                    android:text="@string/diachi"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    />
+
+                <EditText
+                    android:id="@+id/edt_diachi_ttctshipper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="55dp"
+                    android:layout_marginEnd="35dp"
+                    android:background="@drawable/border_edit_vuong"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="25dp"
                     android:text="@string/cmd"
                     android:textColor="@color/black"
                     android:textSize="14dp"
@@ -269,7 +296,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                >
 
                 <Button
                     android:id="@+id/btn_xoa_ttctshipper"
@@ -285,6 +313,7 @@
                     android:layout_marginTop="20dp"
                     android:textSize="20dp"
                     android:layout_weight="1"
+                    android:layout_marginBottom="10dp"
                     />
 
                 <Button
@@ -301,6 +330,25 @@
                     android:layout_marginTop="20dp"
                     android:textSize="20dp"
                     android:layout_weight="1"
+                    android:layout_marginBottom="10dp"
+                    />
+
+                <Button
+                    android:id="@+id/btn_Gokhoa_ttctshipper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gokhoa"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:background="#000000"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="10dp"
+                    android:visibility="gone"
                     />
 
             </LinearLayout>

@@ -54,4 +54,6 @@ dependencies {
     implementation 'gr.escsoft.michaelprimez.searchablespinner:SearchableSpinner:1.0.9'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.0.5'
+    implementation "com.github.tapadoo:alerter:7.2.4"
+
 }

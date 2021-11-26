@@ -1,11 +1,14 @@
 package com.example.adminarea_realfood.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -18,10 +21,13 @@ import com.bumptech.glide.Glide;
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.BaoCaoShipper;
 import com.example.adminarea_realfood.R;
+import com.example.adminarea_realfood.Screen.XuLyShipper;
 import com.example.adminarea_realfood.SetOnLongClick;
+import com.example.adminarea_realfood.TrangThai.TrangThaiBaoCao;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.gson.Gson;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -86,6 +92,24 @@ public class BaoCaoShipperAdapter extends RecyclerView.Adapter<BaoCaoShipperAdap
             holder.tvThoiGian.setText(formatter.format(baoCaoShipper.getNgayBaoCao().getTime()));
 
         }
+
+        if (baoCaoShipper.getTrangThaiBaoCao()== TrangThaiBaoCao.DaXem)
+        {
+            holder.linearLayout.setBackgroundColor(Color.WHITE);
+        }
+
+        holder.btnXuLy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, XuLyShipper.class);
+                Gson gson = new Gson();
+                String data = gson.toJson(baoCaoShipper);
+                intent.putExtra("BaoCaoShipper", data);
+                context.startActivity(intent);
+                baoCaoShipper.setTrangThaiBaoCao(TrangThaiBaoCao.DaXem);
+                firebase_manager.Ghi_BaoCaoShipper(baoCaoShipper);
+            }
+        });
     }
 
     @Override
@@ -100,6 +124,7 @@ public class BaoCaoShipperAdapter extends RecyclerView.Adapter<BaoCaoShipperAdap
         TextView tvThoiGian;
         LinearLayout linearLayout;
         ProgressBar progressBar;
+        Button btnXuLy;
         public MyViewHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.image_baocaoshipper);
@@ -108,6 +133,7 @@ public class BaoCaoShipperAdapter extends RecyclerView.Adapter<BaoCaoShipperAdap
             linearLayout = itemView.findViewById(R.id.lnLayout_baocaoshipper);
             tvThoiGian = itemView.findViewById(R.id.tv_ThoiGian_baocaoshipper);
             progressBar = itemView.findViewById(R.id.progessbar_baocaoshipper);
+            btnXuLy = itemView.findViewById(R.id.btn_xuly_baocaoshipper);
         }
     }
 }

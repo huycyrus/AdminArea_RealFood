@@ -93,6 +93,7 @@
     <string name="id1">Id</string>
     <string name="bitocao">Bị tố cáo</string>
     <string name="noidungtocao">Nội dung tố cáo</string>
+    <string name="khoashipper">Khóa shipper</string>
     <array name="noidungvipham">
         <item>Mời đóng phí</item>
         <item>Cửa hàng bị khóa 3 ngày</item>

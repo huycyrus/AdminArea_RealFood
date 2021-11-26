@@ -37,8 +37,14 @@ public class DanhSachShipper extends AppCompatActivity {
         setContentView(R.layout.danhsachshipper_activity);
         shippers = new ArrayList<Shipper>();
         setControl();
-        getDanhsachshipper();
+
         setEvent();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getDanhsachshipper();
     }
 
     private void setEvent() {

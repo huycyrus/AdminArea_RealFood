@@ -1,10 +1,13 @@
 package com.example.adminarea_realfood.Model;
 
+import com.example.adminarea_realfood.TrangThai.TrangThaiBaoCao;
+
 import java.util.Date;
 
 public class BaoCaoShipper {
     String idBaoCao,idCuaHang,idShipper,noiDung,tieuDe;
     Date ngayBaoCao;
+    TrangThaiBaoCao trangThaiBaoCao;
 
     public BaoCaoShipper(String idBaoCao, String idCuaHang, String idShipper, String noiDung, String tieuDe, Date ngayBaoCao) {
         this.idBaoCao = idBaoCao;
@@ -13,6 +16,7 @@ public class BaoCaoShipper {
         this.noiDung = noiDung;
         this.tieuDe = tieuDe;
         this.ngayBaoCao = ngayBaoCao;
+        this.trangThaiBaoCao = trangThaiBaoCao;
     }
 
     public BaoCaoShipper() {
@@ -64,5 +68,13 @@ public class BaoCaoShipper {
 
     public void setNgayBaoCao(Date ngayBaoCao) {
         this.ngayBaoCao = ngayBaoCao;
+    }
+
+    public TrangThaiBaoCao getTrangThaiBaoCao() {
+        return trangThaiBaoCao;
+    }
+
+    public void setTrangThaiBaoCao(TrangThaiBaoCao trangThaiBaoCao) {
+        this.trangThaiBaoCao = trangThaiBaoCao;
     }
 }

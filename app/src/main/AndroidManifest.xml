@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminArea_RealFood">
+        <activity android:name=".Screen.XuLyShipper"></activity>
         <activity
             android:name=".Screen.XuLyShop"
             android:label="Xử lý cửa hàng"
-            android:parentActivityName=".Screen.ThongTinChiTietShop"></activity>
+            android:parentActivityName=".Screen.ThongTinChiTietShop" />
         <activity
             android:name=".Screen.TaiKhoanNganHangAdmin"
             android:label="Tài khoản ngân hàng"

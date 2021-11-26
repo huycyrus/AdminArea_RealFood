@@ -18,16 +18,26 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
+import com.developer.kalert.KAlertDialog;
+import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.Shipper;
+import com.example.adminarea_realfood.Model.ThongBao;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.Screen.ThongTinChiTietShipper;
+import com.example.adminarea_realfood.TrangThai.TrangThaiThongBao;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 public class ShipperAdapter extends ArrayAdapter implements Filterable {
 
@@ -36,6 +46,7 @@ public class ShipperAdapter extends ArrayAdapter implements Filterable {
     ArrayList<Shipper> data;
     ArrayList<Shipper> data1;
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+    Firebase_Manager firebase_manager = new Firebase_Manager();
 
     public ShipperAdapter(@NonNull Context context, int resource, ArrayList<Shipper> data) {
         super(context, resource, data);
@@ -44,7 +55,6 @@ public class ShipperAdapter extends ArrayAdapter implements Filterable {
         this.data = data;
         this.data1 = data;
     }
-
 
 
     @Override
@@ -59,7 +69,6 @@ public class ShipperAdapter extends ArrayAdapter implements Filterable {
         convertView = LayoutInflater.from(context).inflate(resource, null);
 
 
-
         TextView tvHoten = convertView.findViewById(R.id.tv_hovaten);
         TextView tvTrangthai = convertView.findViewById(R.id.tv_trangthai);
         TextView tvSdt = convertView.findViewById(R.id.tv_sdt);
@@ -70,10 +79,9 @@ public class ShipperAdapter extends ArrayAdapter implements Filterable {
 
         Shipper shipper = data.get(position);
         tvHoten.setText(shipper.getHoVaTen());
-        tvTrangthai.setText(shipper.getTrangThaiHoatDong());
         tvSdt.setText(shipper.getSoDienThoai());
         tvMaxe.setText(shipper.getMaSoXe());
-        storageReference.child("Shipper").child(shipper.getiDShipper()).child("avatar").getDownloadUrl(  ).addOnSuccessListener(new OnSuccessListener<Uri>() {
+        storageReference.child("Shipper").child(shipper.getiDShipper()).child("avatar").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Glide.with(context)
@@ -93,6 +101,24 @@ public class ShipperAdapter extends ArrayAdapter implements Filterable {
             }
         });
 
+        btnGui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String uuid_ThongBao = UUID.randomUUID().toString().replace("-", "");
+                ThongBao thongBao = new ThongBao(uuid_ThongBao, edtNoidungvipham.getText().toString(), "Thông báo", "", shipper.getiDShipper(),
+                        "", TrangThaiThongBao.ChuaXem, new Date());
+                firebase_manager.Ghi_ThongBao_Shipper(thongBao, shipper.getiDShipper()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<Void> task) {
+                        KAlertDialog kAlertDialog = new KAlertDialog(context, KAlertDialog.SUCCESS_TYPE).setContentText("Đã gửi thành công !");
+                        kAlertDialog.show();
+                        edtNoidungvipham.setText("");
+                    }
+                });
+            }
+        });
+
         return convertView;
     }
 
@@ -103,12 +129,12 @@ public class ShipperAdapter extends ArrayAdapter implements Filterable {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 String keyWord = constraint.toString();
-                if(keyWord.isEmpty()){
+                if (keyWord.isEmpty()) {
                     data = data1;
-                }else {
+                } else {
                     List<Shipper> list = new ArrayList<>();
-                    for (Shipper shipper : data1){
-                        if(shipper.getHoVaTen().toLowerCase().contains(keyWord.toLowerCase())){
+                    for (Shipper shipper : data1) {
+                        if (shipper.getHoVaTen().toLowerCase().contains(keyWord.toLowerCase())) {
                             list.add(shipper);
                         }
                     }
@@ -116,7 +142,7 @@ public class ShipperAdapter extends ArrayAdapter implements Filterable {
                 }
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = data;
-                return filterResults    ;
+                return filterResults;
             }
 
             @Override

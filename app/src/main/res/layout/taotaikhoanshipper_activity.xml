@@ -192,6 +192,33 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginLeft="25dp"
+            android:text="@string/diachi"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            />
+
+        <EditText
+            android:id="@+id/edt_diachi_taotaikhoan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="35dp"
+            android:background="@drawable/border_edit_vuong"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="25dp"
             android:text="@string/cmd"
             android:textColor="@color/black"
             android:textSize="14dp"

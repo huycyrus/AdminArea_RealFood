@@ -3,6 +3,7 @@ package com.example.adminarea_realfood;
 import android.net.Uri;
 
 import com.example.adminarea_realfood.Model.Admin;
+import com.example.adminarea_realfood.Model.BaoCaoShipper;
 import com.example.adminarea_realfood.Model.BaoCaoShop;
 import com.example.adminarea_realfood.Model.CuaHang;
 import com.example.adminarea_realfood.Model.LoaiSanPham;
@@ -60,9 +61,19 @@ public class    Firebase_Manager {
         return  mDatabase.child("ThongBao").child(cuaHang).child(thongBao.getIDThongBao()).setValue(thongBao);
     }
 
+    public Task<Void> Ghi_ThongBao_Shipper(ThongBao thongBao, String shipper)
+    {
+        return  mDatabase.child("ThongBao").child(shipper).child(thongBao.getIDThongBao()).setValue(thongBao);
+    }
+
     public Task<Void> Ghi_BaoCao(BaoCaoShop baoCaoShop)
     {
         return  mDatabase.child("BaoCao").child(baoCaoShop.getIDBaoCao()).setValue(baoCaoShop);
+    }
+
+    public Task<Void> Ghi_BaoCaoShipper(BaoCaoShipper baoCaoShipper)
+    {
+        return  mDatabase.child("BaoCao_CuaHang_Shipper").child(baoCaoShipper.getIdBaoCao()).setValue(baoCaoShipper);
     }
 
     public void Up2MatCMND(Uri cmndTrc, Uri cmndSau, String iDShipper)

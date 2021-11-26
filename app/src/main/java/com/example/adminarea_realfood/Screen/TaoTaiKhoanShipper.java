@@ -18,6 +18,7 @@ import com.developer.kalert.KAlertDialog;
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.Shipper;
 import com.example.adminarea_realfood.R;
+import com.example.adminarea_realfood.TrangThai.TrangThaiShipper;
 import com.example.adminarea_realfood.Validate;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -35,7 +36,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class TaoTaiKhoanShipper extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
 
-    EditText edtTaikhoan, edtMatkhau, edtHoten, edtNgaysinh, edtMasoxe, edtSdt;
+    EditText edtTaikhoan, edtMatkhau, edtHoten, edtNgaysinh, edtMasoxe, edtSdt, edtDiaChi;
     CircleImageView avatar;
     ImageButton ibMattruoc, ibMatsau;
     Button btnTao;
@@ -134,7 +135,7 @@ public class TaoTaiKhoanShipper extends AppCompatActivity implements DatePickerD
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             String uuid = authResult.getUser().getUid();
-                            Shipper shipper = new Shipper(uuid, edtTaikhoan.getText().toString(), edtMatkhau.getText().toString(), edtHoten.getText().toString(),"","", edtNgaysinh.getText().toString(), edtMasoxe.getText().toString(),"",edtSdt.getText().toString());
+                            Shipper shipper = new Shipper(uuid, "", edtTaikhoan.getText().toString(), edtMatkhau.getText().toString(), edtHoten.getText().toString(),edtDiaChi.getText().toString(),"", edtNgaysinh.getText().toString(), edtMasoxe.getText().toString(),edtSdt.getText().toString(), TrangThaiShipper.KhongHoatDong,"Hệ thống");
                             firebase_manager.Ghi_Shipper(shipper).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
@@ -180,7 +181,7 @@ public class TaoTaiKhoanShipper extends AppCompatActivity implements DatePickerD
         if (!validate.isBlank(edtTaikhoan) && validate.isEmail(edtTaikhoan)
                 &&!validate.isBlank(edtMatkhau) && !validate.lessThan6Char(edtMatkhau)
                 &&!validate.isBlank(edtHoten) &&!validate.isBlank(edtNgaysinh)
-                &&!validate.isBlank(edtMasoxe) &&!validate.isBlank(edtSdt)
+                &&!validate.isBlank(edtMasoxe) &&!validate.isBlank(edtSdt) &&!validate.isBlank(edtDiaChi)
         ){
             result = true;
             if (cmndTrc == null||cmndSau == null)
@@ -199,6 +200,7 @@ public class TaoTaiKhoanShipper extends AppCompatActivity implements DatePickerD
         edtNgaysinh = findViewById(R.id.edt_ngaysinh_taotaikhoan);
         edtMasoxe = findViewById(R.id.edt_masoxe_taotaikhoan);
         edtSdt = findViewById(R.id.edt_sdt_taotaikhoan);
+        edtDiaChi = findViewById(R.id.edt_diachi_taotaikhoan);
         avatar = findViewById(R.id.profile_image);
         ibMatsau = findViewById(R.id.ib_idsau);
         ibMattruoc = findViewById(R.id.ib_idtruoc);

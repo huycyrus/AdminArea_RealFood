@@ -56,8 +56,9 @@ public class XuLyShop extends AppCompatActivity {
             String dataShop = intent.getStringExtra("BaoCao");
             Gson gson = new Gson();
             baoCaoShop = gson.fromJson(dataShop, BaoCaoShop.class);
+            load();
         }
-        load();
+
         setEvent();
     }
 
@@ -163,4 +164,5 @@ public class XuLyShop extends AppCompatActivity {
         btnBoQua = findViewById(R.id.btn_boqua_xulyshop);
 
     }
+
 }
