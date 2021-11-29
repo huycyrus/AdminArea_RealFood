@@ -18,7 +18,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.DonHang;
 import com.example.adminarea_realfood.Model.Shipper;
-import com.example.adminarea_realfood.PieChartFragment;
+import com.example.adminarea_realfood.PieChartShipper_Fragment;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.TrangThai.TrangThaiDonHang;
 import com.google.firebase.database.DataSnapshot;
@@ -37,7 +37,7 @@ public class ThongKeShipper extends AppCompatActivity {
 
     int donHangGiaoThanhCong = 0, donHangGiaoKhongThanhCong = 0, donHangDangDiGiao = 0;
     String[] info = {"Đơn hàng giao thành công", "Đơn hàng giao không thành công", "Đơn hàng đang đi giao"};
-    TextView tvDonHangGiaoThanhCong, tvDonHangGiaoKhongThanhCong, tvDonHangDangGiao, tvTongTien;
+    TextView tvDonHangGiaoThanhCong, tvDonHangGiaoKhongThanhCong, tvDonHangDangGiao, tvTongTien, tvTongDonHang, tvTyLe;
     Firebase_Manager firebase_manager = new Firebase_Manager();
     Button btnNgayBatDau, btnNgayKetThuc;
     ProgressBar progressBar;
@@ -112,7 +112,7 @@ public class ThongKeShipper extends AppCompatActivity {
                             dateKetThuc = date;
                             btnNgayKetThuc.setText(formatter.format(date));
                             display = (ArrayList<DonHang>) donHangs.stream().filter(donHang -> donHang.getNgayTao().compareTo(date) < 0).collect(Collectors.toList());
-                            display = (ArrayList<DonHang>) display.stream().filter(donHang -> donHang.getNgayTao().compareTo(dateBatDau) >0).collect(Collectors.toList());
+                            display = (ArrayList<DonHang>) display.stream().filter(donHang -> donHang.getNgayTao().compareTo(dateBatDau) > 0).collect(Collectors.toList());
 
                             GetThongKe_DonHang(display);
                             LoadPieChart();
@@ -136,7 +136,7 @@ public class ThongKeShipper extends AppCompatActivity {
                             dateBatDau = date;
                             btnNgayBatDau.setText(formatter.format(date));
                             display = (ArrayList<DonHang>) donHangs.stream().filter(donHang -> donHang.getNgayTao().compareTo(date) > 0).collect(Collectors.toList());
-                            display = (ArrayList<DonHang>) display.stream().filter(donHang -> donHang.getNgayTao().compareTo(dateKetThuc) <0).collect(Collectors.toList());
+                            display = (ArrayList<DonHang>) display.stream().filter(donHang -> donHang.getNgayTao().compareTo(dateKetThuc) < 0).collect(Collectors.toList());
                             GetThongKe_DonHang(display);
                             LoadPieChart();
 
@@ -151,6 +151,7 @@ public class ThongKeShipper extends AppCompatActivity {
         donHangGiaoKhongThanhCong = 0;
         donHangDangDiGiao = 0;
         int tong = 0;
+        float tyle = 0f;
         lnLayout.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
 
@@ -174,9 +175,12 @@ public class ThongKeShipper extends AppCompatActivity {
         }
         LoadPieChart();
         tvTongTien.setText(tong + " VND");
+        tvTongDonHang.setText(display.size() + "");
         tvDonHangGiaoThanhCong.setText(donHangGiaoThanhCong + "");
         tvDonHangGiaoKhongThanhCong.setText(donHangGiaoKhongThanhCong + "");
         tvDonHangDangGiao.setText(donHangDangDiGiao + "");
+        tyle = ((Float.parseFloat(donHangGiaoThanhCong + "") / Float.parseFloat(display.size() + "")) * 100);
+        tvTyLe.setText(tyle + "%");
         lnLayout.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
     }
@@ -190,7 +194,7 @@ public class ThongKeShipper extends AppCompatActivity {
     }
 
     private void LoadPieChart() {
-        loadFragment(new PieChartFragment(donHangGiaoThanhCong, donHangGiaoKhongThanhCong, donHangDangDiGiao));
+        loadFragment(new PieChartShipper_Fragment(donHangGiaoThanhCong, donHangGiaoKhongThanhCong, donHangDangDiGiao));
     }
 
     @Override
@@ -204,6 +208,8 @@ public class ThongKeShipper extends AppCompatActivity {
         tvDonHangGiaoThanhCong = findViewById(R.id.txtGiaoThanhCong_tks);
         tvDonHangGiaoKhongThanhCong = findViewById(R.id.txtGiaoKoThanhCong_tks);
         tvDonHangDangGiao = findViewById(R.id.txtDangGiao_tks);
+        tvTongDonHang = findViewById(R.id.tvTongDonHang_tks);
+        tvTyLe = findViewById(R.id.tvTiLeGiaoHang_tks);
         lnLayout = findViewById(R.id.lnLayout_tks);
         progressBar = findViewById(R.id.progessbar_tks);
         btnNgayBatDau = findViewById(R.id.btnNgayBatDau_tks);

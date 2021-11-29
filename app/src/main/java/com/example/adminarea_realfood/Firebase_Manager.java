@@ -1,6 +1,8 @@
 package com.example.adminarea_realfood;
 
+import android.graphics.Color;
 import android.net.Uri;
+import android.widget.TextView;
 
 import com.example.adminarea_realfood.Model.Admin;
 import com.example.adminarea_realfood.Model.BaoCaoShipper;
@@ -11,6 +13,8 @@ import com.example.adminarea_realfood.Model.SanPham;
 import com.example.adminarea_realfood.Model.Shipper;
 import com.example.adminarea_realfood.Model.TaiKhoanNganHang;
 import com.example.adminarea_realfood.Model.ThongBao;
+import com.example.adminarea_realfood.TrangThai.TrangThaiCuaHang;
+import com.example.adminarea_realfood.TrangThai.TrangThaiShipper;
 import com.example.adminarea_realfood.adapter.SanPhamAdapter;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -116,6 +120,87 @@ public class    Firebase_Manager {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
+
+    public String GetStringTrangThaiCuaHang(TrangThaiCuaHang trangThaiCuaHang){
+        String res = "";
+        if(trangThaiCuaHang == TrangThaiCuaHang.DaKichHoat){
+            res = "Đã kích hoạt";
+        }
+        if(trangThaiCuaHang == TrangThaiCuaHang.ChuaKichHoat){
+            res = "Chưa kích hoạt";
+        }
+        if(trangThaiCuaHang == TrangThaiCuaHang.BiKhoa){
+            res = "Đã bị khóa";
+        }
+        if(trangThaiCuaHang == TrangThaiCuaHang.DangHoatDong){
+            res = "Đang hoạt động";
+        }
+        if(trangThaiCuaHang == TrangThaiCuaHang.DongCuaHang){
+            res = "Đóng cửa hàng";
+        }
+        return res;
+    }
+
+    public void SetColorTrangThaiCuaHang(TrangThaiCuaHang trangThai, TextView textView){
+        String res = "";
+        if (trangThai == TrangThaiCuaHang.DangHoatDong)
+        {
+            res = "Đang hoạt động";
+            textView.setTextColor(Color.parseColor("#00FF00"));
+        }
+        if (trangThai== TrangThaiCuaHang.BiKhoa)
+        {
+            res = "Đã bị khóa";
+            textView.setTextColor(Color.parseColor("#FF3333"));
+        }
+        if (trangThai== TrangThaiCuaHang.DongCuaHang)
+        {
+            res = "Đóng cửa hàng";
+            textView.setTextColor(Color.parseColor("#BBBBBB"));
+        }
+
+    }
+
+    public String GetStringTrangThaiShipper(TrangThaiShipper trangThaiShipper){
+        String res = "";
+        if(trangThaiShipper == TrangThaiShipper.DangHoatDong){
+            res = "Đang hoạt động";
+        }
+        if(trangThaiShipper == TrangThaiShipper.KhongHoatDong){
+            res = "Không hoạt động";
+        }
+        if(trangThaiShipper == TrangThaiShipper.BiKhoa){
+            res = "Đã bị khóa";
+        }
+        if(trangThaiShipper == TrangThaiShipper.DangGiaoHang){
+            res = "Đang giao hàng";
+        }
+        return res;
+    }
+
+    public void SetColorTrangThaiShipper(TrangThaiShipper trangThai, TextView textView){
+        String res = "";
+        if (trangThai == TrangThaiShipper.DangHoatDong)
+        {
+            res = "Đang hoạt động";
+            textView.setTextColor(Color.parseColor("#00FF00"));
+        }
+        if (trangThai== TrangThaiShipper.BiKhoa)
+        {
+            res = "Đã bị khóa";
+            textView.setTextColor(Color.parseColor("#FF3333"));
+        }
+        if (trangThai== TrangThaiShipper.KhongHoatDong)
+        {
+            res = "Không hoat động";
+            textView.setTextColor(Color.parseColor("#BBBBBB"));
+        }
+        if (trangThai== TrangThaiShipper.DangGiaoHang)
+        {
+            res = "Đang giao hàng";
+            textView.setTextColor(Color.parseColor("#FFFF66"));
+        }
     }
 
 }

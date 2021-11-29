@@ -78,9 +78,11 @@ public class ShipperAdapter extends ArrayAdapter implements Filterable {
         ImageView ivImage = convertView.findViewById(R.id.image_profile);
 
         Shipper shipper = data.get(position);
+        firebase_manager.SetColorTrangThaiShipper(shipper.getTrangThaiShipper(), tvTrangthai);
         tvHoten.setText(shipper.getHoVaTen());
         tvSdt.setText(shipper.getSoDienThoai());
         tvMaxe.setText(shipper.getMaSoXe());
+        tvTrangthai.setText(firebase_manager.GetStringTrangThaiShipper(shipper.getTrangThaiShipper()));
         storageReference.child("Shipper").child(shipper.getiDShipper()).child("avatar").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {

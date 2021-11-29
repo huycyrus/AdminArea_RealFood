@@ -103,6 +103,8 @@
     <string name="chonngaybatdau">Chọn ngày bắt đầu</string>
     <string name="chonngayketthuc">Chọn ngày kết thúc</string>
     <string name="den">đến</string>
+    <string name="tilegiaohang">Tỉ lệ giao hàng :</string>
+    <string name="tongdonhang">Tổng đơn hàng :</string>
     <array name="noidungvipham">
         <item>Mời đóng phí</item>
         <item>Cửa hàng bị khóa 3 ngày</item>

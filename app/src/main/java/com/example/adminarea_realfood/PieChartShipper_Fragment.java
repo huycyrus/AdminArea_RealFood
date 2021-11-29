@@ -18,11 +18,11 @@ import com.anychart.enums.LegendLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PieChartFragment extends Fragment {
+public class PieChartShipper_Fragment extends Fragment {
     int donHangGiaoThanhCong = 0, donHangGiaoKhongThanhCong = 0, donHangDangDiGiao = 0;
     AnyChartView anyChartView;
 
-    public PieChartFragment(int donHangGiaoThanhCong, int donHangGiaoKhongThanhCong, int donHangDangDiGiao) {
+    public PieChartShipper_Fragment(int donHangGiaoThanhCong, int donHangGiaoKhongThanhCong, int donHangDangDiGiao) {
         this.donHangGiaoThanhCong = donHangGiaoThanhCong;
         this.donHangGiaoKhongThanhCong = donHangGiaoKhongThanhCong;
         this.donHangDangDiGiao = donHangDangDiGiao;
