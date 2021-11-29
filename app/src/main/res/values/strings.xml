@@ -94,6 +94,15 @@
     <string name="bitocao">Bị tố cáo</string>
     <string name="noidungtocao">Nội dung tố cáo</string>
     <string name="khoashipper">Khóa shipper</string>
+    <string name="trangthai1">Trạng thái :</string>
+    <string name="danghoatdong">Đang hoạt động</string>
+    <string name="tongtiendagiao">Tổng tiền đã giao :</string>
+    <string name="donhanggiaothanhcong">Đơn hàng giao thành công :</string>
+    <string name="donhanggiaokhongthanhcong">Đơn hàng giao không thành công :</string>
+    <string name="donhangdanggiao">Đơn hàng đang đi giao :</string>
+    <string name="chonngaybatdau">Chọn ngày bắt đầu</string>
+    <string name="chonngayketthuc">Chọn ngày kết thúc</string>
+    <string name="den">đến</string>
     <array name="noidungvipham">
         <item>Mời đóng phí</item>
         <item>Cửa hàng bị khóa 3 ngày</item>

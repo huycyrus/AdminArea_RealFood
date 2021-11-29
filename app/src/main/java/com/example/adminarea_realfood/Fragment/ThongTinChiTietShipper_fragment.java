@@ -113,6 +113,7 @@ public class ThongTinChiTietShipper_fragment extends Fragment implements DatePic
                 edtNgaysinh.setText(shipper.getNgaySinh());
                 edtMaxe.setText(shipper.getMaSoXe());
                 edtSdt.setText(shipper.getSoDienThoai());
+                edtDiaChi.setText(shipper.getDiaChi());
                 LoadButton();
             }
 

@@ -76,6 +76,7 @@ public class TrangChu extends AppCompatActivity {
                         CaiDat_fragment caiDatFragment = new CaiDat_fragment();
                         loadFragment(caiDatFragment);
                         break;
+
                 }
             }
         });

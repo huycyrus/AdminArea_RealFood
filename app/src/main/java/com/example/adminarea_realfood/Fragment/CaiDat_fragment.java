@@ -170,6 +170,23 @@ public class CaiDat_fragment extends Fragment {
             }
         });
 
+        tvTroGiup.setOnClickListener(onClickListener);
+        tvRiengTu.setOnClickListener(onClickListener);
+        tvChinhSach.setOnClickListener(onClickListener);
+
         return view;
+    }
+
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            openWebURL("https://mason.gmu.edu/~rhanson/policymarkets.html");
+        }
+    };
+
+    public void openWebURL( String inURL ) {
+        Intent browse = new Intent( Intent.ACTION_VIEW , Uri.parse( inURL ) );
+
+        startActivity( browse );
     }
 }

@@ -15,6 +15,7 @@ import com.example.adminarea_realfood.Screen.DanhSachKhachHang;
 import com.example.adminarea_realfood.Screen.DanhSachLoaiSanPham;
 import com.example.adminarea_realfood.Screen.DanhSachShipper;
 import com.example.adminarea_realfood.Screen.DanhSachShop;
+import com.example.adminarea_realfood.Screen.DanhSachThongKeShipper;
 
 public class TrangChu_fragment extends Fragment {
 
@@ -77,6 +78,14 @@ public class TrangChu_fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), DanhSachKhachHang.class);
+                startActivity(intent);
+            }
+        });
+
+        lnThongke.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DanhSachThongKeShipper.class);
                 startActivity(intent);
             }
         });

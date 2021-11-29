@@ -184,6 +184,10 @@ public class TaoTaiKhoanShipper extends AppCompatActivity implements DatePickerD
                 &&!validate.isBlank(edtMasoxe) &&!validate.isBlank(edtSdt) &&!validate.isBlank(edtDiaChi)
         ){
             result = true;
+            if(avaTar == null){
+                Toast.makeText(this,"Vui lòng tải ảnh cá nhân ", Toast.LENGTH_SHORT).show();
+                result  = false;
+            }
             if (cmndTrc == null||cmndSau == null)
             {
                 Toast.makeText(this, "Vui lòng tải lên 2 mặt CMND/CCCD ", Toast.LENGTH_SHORT).show();

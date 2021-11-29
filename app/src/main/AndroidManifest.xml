@@ -9,7 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminArea_RealFood">
-        <activity android:name=".Screen.XuLyShipper"></activity>
+        <activity
+            android:name=".Screen.ThongKeShipper"
+            android:label="Thống kê"
+            android:parentActivityName=".Screen.DanhSachThongKeShipper"></activity>
+        <activity
+            android:name=".Screen.DanhSachThongKeShipper"
+            android:label="Thống kê shipper"
+            android:parentActivityName=".Screen.TrangChu" />
+        <activity android:name=".Screen.XuLyShipper" />
         <activity
             android:name=".Screen.XuLyShop"
             android:label="Xử lý cửa hàng"
