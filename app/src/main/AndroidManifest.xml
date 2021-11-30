@@ -9,10 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminArea_RealFood">
+        <activity android:name=".Screen.DoanhThuCuaHangActivity"
+            android:label="Doanh thu cửa hàng"
+            android:parentActivityName=".Screen.TrangChu" ></activity>
         <activity
             android:name=".Screen.ThongKeShipper"
             android:label="Thống kê"
             android:parentActivityName=".Screen.DanhSachThongKeShipper"></activity>
+        <activity
+            android:name=".Screen.ThongKe_CuaHang_Activity"
+            android:label="Thống kê"
+            android:parentActivityName=".Screen.DoanhThuCuaHangActivity"></activity>
         <activity
             android:name=".Screen.DanhSachThongKeShipper"
             android:label="Thống kê shipper"

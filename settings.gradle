@@ -1,2 +1,4 @@
 rootProject.name = "AdminArea_RealFood"
 include ':app'
+include ':library'
+include ':library'

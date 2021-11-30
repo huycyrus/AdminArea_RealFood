@@ -49,7 +49,7 @@
                         android:layout_width="110dp"
                         android:layout_height="100dp"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/ic_launcher" />
+                        android:src="@drawable/picturefrontpremium" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -142,7 +142,7 @@
                             android:layout_width="110dp"
                             android:layout_height="100dp"
                             android:scaleType="centerCrop"
-                            android:src="@mipmap/ic_launcher" />
+                            android:src="@drawable/picturefrontpremium" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -256,23 +256,17 @@
                         android:id="@+id/btn_khoataikhoan_xulyshipper"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="50dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="50dp"
+
                         android:text="@string/khoashipper"
-                        android:textAllCaps="false"
-                        android:textSize="20dp" />
+                        style="@style/Button_v2_Red" />
 
                     <Button
                         android:id="@+id/btn_boqua_xulyshipper"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="50dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="50dp"
+
                         android:text="@string/boqua"
-                        android:textAllCaps="false"
-                        android:textSize="20dp" />
+                        style="@style/Button_v2_Red"  />
 
                 </LinearLayout>
 

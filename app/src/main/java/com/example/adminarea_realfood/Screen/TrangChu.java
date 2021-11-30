@@ -2,6 +2,7 @@ package com.example.adminarea_realfood.Screen;
 
 import android.os.Bundle;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
@@ -85,5 +86,30 @@ public class TrangChu extends AppCompatActivity {
     private void setControl() {
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         frameLayout = findViewById(R.id.fragment);
+    }
+    int i =0;
+    @Override
+    public void onBackPressed() {
+        int fragments = getSupportFragmentManager().getBackStackEntryCount();
+        if (fragments == 1) {
+            if (i != 0) {
+                finish();
+                firebase_manager.auth.signOut();
+            } else {
+                Toast.makeText(this, "Nhấn lần nữa để đăng xuất!", Toast.LENGTH_SHORT).show();
+                i++;
+            }
+        } else if (getFragmentManager().getBackStackEntryCount() > 1) {
+            getFragmentManager().popBackStack();
+        } else {
+            if (i != 0) {
+                super.onBackPressed();
+                firebase_manager.auth.signOut();
+            } else {
+                Toast.makeText(this, "Nhấn lần nữa để đăng xuất!", Toast.LENGTH_SHORT).show();
+                i++;
+            }
+        }
+
     }
 }

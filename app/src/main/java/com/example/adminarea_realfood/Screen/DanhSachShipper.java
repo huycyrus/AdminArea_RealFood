@@ -36,6 +36,7 @@ public class DanhSachShipper extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.danhsachshipper_activity);
         shippers = new ArrayList<Shipper>();
+
         setControl();
 
         setEvent();
@@ -50,8 +51,6 @@ public class DanhSachShipper extends AppCompatActivity {
     private void setEvent() {
         shipperAdapter = new ShipperAdapter(this, R.layout.shipper_listview, shippers);
         lvDanhsach.setAdapter(shipperAdapter);
-
-
         fabThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

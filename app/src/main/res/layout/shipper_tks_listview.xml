@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="20dp"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_margin="10dp"
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,57 +19,53 @@
             android:layout_height="100dp"
             android:padding="5dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@drawable/picturefrontpremium"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="15dp">
-
-                <TextView
-                    android:id="@+id/tv_hovaten_tks"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/hovaten"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"/>
-
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/trangthai1"
-                    android:textSize="18dp"
-                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/tv_trangthai_tks"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/danghoatdong"
-                    android:textSize="18dp"
+                    android:textSize="14dp"
                     android:textColor="@color/black"
                     android:layout_marginLeft="5dp"/>
 
             </LinearLayout>
 
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/tv_hovaten_tks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hovaten"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/tvSoDienThoai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Số điện thoại"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"/>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:id="@+id/tvDiaChi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Địa chỉ"
+                android:textSize="16dp"
+                android:textColor="@color/black"/>
         </LinearLayout>
-
     </LinearLayout>
-
-</LinearLayout>
+</androidx.cardview.widget.CardView>

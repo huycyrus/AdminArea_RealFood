@@ -52,24 +52,31 @@ public class DangNhap extends AppCompatActivity {
 
                 kAlertDialog.setTitleText("Vui lòng chờ... ");
                 kAlertDialog.show();
-                kAlertDialog.changeAlertType(KAlertDialog.PROGRESS_TYPE);
-                auth.signInWithEmailAndPassword(edtTK.getText().toString(), edtMK.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                        kAlertDialog.setTitleText("Gửi thành công ");
-                        kAlertDialog.show();
-                        kAlertDialog.changeAlertType(KAlertDialog.SUCCESS_TYPE);
-                        kAlertDialog.dismiss();
-                        Intent intent = new Intent(DangNhap.this, TrangChu.class);
-                        startActivity(intent);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        kAlertDialog.changeAlertType(KAlertDialog.WARNING_TYPE);
-                        kAlertDialog.setTitleText("Sai tài khoản hoặc mật khẩu");
-                    }
-                });
+                if (edtTK.getText().toString().equals("huycyrusamin@gmail.com")){
+                    kAlertDialog.changeAlertType(KAlertDialog.PROGRESS_TYPE);
+                    auth.signInWithEmailAndPassword(edtTK.getText().toString(), edtMK.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                            kAlertDialog.setTitleText("Gửi thành công ");
+                            kAlertDialog.show();
+                            kAlertDialog.changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                            kAlertDialog.dismiss();
+                            Intent intent = new Intent(DangNhap.this, TrangChu.class);
+                            startActivity(intent);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            kAlertDialog.changeAlertType(KAlertDialog.WARNING_TYPE);
+                            kAlertDialog.setTitleText("Sai tài khoản hoặc mật khẩu");
+                        }
+                    });
+                }
+                else {
+                    kAlertDialog.changeAlertType(KAlertDialog.WARNING_TYPE);
+                    kAlertDialog.setTitleText("Tài khoản không khả dụng");
+                }
+
             }
         });
 

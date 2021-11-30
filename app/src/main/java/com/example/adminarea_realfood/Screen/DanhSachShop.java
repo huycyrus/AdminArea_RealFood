@@ -10,7 +10,7 @@ import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.adapter.DSShopFragmentAdapter;
 import com.google.android.material.tabs.TabLayout;
 
-public class DanhSachShop extends AppCompatActivity {
+public class   DanhSachShop extends AppCompatActivity {
 
     TabLayout tabLayout;
     ViewPager2 pager2;

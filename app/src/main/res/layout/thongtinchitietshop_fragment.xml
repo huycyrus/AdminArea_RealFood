@@ -33,7 +33,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/picturefrontpremium" />
 
                 </FrameLayout>
 
@@ -53,8 +53,8 @@
                             android:layout_height="120dp"
                             android:layout_gravity="center"
                             android:scaleType="centerCrop"
-                            android:src="@mipmap/ic_launcher"
-                            app:civ_border_color="#852F28"
+                            android:src="@drawable/picturefrontpremium"
+                            app:civ_border_color="@color/transparent"
                             app:civ_border_width="2dp" />
 
                     </FrameLayout>

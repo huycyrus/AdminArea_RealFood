@@ -8,6 +8,7 @@
     tools:context=".Screen.DanhSachThongKeShipper">
 
     <ListView
+        android:outlineProvider="bounds"
         android:id="@+id/lv_danhsachshipper_TKS"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

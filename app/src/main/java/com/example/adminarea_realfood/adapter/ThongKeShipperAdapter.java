@@ -59,18 +59,28 @@ public class ThongKeShipperAdapter extends ArrayAdapter implements Filterable {
 
         TextView tvHoten = convertView.findViewById(R.id.tv_hovaten_tks);
         TextView tvTrangthai = convertView.findViewById(R.id.tv_trangthai_tks);
+        TextView tvDiaChi = convertView.findViewById(R.id.tvDiaChi);
+        TextView tvSDT = convertView.findViewById(R.id.tvSoDienThoai);
         ImageView ivImage = convertView.findViewById(R.id.image_profile_tks);
 
         Shipper shipper = data.get(position);
         firebase_manager.SetColorTrangThaiShipper(shipper.getTrangThaiShipper(), tvTrangthai);
         tvHoten.setText(shipper.getHoVaTen());
+        tvDiaChi.setText(shipper.getDiaChi());
+        tvSDT.setText(shipper.getSoDienThoai());
         tvTrangthai.setText(firebase_manager.GetStringTrangThaiShipper(shipper.getTrangThaiShipper()));
         storageReference.child("Shipper").child(shipper.getiDShipper()).child("avatar").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Glide.with(context)
-                        .load(uri.toString())
-                        .into(ivImage);
+                try {
+                    Glide.with(context)
+                            .load(uri.toString())
+                            .into(ivImage);
+                }catch (Exception e)
+                {
+
+                }
+
             }
         });
 

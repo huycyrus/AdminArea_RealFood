@@ -57,10 +57,6 @@ public class DSDaKichHoat_fragment extends Fragment {
                 return false;
             }
         });
-
-
-
-
         // Inflate the layout for this fragment
         return view;
     }

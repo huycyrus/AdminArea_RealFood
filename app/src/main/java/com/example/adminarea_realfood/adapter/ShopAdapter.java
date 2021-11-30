@@ -81,15 +81,17 @@ public class ShopAdapter extends ArrayAdapter implements Filterable {
         ImageView ivImage = convertView.findViewById(R.id.image_profile_shop);
 
         CuaHang cuaHang = cuaHangs.get(position);
-        firebase_manager.SetColorTrangThaiCuaHang(cuaHang.getTrangThaiCuaHang(), tvTrangThai);
         tvTenCuaHang.setText(cuaHang.getTenCuaHang());
         tvTenChu.setText(cuaHang.getChuSoHuu());
         tvSdt.setText(cuaHang.getSoDienThoai());
-        tvTrangThai.setText(firebase_manager.GetStringTrangThaiCuaHang(cuaHang.getTrangThaiCuaHang()));
+
         if (cuaHang.getTrangThaiCuaHang() == TrangThaiCuaHang.DaKichHoat) {
+            firebase_manager.SetColorTrangThaiCuaHang(cuaHang.getTrangThaiCuaHang(), tvTrangThai);
+            tvTrangThai.setText(firebase_manager.GetStringTrangThaiCuaHang(cuaHang.getTrangThaiCuaHang()));
             btnDongPhi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     firebase_manager.mDatabase.child("TaiKhoanNganHangAdmin").child("admin")
                             .addValueEventListener(new ValueEventListener() {
                                 @Override

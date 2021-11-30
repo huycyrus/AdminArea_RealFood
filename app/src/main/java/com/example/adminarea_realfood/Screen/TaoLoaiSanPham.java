@@ -118,7 +118,7 @@ public class TaoLoaiSanPham extends AppCompatActivity {
                 ((EditText) view).setText("");
             }
             if (view instanceof ImageButton) {
-                ((ImageButton) view).setImageResource(R.drawable.ic_photo_library);
+                ((ImageButton) view).setImageResource(R.drawable.picturefrontpremium);
             }
             if (view instanceof ViewGroup && (((ViewGroup) view).getChildCount() > 0))
                 clearForm((ViewGroup) view);

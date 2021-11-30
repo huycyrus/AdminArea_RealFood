@@ -7,42 +7,65 @@
     android:orientation="vertical"
     tools:context=".Screen.DangNhap"
     android:background="@color/white">
-
-    <ImageView
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="-35dp"
         android:layout_width="match_parent"
-        android:layout_height="245dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/bgrf"/>
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="40dp">
+        <FrameLayout
+            android:backgroundTint="#93242A"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:paddingTop="35dp"
+                android:adjustViewBounds="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bgrf"/>
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
 
-    <EditText
-        android:id="@+id/edt_taikhoan"
+
+    <com.google.android.material.textfield.TextInputLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginEnd="34dp"
-        android:layout_marginTop="65dp"
-        android:background="@drawable/border_tron"
-        android:hint="@string/taikhoan"
-        android:inputType="text"
-        />
-
-    <EditText
-        android:id="@+id/edt_matkhau"
+        android:layout_height="wrap_content"
+        app:startIconDrawable="@drawable/baseline_email_black_24dp"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp">
+        <EditText
+            android:layout_marginTop="30dp"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/baseline_email_black_24dp"
+            android:id="@+id/edt_taikhoan"
+            style="@style/Edittext_v1"
+            android:hint="Email"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/etPasswordLayout"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="34dp"
-        android:background="@drawable/border_tron"
-        android:hint="@string/matkhau"
-        android:inputType="textPassword" />
-
+        android:layout_height="wrap_content"
+        app:startIconDrawable="@drawable/baseline_password_black_24dp"
+        app:passwordToggleEnabled="true"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp">
+        <EditText
+            android:drawablePadding="10dp"
+            android:id="@+id/edt_matkhau"
+            style="@style/Edittext_v1"
+            android:hint="@string/matkhau"
+            android:inputType="textPassword"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
     <TextView
         android:id="@+id/tv_quenmatkhau"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="250dp"
+        android:layout_marginTop="20dp"
+        android:gravity="right"
         android:layout_marginEnd="50dp"
         android:text="@string/link_quenmatkhau"
         android:textColor="@color/link"/>
@@ -53,7 +76,7 @@
         android:layout_height="56dp"
         android:layout_marginStart="34dp"
         android:layout_marginEnd="34dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/border_tron_button"
         android:text="@string/dangnhap"
         android:textAllCaps="false"
