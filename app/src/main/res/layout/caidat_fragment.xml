@@ -245,19 +245,13 @@
                         android:hint="@string/nhaplai"
                         android:textSize="14dp" />
 
-                    <Button
+                    <android.widget.Button
                         android:id="@+id/btn_luu_admin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/luu"
-                        android:textAllCaps="false"
-                        android:textStyle="bold"
-                        android:background="#13B733"
-                        android:layout_marginStart="220dp"
-                        android:layout_marginEnd="20dp"
-                        android:textColor="@color/white"
-                        android:layout_marginTop="20dp"
-                        android:textSize="20dp"
+                        style="@style/Button_v2_Green"
+
                         />
 
                 </LinearLayout>
@@ -393,14 +387,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/dangxuat"
-                        android:textAllCaps="false"
-                        android:textStyle="bold"
-                        android:background="#F11B1B"
-                        android:layout_marginStart="40dp"
-                        android:layout_marginEnd="40dp"
-                        android:textColor="@color/white"
-                        android:layout_marginTop="20dp"
-                        android:textSize="20dp"
+                        style="@style/Button_v2_Red"
                         />
 
                 </LinearLayout>

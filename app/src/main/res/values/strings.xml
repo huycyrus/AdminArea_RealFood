@@ -12,8 +12,8 @@
     <string name="danhsachcuahang">Danh sách cửa hàng</string>
     <string name="danhsachshipper">Danh sách shipper</string>
     <string name="loaisanpham">Loại sản phẩm</string>
-    <string name="dtcuacuahang">Doanh thu của cửa hàng</string>
-    <string name="dthethong">Doanh thu của hệ thống</string>
+    <string name="dtcuacuahang">Doanh thu cửa hàng</string>
+    <string name="dthethong">Doanh thu hệ thống</string>
     <string name="thongke">Thống kê shipper</string>
     <string name="dskhachhang">Danh sách khách hàng</string>
     <string name="hovaten">Họ và tên</string>

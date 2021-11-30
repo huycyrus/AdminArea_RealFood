@@ -52,7 +52,7 @@ public class DangNhap extends AppCompatActivity {
 
                 kAlertDialog.setTitleText("Vui lòng chờ... ");
                 kAlertDialog.show();
-                if (edtTK.getText().toString().equals("huycyrusamin@gmail.com")){
+                if (edtTK.getText().toString().equals("admin@gmail.com")){
                     kAlertDialog.changeAlertType(KAlertDialog.PROGRESS_TYPE);
                     auth.signInWithEmailAndPassword(edtTK.getText().toString(), edtMK.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
@@ -68,7 +68,7 @@ public class DangNhap extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             kAlertDialog.changeAlertType(KAlertDialog.WARNING_TYPE);
-                            kAlertDialog.setTitleText("Sai tài khoản hoặc mật khẩu");
+                            kAlertDialog.setContentText(e.getMessage());
                         }
                     });
                 }
