@@ -5,16 +5,15 @@ import com.example.adminarea_realfood.TrangThai.TrangThaiDonHang;
 import java.util.Date;
 
 public class DonHang {
-    String IDDonHang, IDCuaHang, IDKhachHang, IDShipper, diaChi, soDienThoai, ghiChu_KhachHang, ghiChu_Shipper;
+    String IDDonHang, IDCuaHang, IDKhachHang, IDShipper, diaChi, soDienThoai, ghiChu_KhachHang, ghiChu_Shipper, ghiChuCuaHang;
     double tongTien;
     Date ngayTao, ngayGiaoHang;
     TrangThaiDonHang trangThai;
-    String ghiChuCuaHang;
 
     public DonHang() {
     }
 
-    public DonHang(String IDDonHang, String IDCuaHang, String IDKhachHang, String IDShipper, String diaChi, String soDienThoai, String ghiChu_KhachHang, String ghiChu_Shipper, double tongTien, Date ngayTao, Date ngayGiaoHang, TrangThaiDonHang trangThai, String ghiChuCuaHang) {
+    public DonHang(String IDDonHang, String IDCuaHang, String IDKhachHang, String IDShipper, String diaChi, String soDienThoai, String ghiChu_KhachHang, String ghiChu_Shipper, double tongTien, Date ngayTao, Date ngayGiaoHang, TrangThaiDonHang trangThai) {
         this.IDDonHang = IDDonHang;
         this.IDCuaHang = IDCuaHang;
         this.IDKhachHang = IDKhachHang;
@@ -27,15 +26,22 @@ public class DonHang {
         this.ngayTao = ngayTao;
         this.ngayGiaoHang = ngayGiaoHang;
         this.trangThai = trangThai;
+    }
+
+    public String getGhiChuCuaHang() {
+        return ghiChuCuaHang;
+    }
+
+    public void setGhiChuCuaHang(String ghiChuCuaHang) {
         this.ghiChuCuaHang = ghiChuCuaHang;
     }
 
-    public String getIDDonHang() {
-        return IDDonHang;
+    public Date getNgayGiaoHang() {
+        return ngayGiaoHang;
     }
 
-    public void setIDDonHang(String IDDonHang) {
-        this.IDDonHang = IDDonHang;
+    public void setNgayGiaoHang(Date ngayGiaoHang) {
+        this.ngayGiaoHang = ngayGiaoHang;
     }
 
     public String getIDCuaHang() {
@@ -44,6 +50,14 @@ public class DonHang {
 
     public void setIDCuaHang(String IDCuaHang) {
         this.IDCuaHang = IDCuaHang;
+    }
+
+    public String getIDDonHang() {
+        return IDDonHang;
+    }
+
+    public void setIDDonHang(String IDDonHang) {
+        this.IDDonHang = IDDonHang;
     }
 
     public String getIDKhachHang() {
@@ -110,27 +124,11 @@ public class DonHang {
         this.ngayTao = ngayTao;
     }
 
-    public Date getNgayGiaoHang() {
-        return ngayGiaoHang;
-    }
-
-    public void setNgayGiaoHang(Date ngayGiaoHang) {
-        this.ngayGiaoHang = ngayGiaoHang;
-    }
-
     public TrangThaiDonHang getTrangThai() {
         return trangThai;
     }
 
     public void setTrangThai(TrangThaiDonHang trangThai) {
         this.trangThai = trangThai;
-    }
-
-    public String getGhiChuCuaHang() {
-        return ghiChuCuaHang;
-    }
-
-    public void setGhiChuCuaHang(String ghiChuCuaHang) {
-        this.ghiChuCuaHang = ghiChuCuaHang;
     }
 }

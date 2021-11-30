@@ -1,6 +1,8 @@
 package com.example.adminarea_realfood.Screen;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.developer.kalert.KAlertDialog;
 import com.example.adminarea_realfood.Firebase_Manager;
+import com.example.adminarea_realfood.Map.MapsActivity;
 import com.example.adminarea_realfood.Model.Shipper;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.TrangThai.TrangThaiShipper;
@@ -34,7 +38,7 @@ import java.util.Calendar;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class TaoTaiKhoanShipper extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
+public class TaoTaiKhoanShipper extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     EditText edtTaikhoan, edtMatkhau, edtHoten, edtNgaysinh, edtMasoxe, edtSdt, edtDiaChi;
     CircleImageView avatar;
@@ -45,9 +49,10 @@ public class TaoTaiKhoanShipper extends AppCompatActivity implements DatePickerD
     Uri cmndTrc;
     Uri cmndSau;
     Uri avaTar;
+    TextView tvGoToMap;
     Firebase_Manager firebase_manager = new Firebase_Manager();
     KAlertDialog kAlertDialog;
-
+    int LAUNCH_SECOND_ACTIVITY = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,18 +136,18 @@ public class TaoTaiKhoanShipper extends AppCompatActivity implements DatePickerD
                 if (Validated_Form()) {
                     KAlertDialog kAlertDialog = new KAlertDialog(TaoTaiKhoanShipper.this, KAlertDialog.PROGRESS_TYPE).setContentText("Loading");
                     kAlertDialog.show();
-                    firebase_manager.auth.createUserWithEmailAndPassword(edtTaikhoan.getText().toString(),edtMatkhau.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    firebase_manager.auth.createUserWithEmailAndPassword(edtTaikhoan.getText().toString(), edtMatkhau.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             String uuid = authResult.getUser().getUid();
-                            Shipper shipper = new Shipper(uuid, "", edtTaikhoan.getText().toString(), edtMatkhau.getText().toString(), edtHoten.getText().toString(),edtDiaChi.getText().toString(),"", edtNgaysinh.getText().toString(), edtMasoxe.getText().toString(),edtSdt.getText().toString(), TrangThaiShipper.KhongHoatDong,"Hệ thống");
+                            Shipper shipper = new Shipper(uuid, "", edtTaikhoan.getText().toString(), edtMatkhau.getText().toString(), edtHoten.getText().toString(), edtDiaChi.getText().toString(), "", edtNgaysinh.getText().toString(), edtMasoxe.getText().toString(), edtSdt.getText().toString(), TrangThaiShipper.KhongHoatDong, "Hệ thống");
                             firebase_manager.Ghi_Shipper(shipper).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     kAlertDialog.changeAlertType(KAlertDialog.SUCCESS_TYPE);
                                     kAlertDialog.setContentText("Đã tạo tài khoản thành công");
-                                    firebase_manager.Up2MatCMND(cmndTrc,cmndSau,uuid);
-                                    firebase_manager.UpAvatar(avaTar,uuid);
+                                    firebase_manager.Up2MatCMND(cmndTrc, cmndSau, uuid);
+                                    firebase_manager.UpAvatar(avaTar, uuid);
                                     clearForm(viewGroup);
                                 }
                             });
@@ -157,8 +162,31 @@ public class TaoTaiKhoanShipper extends AppCompatActivity implements DatePickerD
                 }
             }
         });
+
+        tvGoToMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TaoTaiKhoanShipper.this, MapsActivity.class);
+                startActivityForResult(intent,LAUNCH_SECOND_ACTIVITY);
+            }
+        });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == LAUNCH_SECOND_ACTIVITY) {
+            if(resultCode == Activity.RESULT_OK){
+                String result=data.getStringExtra("result");
+                edtDiaChi.setText(result);
+                Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                // Write your code if there's no result
+            }
+        }
+    }
     private void showDataPickerDailog() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,
@@ -179,17 +207,16 @@ public class TaoTaiKhoanShipper extends AppCompatActivity implements DatePickerD
     private boolean Validated_Form() {
         boolean result = false;
         if (!validate.isBlank(edtTaikhoan) && validate.isEmail(edtTaikhoan)
-                &&!validate.isBlank(edtMatkhau) && !validate.lessThan6Char(edtMatkhau)
-                &&!validate.isBlank(edtHoten) &&!validate.isBlank(edtNgaysinh)
-                &&!validate.isBlank(edtMasoxe) &&!validate.isBlank(edtSdt) &&!validate.isBlank(edtDiaChi)
-        ){
+                && !validate.isBlank(edtMatkhau) && !validate.lessThan6Char(edtMatkhau)
+                && !validate.isBlank(edtHoten) && !validate.isBlank(edtNgaysinh)
+                && !validate.isBlank(edtMasoxe) && !validate.isBlank(edtSdt) && !validate.isBlank(edtDiaChi)
+        ) {
             result = true;
-            if(avaTar == null){
-                Toast.makeText(this,"Vui lòng tải ảnh cá nhân ", Toast.LENGTH_SHORT).show();
-                result  = false;
+            if (avaTar == null) {
+                Toast.makeText(this, "Vui lòng tải ảnh cá nhân ", Toast.LENGTH_SHORT).show();
+                result = false;
             }
-            if (cmndTrc == null||cmndSau == null)
-            {
+            if (cmndTrc == null || cmndSau == null) {
                 Toast.makeText(this, "Vui lòng tải lên 2 mặt CMND/CCCD ", Toast.LENGTH_SHORT).show();
                 result = false;
             }
@@ -210,28 +237,28 @@ public class TaoTaiKhoanShipper extends AppCompatActivity implements DatePickerD
         ibMattruoc = findViewById(R.id.ib_idtruoc);
         btnTao = findViewById(R.id.btn_tao);
         viewGroup = findViewById(R.id.linear1);
+        tvGoToMap = findViewById(R.id.tvGoToMap);
     }
 
     private void clearForm(ViewGroup group) {
         for (int i = 0, count = group.getChildCount(); i < count; ++i) {
             View view = group.getChildAt(i);
             if (view instanceof EditText) {
-                ((EditText)view).setText("");
+                ((EditText) view).setText("");
             }
             if (view instanceof CircleImageView) {
                 ((CircleImageView) view).setImageResource(R.drawable.ic_person);
             }
-            if (view instanceof ImageButton)
-            {
-                if(view.getId() == R.id.ib_idtruoc){
-                    ((ImageButton)view).setImageResource(R.drawable.idtruoc);
+            if (view instanceof ImageButton) {
+                if (view.getId() == R.id.ib_idtruoc) {
+                    ((ImageButton) view).setImageResource(R.drawable.idtruoc);
                 }
-                if (view.getId() == R.id.ib_idsau){
+                if (view.getId() == R.id.ib_idsau) {
                     ((ImageButton) view).setImageResource(R.drawable.idsau);
                 }
             }
-            if(view instanceof ViewGroup && (((ViewGroup)view).getChildCount() > 0))
-                clearForm((ViewGroup)view);
+            if (view instanceof ViewGroup && (((ViewGroup) view).getChildCount() > 0))
+                clearForm((ViewGroup) view);
         }
     }
 }

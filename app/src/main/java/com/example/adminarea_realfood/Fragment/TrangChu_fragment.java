@@ -16,11 +16,11 @@ import com.example.adminarea_realfood.Screen.DanhSachKhachHang;
 import com.example.adminarea_realfood.Screen.DanhSachLoaiSanPham;
 import com.example.adminarea_realfood.Screen.DanhSachShipper;
 import com.example.adminarea_realfood.Screen.DanhSachShop;
-import com.example.adminarea_realfood.Screen.DanhSachThongKeShipper;
+import com.example.adminarea_realfood.Screen.DoanhThuHeThong;
 
 public class TrangChu_fragment extends Fragment {
 
-    LinearLayout lnDanhsachcuahang, lnShipper, lnDanhsachkhanhhang, lnDoanhthuhethong, lnDoanhthucuahang, lnThongke, lnLoaisanpham;
+    LinearLayout lnDanhsachcuahang, lnShipper, lnDanhsachkhanhhang, lnDoanhthuhethong, lnDoanhthucuahang, lnThongke, lnLoaisanpham,lnDoanhThuHeThong;
 
     public TrangChu_fragment() {
         // Required empty public constructor
@@ -50,6 +50,7 @@ public class TrangChu_fragment extends Fragment {
         lnDoanhthucuahang = view.findViewById(R.id.ln_dtcuahang);
         lnThongke = view.findViewById(R.id.lnThongke);
         lnLoaisanpham = view.findViewById(R.id.ln_loaisanpham);
+        lnDoanhThuHeThong = view.findViewById(R.id.ln_dthethong);
 
         lnShipper.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,11 +90,10 @@ public class TrangChu_fragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-        lnThongke.setOnClickListener(new View.OnClickListener() {
+        lnDoanhThuHeThong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), DanhSachThongKeShipper.class);
+                Intent intent = new Intent(getActivity(), DoanhThuHeThong.class);
                 startActivity(intent);
             }
         });

@@ -3,23 +3,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.adminarea_realfood">
 
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminArea_RealFood">
-        <activity android:name=".Screen.DoanhThuCuaHangActivity"
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".Map.MapsActivity"
+            android:label="@string/title_activity_maps" android:parentActivityName=".Screen.TaoTaiKhoanShipper"></activity>
+        <activity
+            android:name=".Screen.DoiMatKhau"
+            android:label="@string/doimatkhau"
+            android:parentActivityName=".Screen.TrangChu" />
+        <activity
+            android:name=".Screen.DoanhThuCuaHangActivity"
             android:label="Doanh thu cửa hàng"
-            android:parentActivityName=".Screen.TrangChu" ></activity>
+            android:parentActivityName=".Screen.TrangChu" />
+        <activity
+            android:name=".Screen.DoanhThuHeThong"
+            android:label="Doanh thu hệ thống"
+            android:parentActivityName=".Screen.TrangChu" />
         <activity
             android:name=".Screen.ThongKeShipper"
             android:label="Thống kê"
-            android:parentActivityName=".Screen.DanhSachThongKeShipper"></activity>
+            android:parentActivityName=".Screen.DanhSachThongKeShipper" />
         <activity
             android:name=".Screen.ThongKe_CuaHang_Activity"
             android:label="Thống kê"
-            android:parentActivityName=".Screen.DoanhThuCuaHangActivity"></activity>
+            android:parentActivityName=".Screen.DoanhThuCuaHangActivity" />
         <activity
             android:name=".Screen.DanhSachThongKeShipper"
             android:label="Thống kê shipper"

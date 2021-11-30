@@ -19,6 +19,7 @@ import com.developer.kalert.KAlertDialog;
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.Admin;
 import com.example.adminarea_realfood.R;
+import com.example.adminarea_realfood.Screen.DoiMatKhau;
 import com.example.adminarea_realfood.Screen.SuaTaiKhoanAdmin;
 import com.example.adminarea_realfood.Screen.TaiKhoanNganHangAdmin;
 import com.example.adminarea_realfood.Validate;
@@ -42,7 +43,7 @@ public class CaiDat_fragment extends Fragment {
 
     CircleImageView civImage;
     Button btnLuu, btnDangXuat;
-    TextView tvSua, tvTen, tvNgaySinh, tvSdt, tvEmail, tvTaiKhoanNH, tvTroGiup, tvRiengTu, tvChinhSach;
+    TextView tvSua, tvTen, tvNgaySinh, tvSdt, tvEmail, tvTaiKhoanNH, tvTroGiup, tvRiengTu, tvChinhSach,tvDoiMatKhau;
     EditText edtMKCu, edtMKMoi, edtNhapLai;
     Admin admin;
     Firebase_Manager firebase_manager = new Firebase_Manager();
@@ -66,7 +67,6 @@ public class CaiDat_fragment extends Fragment {
         View view = inflater.inflate(R.layout.caidat_fragment, container, false);
 
         civImage = view.findViewById(R.id.profile_image_admin);
-        btnLuu = view.findViewById(R.id.btn_luu_admin);
         btnDangXuat = view.findViewById(R.id.btn_dangxuat_admin);
         tvSua = view.findViewById(R.id.tv_sua_admin);
         tvTen = view.findViewById(R.id.tv_ten_admin);
@@ -81,7 +81,8 @@ public class CaiDat_fragment extends Fragment {
         edtMKMoi = view.findViewById(R.id.edt_matkhaumoi_admin);
         edtNhapLai = view.findViewById(R.id.edt_nhaplai_admin);
         btnDangXuat = view.findViewById(R.id.btn_dangxuat_admin);
-        btnLuu = view.findViewById(R.id.btn_luu_admin);
+        tvDoiMatKhau = view.findViewById(R.id.tv_DoiMatKhau);
+
 
 
         tvSua.setOnClickListener(new View.OnClickListener() {
@@ -132,48 +133,18 @@ public class CaiDat_fragment extends Fragment {
             }
         });
 
-        btnLuu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!validate.isBlank(edtMKCu)&&!validate.isBlank(edtMKMoi)&&!validate.isBlank(edtNhapLai)){
-                    KAlertDialog kAlertDialog = new KAlertDialog(getContext(), KAlertDialog.PROGRESS_TYPE);
-                    kAlertDialog.setContentText("Loading");
-                    kAlertDialog.show();
-                    FirebaseUser user = firebase_manager.auth.getCurrentUser();
-                    AuthCredential credential = EmailAuthProvider
-                            .getCredential(firebase_manager.auth.getCurrentUser().getEmail(), edtMKCu.getText().toString());
-                    user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull @NotNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                if (edtMKMoi.getText().toString().equals(edtNhapLai.getText().toString())) {
-                                    user.updatePassword(edtMKMoi.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            kAlertDialog.setContentText("Đã đổi mật khẩu thành công");
-                                            kAlertDialog.changeAlertType(KAlertDialog.SUCCESS_TYPE);
-                                        }
-                                    });
-                                } else {
-                                    edtNhapLai.setError("Mật khẩu không trùng khớp");
-                                    kAlertDialog.dismiss();
-                                }
 
-                            } else {
-                                kAlertDialog.setContentText("Mật khẩu sai");
-                                kAlertDialog.changeAlertType(KAlertDialog.WARNING_TYPE);
-                                kAlertDialog.showConfirmButton(false);
-                            }
-                        }
-                    });
-                }
-            }
-        });
 
         tvTroGiup.setOnClickListener(onClickListener);
         tvRiengTu.setOnClickListener(onClickListener);
         tvChinhSach.setOnClickListener(onClickListener);
-
+        tvDoiMatKhau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DoiMatKhau.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 

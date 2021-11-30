@@ -111,4 +111,5 @@
         <item>Cửa hàng bị khóa 7 ngày</item>
         <item>Cửa hàng bị khóa vĩnh viễn</item>
     </array>
+    <string name="title_activity_maps">Map</string>
 </resources>
