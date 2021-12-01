@@ -34,8 +34,8 @@ import java.util.Date;
 import java.util.stream.Collectors;
 
 public class ThongKeShipper extends AppCompatActivity {
-
-    int donHangGiaoThanhCong = 0, donHangGiaoKhongThanhCong = 0, donHangDangDiGiao = 0;
+    int tongDonHang;
+    int donHangGiaoThanhCong = 0, donHangGiaoKhongThanhCong = 0, donHangDangDiGiao = 0,choGiao = 0;
     String[] info = {"Đơn hàng giao thành công", "Đơn hàng giao không thành công", "Đơn hàng đang đi giao"};
     TextView tvDonHangGiaoThanhCong, tvDonHangGiaoKhongThanhCong, tvDonHangDangGiao, tvTongTien, tvTongDonHang, tvTyLe;
     Firebase_Manager firebase_manager = new Firebase_Manager();
@@ -82,7 +82,10 @@ public class ThongKeShipper extends AppCompatActivity {
                 donHangs.clear();
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     DonHang donHang = postSnapshot.getValue(DonHang.class);
-                    donHangs.add(donHang);
+                    if (donHang.getTrangThai()!=TrangThaiDonHang.SHOP_ChoShipperLayHang&&donHang.getTrangThai()!=TrangThaiDonHang.SHOP_DangGiaoShipper)
+                    {
+                        donHangs.add(donHang);
+                    }
                 }
                 display = donHangs;
                 GetThongKe_DonHang(donHangs);
@@ -159,27 +162,35 @@ public class ThongKeShipper extends AppCompatActivity {
             if (donHang.getTrangThai() == TrangThaiDonHang.Shipper_DaLayHang ||
                     donHang.getTrangThai() == TrangThaiDonHang.Shipper_DangGiaoHang) {
                 donHangDangDiGiao++;
+                tongDonHang++;
+            }
+            if (donHang.getTrangThai() == TrangThaiDonHang.Shipper_DaLayHang ||
+                    donHang.getTrangThai() == TrangThaiDonHang.Shipper_DangGiaoHang) {
+                donHangDangDiGiao++;
+                tongDonHang++;
             }
             if (donHang.getTrangThai() == TrangThaiDonHang.Shipper_GiaoKhongThanhCong ||
                     donHang.getTrangThai() == TrangThaiDonHang.ChoShopXacNhan_TraHang ||
                     donHang.getTrangThai() == TrangThaiDonHang.Shipper_DaTraHang ||
                     donHang.getTrangThai() == TrangThaiDonHang.KhachHang_HuyDon) {
                 donHangGiaoKhongThanhCong++;
+                tongDonHang++;
             }
             if (donHang.getTrangThai() == TrangThaiDonHang.Shipper_GiaoThanhCong ||
                     donHang.getTrangThai() == TrangThaiDonHang.ChoShopXacNhan_Tien ||
                     donHang.getTrangThai() == TrangThaiDonHang.Shipper_DaChuyenTien) {
                 donHangGiaoThanhCong++;
                 tong += donHang.getTongTien();
+                tongDonHang++;
             }
         }
         LoadPieChart();
         tvTongTien.setText(tong + " VND");
-        tvTongDonHang.setText(display.size() + "");
+        tvTongDonHang.setText(tongDonHang + "");
         tvDonHangGiaoThanhCong.setText(donHangGiaoThanhCong + "");
         tvDonHangGiaoKhongThanhCong.setText(donHangGiaoKhongThanhCong + "");
         tvDonHangDangGiao.setText(donHangDangDiGiao + "");
-        tyle = ((Float.parseFloat(donHangGiaoThanhCong + "") / Float.parseFloat(display.size() + "")) * 100);
+        tyle = ((Float.parseFloat(donHangGiaoThanhCong + "") / Float.parseFloat(tongDonHang + "")) * 100);
         tvTyLe.setText(tyle + "%");
         lnLayout.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
