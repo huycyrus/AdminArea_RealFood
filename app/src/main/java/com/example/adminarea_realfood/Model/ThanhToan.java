@@ -1,5 +1,7 @@
 package com.example.adminarea_realfood.Model;
 
+import android.net.Uri;
+
 import com.example.adminarea_realfood.Screen.TaiKhoanNganHangAdmin;
 
 import java.util.Date;
@@ -9,16 +11,26 @@ public class ThanhToan {
     String idCuaHang;
     String NoiDung;
     Float soTien;
-    TaiKhoanNganHang taiKhoanNganHang;
-    Date ngayThanhToan;
 
-    public ThanhToan(String idBill, String idCuaHang, String noiDung, Float soTien, TaiKhoanNganHang taiKhoanNganHang, Date ngayThanhToan) {
+    Date ngayThanhToan;
+    Uri imageImage;
+
+    public Uri getImageImage() {
+        return imageImage;
+    }
+
+    public void setImageImage(Uri imageImage) {
+        this.imageImage = imageImage;
+    }
+
+    public ThanhToan(String idBill, String idCuaHang, String noiDung, Float soTien, Date ngayThanhToan, Uri imageImage) {
         this.idBill = idBill;
         this.idCuaHang = idCuaHang;
         NoiDung = noiDung;
         this.soTien = soTien;
-        this.taiKhoanNganHang = taiKhoanNganHang;
+
         this.ngayThanhToan = ngayThanhToan;
+        this.imageImage = imageImage;
     }
 
     public ThanhToan() {
@@ -56,13 +68,6 @@ public class ThanhToan {
         this.soTien = soTien;
     }
 
-    public TaiKhoanNganHang getTaiKhoanNganHang() {
-        return taiKhoanNganHang;
-    }
-
-    public void setTaiKhoanNganHang(TaiKhoanNganHang taiKhoanNganHang) {
-        this.taiKhoanNganHang = taiKhoanNganHang;
-    }
 
     public Date getNgayThanhToan() {
         return ngayThanhToan;

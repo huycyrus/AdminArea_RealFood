@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ThanhToanActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:backgroundTint="@color/transparent"
+                    android:id="@+id/ib_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/picturefrontpremium"
+                    android:scaleType="centerCrop"
+                    />
+                <android.widget.Button
+
+                    android:id="@+id/btnEditWallPaper"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="top"
+                    android:clickable="true"
+                    android:drawableLeft="@drawable/ic_baseline_photo_camera_24"
+                    android:src="@drawable/camera"
+                    android:text="Chỉnh sửa"
+                    android:textAllCaps="false" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:background="@drawable/edittext_background_v1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+                <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
+                    android:paddingLeft="15dp"
+                    android:id="@+id/spCuaHang"
+                    android:layout_width="match_parent"
+                    android:layout_height="59dp"
+                    app:SearchViewBackgroundColor="#F2F2F2"
+                    app:RevealViewBackgroundColor="#F2F2F2"
+                    app:DoneSearchTintColor="@android:color/holo_purple"
+                    app:RevealEmptyText="Nhấp vào để chọn cửa hàng"
+                    app:StartSearchTintColor="@android:color/white" />
+            </FrameLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etPasswordLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
+                <EditText
+                    android:drawablePadding="10dp"
+                    android:id="@+id/edtSoTien"
+                    style="@style/Edittext_v1"
+                    android:hint="Số tiền"
+                    android:inputType="numberDecimal"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
+                <EditText
+                    android:drawablePadding="10dp"
+                    android:id="@+id/edtNoiDung"
+                    style="@style/Edittext_v1"
+                    android:hint="Nội dung"
+
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
+                <EditText
+                    android:drawablePadding="10dp"
+                    style="@style/Edittext_v1"
+                    android:hint="Tên người gửi"
+                    android:id="@+id/edtTenNguoiGui"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
+                <EditText
+                    android:id="@+id/edtSoTaiKhoan"
+                    android:drawablePadding="10dp"
+                    style="@style/Edittext_v1"
+                    android:hint="Số tài khoản người gửi"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
+                <EditText
+                    android:id="@+id/edtTenNganHang"
+                    android:drawablePadding="10dp"
+                    style="@style/Edittext_v1"
+                    android:hint="Tên Ngân Hàng"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <android.widget.Button
+                style="@style/Button_v2_Green"
+                android:id="@+id/btnLuuThongTin"
+                android:text="Lưu"
+                />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
