@@ -68,7 +68,7 @@ public class DangNhap extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             kAlertDialog.changeAlertType(KAlertDialog.WARNING_TYPE);
-                            kAlertDialog.setTitleText("Sai tài khoản hoặc mật khẩu");
+                            kAlertDialog.setContentText(e.getMessage());
                         }
                     });
                 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/linear1"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:id="@+id/linear1">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -14,16 +14,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/profile_image"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="27dp"
-                android:src="@drawable/ic_person"
-                app:civ_border_color="#FF000000"
+
+                android:src="@drawable/boyfrontpremium"
                 app:civ_border_width="0.5dp"
-                app:civ_circle_background_color="#E4E4E4" />
+                app:civ_border_color="@color/transparent"
+                app:civ_circle_background_color="@color/transparent"
+                android:layout_gravity="center"
+                android:layout_marginTop="27dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -33,21 +35,23 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
                     android:layout_marginTop="25dp"
+                    android:layout_marginLeft="25dp"
                     android:text="@string/taikhoan1"
                     android:textColor="@color/black"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    />
 
                 <EditText
                     android:id="@+id/edt_taikhoan_taotaikhoan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
                     android:layout_marginTop="25dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginEnd="35dp"
+                    android:inputType="textEmailAddress"
                     android:background="@drawable/border_edit_vuong"
-                    android:inputType="textEmailAddress" />
+                    />
 
             </LinearLayout>
 
@@ -59,20 +63,22 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginLeft="25dp"
                     android:text="@string/matkhau1"
                     android:textColor="@color/black"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    />
 
                 <EditText
                     android:id="@+id/edt_matkhau_taotaikhoan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="33dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginStart="33dp"
                     android:layout_marginEnd="35dp"
-                    android:background="@drawable/border_edit_vuong" />
+                    android:background="@drawable/border_edit_vuong"
+                    />
 
             </LinearLayout>
 
@@ -84,20 +90,22 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginLeft="25dp"
                     android:text="@string/hovaten1"
                     android:textColor="@color/black"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    />
 
                 <EditText
                     android:id="@+id/edt_hoten_taotaikhoan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="34dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginStart="34dp"
                     android:layout_marginEnd="35dp"
-                    android:background="@drawable/border_edit_vuong" />
+                    android:background="@drawable/border_edit_vuong"
+                    />
 
             </LinearLayout>
 
@@ -109,21 +117,23 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginLeft="25dp"
                     android:text="@string/ngaysinh1"
                     android:textColor="@color/black"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    />
 
                 <EditText
                     android:id="@+id/edt_ngaysinh_taotaikhoan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="33dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginStart="33dp"
                     android:layout_marginEnd="35dp"
+                    android:inputType="datetime"
                     android:background="@drawable/border_edit_vuong"
-                    android:inputType="datetime" />
+                    />
 
             </LinearLayout>
 
@@ -135,20 +145,22 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginLeft="25dp"
                     android:text="@string/masoxe"
                     android:textColor="@color/black"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    />
 
                 <EditText
                     android:id="@+id/edt_masoxe_taotaikhoan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginStart="40dp"
                     android:layout_marginEnd="35dp"
-                    android:background="@drawable/border_edit_vuong" />
+                    android:background="@drawable/border_edit_vuong"
+                    />
 
             </LinearLayout>
 
@@ -160,21 +172,23 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginLeft="25dp"
                     android:text="@string/sodienthoai"
                     android:textColor="@color/black"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    />
 
                 <EditText
                     android:id="@+id/edt_sdt_taotaikhoan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginEnd="35dp"
+                    android:inputType="number"
                     android:background="@drawable/border_edit_vuong"
-                    android:inputType="number" />
+                    />
 
             </LinearLayout>
 
@@ -186,33 +200,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginLeft="25dp"
                     android:text="@string/diachi"
                     android:textColor="@color/black"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    />
 
                 <EditText
                     android:id="@+id/edt_diachi_taotaikhoan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="55dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginStart="55dp"
                     android:layout_marginEnd="35dp"
-                    android:background="@drawable/border_edit_vuong" />
+                    android:background="@drawable/border_edit_vuong"
+                    />
 
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/tvGoToMap"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="35dp"
-                android:text="Go to map"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -222,39 +227,42 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginLeft="25dp"
                     android:text="@string/cmd"
                     android:textColor="@color/black"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
                     android:layout_marginTop="8dp"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="40dp"
                     android:text="@string/mattruoc"
                     android:textColor="@color/black"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    android:layout_weight="1"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
                     android:layout_marginTop="8dp"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="40dp"
                     android:text="@string/matsau"
                     android:textColor="@color/black"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    android:layout_weight="1"
+                    />
 
             </LinearLayout>
 
@@ -267,19 +275,19 @@
                     android:id="@+id/ib_idtruoc"
                     android:layout_width="150dp"
                     android:layout_height="120dp"
-                    android:layout_margin="15dp"
-                    android:layout_weight="1"
                     android:scaleType="fitXY"
-                    android:src="@drawable/idtruoc" />
+                    android:layout_margin="15dp"
+                    android:src="@drawable/idtruoc"
+                    android:layout_weight="1"/>
 
                 <ImageButton
                     android:id="@+id/ib_idsau"
                     android:layout_width="150dp"
                     android:layout_height="120dp"
-                    android:layout_margin="15dp"
-                    android:layout_weight="1"
                     android:scaleType="fitXY"
-                    android:src="@drawable/idsau" />
+                    android:layout_margin="15dp"
+                    android:src="@drawable/idsau"
+                    android:layout_weight="1"/>
                 />
 
             </LinearLayout>
@@ -288,15 +296,16 @@
                 android:id="@+id/btn_tao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="40dp"
-                android:background="#20D93F"
                 android:text="@string/tao"
                 android:textAllCaps="false"
+                android:textStyle="bold"
+                android:background="#20D93F"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
                 android:textColor="@color/white"
+                android:layout_marginTop="20dp"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                />
 
         </LinearLayout>
 
