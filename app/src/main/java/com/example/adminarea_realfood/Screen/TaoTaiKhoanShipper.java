@@ -237,7 +237,7 @@ public class TaoTaiKhoanShipper extends AppCompatActivity implements DatePickerD
         ibMattruoc = findViewById(R.id.ib_idtruoc);
         btnTao = findViewById(R.id.btn_tao);
         viewGroup = findViewById(R.id.linear1);
-        tvGoToMap = findViewById(R.id.tvGoToMap);
+        //tvGoToMap = findViewById(R.id.tvGoToMap);
     }
 
     private void clearForm(ViewGroup group) {

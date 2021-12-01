@@ -200,66 +200,32 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="35dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/edt_matkhaucu_admin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="20dp"
-                        android:background="@drawable/border_edit_vuong2"
-                        android:drawableLeft="@drawable/ic_lock_open"
+                    <TextView
+                        android:id="@+id/tv_DoiMatKhau"
                         android:drawablePadding="10dp"
-                        android:hint="@string/nhapmatkhaucu"
-                        android:textSize="14dp" />
-
-                    <EditText
-                        android:id="@+id/edt_matkhaumoi_admin"
+                        android:paddingLeft="20dp"
+                        android:drawableLeft="@drawable/ic_lock"
+                        android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="7dp"
-                        android:layout_marginEnd="20dp"
-                        android:background="@drawable/border_edit_vuong2"
-                        android:drawableLeft="@drawable/ic_lock_open"
-                        android:drawablePadding="10dp"
-                        android:hint="@string/nhapmatkhaumoi"
-                        android:textSize="14dp" />
-
-                    <EditText
-                        android:id="@+id/edt_nhaplai_admin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="7dp"
-                        android:layout_marginEnd="20dp"
-                        android:drawablePadding="10dp"
-                        android:background="@drawable/border_edit_vuong2"
-                        android:drawableLeft="@drawable/ic_lock_open"
-                        android:hint="@string/nhaplai"
-                        android:textSize="14dp" />
-
-                    <android.widget.Button
-                        android:id="@+id/btn_luu_admin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/luu"
-                        style="@style/Button_v2_Green"
-
+                        android:layout_gravity="center"
+                        android:text="@string/doimatkhau"
+                        android:textSize="15dp"
                         />
 
                 </LinearLayout>
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/border_linear_vuong"
                     android:orientation="horizontal">
 
