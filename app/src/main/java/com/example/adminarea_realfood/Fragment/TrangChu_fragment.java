@@ -23,6 +23,7 @@ import com.example.adminarea_realfood.Screen.DanhSachLoaiSanPham;
 import com.example.adminarea_realfood.Screen.DanhSachShipper;
 import com.example.adminarea_realfood.Screen.DanhSachShop;
 import com.example.adminarea_realfood.Screen.DanhSachThongKeShipper;
+import com.example.adminarea_realfood.Screen.DoanhThuHeThong;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -107,7 +108,13 @@ public class TrangChu_fragment extends Fragment {
                 startActivity(intent);
             }
         });
-
+        lnDoanhthuhethong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DoanhThuHeThong.class);
+                startActivity(intent);
+            }
+        });
         lnDanhsachcuahang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

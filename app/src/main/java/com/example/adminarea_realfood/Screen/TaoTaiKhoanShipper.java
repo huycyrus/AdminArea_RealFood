@@ -21,6 +21,7 @@ import com.developer.kalert.KAlertDialog;
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Map.MapsActivity;
 import com.example.adminarea_realfood.Model.Shipper;
+import com.example.adminarea_realfood.Model.StorePassword;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.TrangThai.TrangThaiShipper;
 import com.example.adminarea_realfood.Validate;
@@ -49,6 +50,7 @@ public class TaoTaiKhoanShipper extends AppCompatActivity implements DatePickerD
     Uri cmndTrc;
     Uri cmndSau;
     Uri avaTar;
+    StorePassword storePassword;
     TextView tvGoToMap;
     Firebase_Manager firebase_manager = new Firebase_Manager();
     KAlertDialog kAlertDialog;
@@ -56,6 +58,8 @@ public class TaoTaiKhoanShipper extends AppCompatActivity implements DatePickerD
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        storePassword = new StorePassword(this);
+
         setContentView(R.layout.taotaikhoanshipper_activity);
         setControl();
         setEvent();
@@ -136,6 +140,7 @@ public class TaoTaiKhoanShipper extends AppCompatActivity implements DatePickerD
                 if (Validated_Form()) {
                     KAlertDialog kAlertDialog = new KAlertDialog(TaoTaiKhoanShipper.this, KAlertDialog.PROGRESS_TYPE).setContentText("Loading");
                     kAlertDialog.show();
+                    String email = firebase_manager.auth.getCurrentUser().getEmail();
                     firebase_manager.auth.createUserWithEmailAndPassword(edtTaikhoan.getText().toString(), edtMatkhau.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
@@ -148,6 +153,8 @@ public class TaoTaiKhoanShipper extends AppCompatActivity implements DatePickerD
                                     kAlertDialog.setContentText("Đã tạo tài khoản thành công");
                                     firebase_manager.Up2MatCMND(cmndTrc, cmndSau, uuid);
                                     firebase_manager.UpAvatar(avaTar, uuid);
+                                    firebase_manager.auth.signOut();
+                                    firebase_manager.auth.signInWithEmailAndPassword(email,storePassword.getPassword());
                                     clearForm(viewGroup);
                                 }
                             });

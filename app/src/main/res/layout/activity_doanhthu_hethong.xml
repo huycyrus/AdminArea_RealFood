@@ -166,19 +166,22 @@
                         android:text="0"
                         android:textSize="16dp" />
                 </LinearLayout>
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/green_A100"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <TextView
-                        style="@style/Title_Label_padding5"
+                        style="@style/Title_Label_green"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Danh sách cửa hàng"
-                        android:textSize="16dp" />
+                        android:textSize="18dp" />
 
 
                 </LinearLayout>
