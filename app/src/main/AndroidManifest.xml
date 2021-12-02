@@ -15,7 +15,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminArea_RealFood">
-        <activity android:name=".ThanhToanActivity" android:label="Thanh Toán" android:parentActivityName=".Screen.TrangChu "></activity>
+        <activity
+            android:name=".Screen.SuKienActivity"
+            android:label="Sự kiện"
+            android:parentActivityName=".Screen.TrangChu"></activity>
+        <activity
+            android:name=".Screen.TaoSuKien"
+            android:label="Tạo sự kiện"
+            android:parentActivityName=".Screen.SuKienActivity" />
+        <activity
+            android:name=".ThanhToanActivity"
+            android:label="Thanh Toán"
+            android:parentActivityName=".Screen.TrangChu" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.Admin;
-import com.example.adminarea_realfood.Model.ThanhToan;
 import com.example.adminarea_realfood.Screen.DoanhThuCuaHangActivity;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.Screen.DanhSachKhachHang;
@@ -25,6 +24,7 @@ import com.example.adminarea_realfood.Screen.DanhSachShipper;
 import com.example.adminarea_realfood.Screen.DanhSachShop;
 import com.example.adminarea_realfood.Screen.DanhSachThongKeShipper;
 import com.example.adminarea_realfood.Screen.DoanhThuHeThong;
+import com.example.adminarea_realfood.Screen.SuKienActivity;
 import com.example.adminarea_realfood.ThanhToanActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -37,7 +37,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class TrangChu_fragment extends Fragment {
     CircleImageView circleImageView;
-    LinearLayout lnDanhsachcuahang, lnShipper,lnThanhKhoan, lnDanhsachkhanhhang, lnDoanhthuhethong, lnDoanhthucuahang, lnThongke, lnLoaisanpham;
+    LinearLayout lnDanhsachcuahang, lnShipper,lnThanhKhoan, lnDanhsachkhanhhang, lnDoanhthuhethong, lnDoanhthucuahang, lnThongke, lnLoaisanpham,lnSuKien;
     TextView txtTenadmin,txtSoCuaHang,txtDonHang,txtShipper,txtKhachHnag;
     public TrangChu_fragment() {
         // Required empty public constructor
@@ -68,6 +68,7 @@ public class TrangChu_fragment extends Fragment {
         lnThongke = view.findViewById(R.id.lnThongke);
         lnLoaisanpham = view.findViewById(R.id.ln_loaisanpham);
         lnThanhKhoan = view.findViewById(R.id.lnThanhKhoan);
+        lnSuKien = view.findViewById(R.id.lnSuKien);
         txtDonHang = view.findViewById(R.id.txtDonHang);
         txtTenadmin = view.findViewById(R.id.txtTenadmin);
         txtSoCuaHang = view.findViewById(R.id.txtSoCuaHang);
@@ -152,6 +153,13 @@ public class TrangChu_fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ThanhToanActivity.class);
+                startActivity(intent);
+            }
+        });
+        lnSuKien.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SuKienActivity.class);
                 startActivity(intent);
             }
         });

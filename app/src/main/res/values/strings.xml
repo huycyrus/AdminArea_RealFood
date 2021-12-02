@@ -112,4 +112,5 @@
         <item>Cửa hàng bị khóa vĩnh viễn</item>
     </array>
     <string name="title_activity_maps">Map</string>
+    <string name="tao_su_kien">Tạo sự kiện</string>
 </resources>

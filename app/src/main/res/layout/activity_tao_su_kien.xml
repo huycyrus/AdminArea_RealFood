@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Screen.TaoSuKien">
+
+    <EditText
+        android:id="@+id/edtTenSuKien"
+        style="@style/Edittext_v1"
+        android:layout_marginBottom="10dp"
+        android:hint="Tên sự kiện" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Hình ảnh sự kiện"
+        android:textColor="@color/black"
+        android:textSize="16dp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivSuKien"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="@drawable/border_image"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/ivAdd"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_add" />
+    </FrameLayout>
+
+
+    <android.widget.Button
+        android:id="@+id/btnTaoSuKien"
+        style="@style/Button_v2_Green"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tạo sự kiên" />
+
+
+</LinearLayout>

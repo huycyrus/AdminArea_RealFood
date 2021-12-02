@@ -68,4 +68,11 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
     implementation 'com.google.android.gms:play-services-places:17.0.0'
     implementation 'com.google.android.libraries.places:places:2.5.0'
+
+
+    implementation 'com.github.florent37:singledateandtimepicker:2.2.7'
+    //SwipeRevealLayout
+    implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
+
+
 }
