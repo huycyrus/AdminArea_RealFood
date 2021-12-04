@@ -77,21 +77,12 @@
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/edt_noidungvipham"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_edit"
-                    android:hint="Nội dung vi phạm"
-                    android:textSize="13dp"/>
-
                 <Button
                     android:id="@+id/btn_gui"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:text="@string/gui"
+                    android:text="Gửi thông báo"
                     android:textAllCaps="false"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"

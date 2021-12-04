@@ -33,7 +33,7 @@
                     style="@style/Title_Label_padding"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tên cửa hàng : "
+                    android:text="Tên: "
                     android:textSize="15dp" />
 
                 <TextView

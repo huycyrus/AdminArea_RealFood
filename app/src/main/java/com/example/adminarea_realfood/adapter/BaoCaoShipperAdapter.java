@@ -110,6 +110,7 @@ public class BaoCaoShipperAdapter extends RecyclerView.Adapter<BaoCaoShipperAdap
                 firebase_manager.Ghi_BaoCaoShipper(baoCaoShipper);
             }
         });
+
     }
 
     @Override

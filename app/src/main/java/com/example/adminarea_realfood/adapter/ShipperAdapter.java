@@ -3,6 +3,7 @@ package com.example.adminarea_realfood.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.bumptech.glide.Glide;
 
 import com.developer.kalert.KAlertDialog;
 import com.example.adminarea_realfood.Firebase_Manager;
+import com.example.adminarea_realfood.GuiThongBaoActivity;
 import com.example.adminarea_realfood.Model.Shipper;
 import com.example.adminarea_realfood.Model.ThongBao;
 import com.example.adminarea_realfood.R;
@@ -74,7 +76,6 @@ public class ShipperAdapter extends ArrayAdapter implements Filterable {
         TextView tvTrangthai = convertView.findViewById(R.id.tv_trangthai);
         TextView tvSdt = convertView.findViewById(R.id.tv_sdt);
         TextView tvMaxe = convertView.findViewById(R.id.tv_maxe);
-        EditText edtNoidungvipham = convertView.findViewById(R.id.edt_noidungvipham);
         Button btnGui = convertView.findViewById(R.id.btn_gui);
         ImageView ivImage = convertView.findViewById(R.id.image_profile);
 
@@ -108,17 +109,13 @@ public class ShipperAdapter extends ArrayAdapter implements Filterable {
             @Override
             public void onClick(View v) {
 
-                String uuid_ThongBao = UUID.randomUUID().toString().replace("-", "");
-                ThongBao thongBao = new ThongBao(uuid_ThongBao, edtNoidungvipham.getText().toString(), "Thông báo", "", shipper.getiDShipper(),
-                        "", TrangThaiThongBao.ChuaXem, new Date());
-                firebase_manager.Ghi_ThongBao_Shipper(thongBao, shipper.getiDShipper()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<Void> task) {
-                        KAlertDialog kAlertDialog = new KAlertDialog(context, KAlertDialog.SUCCESS_TYPE).setContentText("Đã gửi thành công !");
-                        kAlertDialog.show();
-                        edtNoidungvipham.setText("");
-                    }
-                });
+                Intent intent = new Intent(context, GuiThongBaoActivity.class);
+                Gson gson = new Gson();
+                String data = gson.toJson(shipper);
+                String nd = "";
+                intent.putExtra("noiDung", nd);
+                intent.putExtra("shipper", data);
+                context.startActivity(intent);
             }
         });
 

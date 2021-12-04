@@ -55,6 +55,10 @@
             android:label="Thông tin hóa đơn"
             android:parentActivityName=".Screen.TrangChu" />
         <activity
+            android:name=".Screen.DoanhThuCuaHangActivity"
+            android:label="Thông tin hóa đơn"
+            android:parentActivityName=".Screen.TrangChu" />
+        <activity
             android:name=".PhanTranTrenDonHangActivity"
             android:label="Hoa Hồng"
             android:parentActivityName=".Screen.TrangChu" />

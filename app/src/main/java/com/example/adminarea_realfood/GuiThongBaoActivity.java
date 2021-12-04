@@ -35,22 +35,22 @@ public class GuiThongBaoActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         if (getIntent() != null && getIntent().getExtras() != null) {
             Intent intent = getIntent();
-            String data = intent.getStringExtra("cuaHang");
+
             noidung = intent.getStringExtra("noiDung");
-
-            Gson gson = new Gson();
-            Object o = gson.fromJson(data, CuaHang.class);
-            if (o instanceof CuaHang)
+            if (intent.getStringExtra("cuaHang")!=null)
             {
-                cuaHang = (CuaHang) o;
+                String data = intent.getStringExtra("cuaHang");
+                Gson gson = new Gson();
+                cuaHang = gson.fromJson(data, CuaHang.class);
                 LoadData();
             }
-            if (o instanceof Shipper)
+            if (intent.getStringExtra("shipper")!=null)
             {
-                shipper = (Shipper) o;
-                LoadData();
+                String data2 = intent.getStringExtra("shipper");
+                Gson gson = new Gson();
+                shipper = gson.fromJson(data2, Shipper.class);
+                LoadDataShipper();
             }
-
         }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -66,7 +66,7 @@ public class GuiThongBaoActivity extends AppCompatActivity {
             }
         });
         binding.edtNoiDung.setText(noidung);
-        binding.tvTenCuaHang.setText(cuaHang.getTenCuaHang());
+        binding.tvTenCuaHang.setText("Cửa hàng "+cuaHang.getTenCuaHang());
         binding.tvDiaChi.setText(cuaHang.getDiaChi());
         binding.tvSoDienThoai.setText(cuaHang.getSoDienThoai());
         binding.btnLuuThongTin.setOnClickListener(new View.OnClickListener() {
@@ -80,12 +80,15 @@ public class GuiThongBaoActivity extends AppCompatActivity {
                             public void onClick(KAlertDialog kAlertDialog) {
                                 Date date = new Date();
                                 SimpleDateFormat formatter = new SimpleDateFormat("hh:mm dd/MM/yyyy");
-                                if (cuaHang.getGhiChu()!=null)
+                                if (!noidung.isEmpty())
                                 {
-                                    cuaHang.setGhiChu(cuaHang.getGhiChu()+"\nĐã gửi thông báo yêu cầu đóng phí " +formatter.format(date));
-                                }
-                                else {
-                                    cuaHang.setGhiChu("Đã gửi thông báo yêu cầu đóng phí" +formatter.format(date));
+                                    if (cuaHang.getGhiChu()!=null)
+                                    {
+                                        cuaHang.setGhiChu(cuaHang.getGhiChu()+"\nĐã gửi thông báo yêu cầu đóng phí " +formatter.format(date));
+                                    }
+                                    else {
+                                        cuaHang.setGhiChu("Đã gửi thông báo yêu cầu đóng phí" +formatter.format(date));
+                                    }
                                 }
                                 firebase_manager.mDatabase.child("CuaHang").child(cuaHang.getIDCuaHang()).setValue(cuaHang);
                                 finish();
@@ -97,7 +100,7 @@ public class GuiThongBaoActivity extends AppCompatActivity {
         });
     }
     private void LoadDataShipper() {
-        firebase_manager.storageRef.child("CuaHang").child(cuaHang.getIDCuaHang()).child("Avatar").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        firebase_manager.storageRef.child("Shipper").child(shipper.getiDShipper()).child("avatar").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Glide.with(GuiThongBaoActivity.this)
@@ -106,16 +109,16 @@ public class GuiThongBaoActivity extends AppCompatActivity {
             }
         });
         binding.edtNoiDung.setText(noidung);
-        binding.tvTenCuaHang.setText(cuaHang.getTenCuaHang());
-        binding.tvDiaChi.setText(cuaHang.getDiaChi());
-        binding.tvSoDienThoai.setText(cuaHang.getSoDienThoai());
+        binding.tvTenCuaHang.setText(shipper.getHoVaTen());
+        binding.tvDiaChi.setText(shipper.getDiaChi());
+        binding.tvSoDienThoai.setText(shipper.getSoDienThoai());
         binding.btnLuuThongTin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firebase_manager.Ghi_ThongBao_random(cuaHang.getIDCuaHang(),"Thông báo",noidung, LoaiThongBao.NORMAL).addOnSuccessListener(new OnSuccessListener<Void>() {
+                firebase_manager.Ghi_ThongBao_random(shipper.getiDShipper(),"Thông báo",noidung, LoaiThongBao.NORMAL).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        new KAlertDialog(GuiThongBaoActivity.this,KAlertDialog.SUCCESS_TYPE).setContentText("Đã gửi thông báo đến cửa hàng "+ cuaHang.getTenCuaHang()).setConfirmText("Ok").setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                        new KAlertDialog(GuiThongBaoActivity.this,KAlertDialog.SUCCESS_TYPE).setContentText("Đã gửi thông báo đến shipper  "+ shipper.getHoVaTen()).setConfirmText("Ok").setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                             @Override
                             public void onClick(KAlertDialog kAlertDialog) {
                                 finish();

@@ -105,15 +105,16 @@ public class ShopAdapter extends ArrayAdapter implements Filterable {
         tvTenCuaHang.setText(cuaHang.getTenCuaHang());
         tvTenChu.setText(cuaHang.getChuSoHuu());
         tvSdt.setText(cuaHang.getSoDienThoai());
-        if (cuaHang.getGhiChu()!=null)
-        {
-            tvGhiChu.setText(cuaHang.getGhiChu());
-            tvGhiChu.setVisibility(View.VISIBLE);
-        }
-        else {
-            tvGhiChu.setVisibility(View.GONE);
-        }
+
         if (cuaHang.getTrangThaiCuaHang() != TrangThaiCuaHang.ChuaKichHoat) {
+            if (cuaHang.getGhiChu()!=null)
+            {
+                tvGhiChu.setText(cuaHang.getGhiChu());
+                tvGhiChu.setVisibility(View.VISIBLE);
+            }
+            else {
+                tvGhiChu.setVisibility(View.GONE);
+            }
             firebase_manager.SetColorTrangThaiCuaHang(cuaHang.getTrangThaiCuaHang(), tvTrangThai);
             tvTrangThai.setText(firebase_manager.GetStringTrangThaiCuaHang(cuaHang.getTrangThaiCuaHang()));
             btnDongPhi.setOnClickListener(new View.OnClickListener() {
@@ -190,6 +191,17 @@ public class ShopAdapter extends ArrayAdapter implements Filterable {
                                     }
 
 
+                                }
+                                case R.id.idGuiThongBao: {
+
+                                    Intent intent = new Intent(context, GuiThongBaoActivity.class);
+                                    Gson gson = new Gson();
+                                    String data = gson.toJson(cuaHang);
+                                    String nd = "";
+                                    intent.putExtra("noiDung", nd);
+                                    intent.putExtra("cuaHang", data);
+                                    context.startActivity(intent);
+                                    break;
                                 }
                             }
                             return true;

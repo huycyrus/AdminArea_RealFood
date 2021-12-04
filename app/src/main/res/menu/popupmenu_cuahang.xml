@@ -2,4 +2,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 <item android:id="@+id/idTaoHoaDon" android:title="Tạo hóa đơn"></item>
 <item android:id="@+id/idMoiDongPhi" android:title="Gửi yêu cầu đóng phí"></item>
+    <item android:id="@+id/idGuiThongBao" android:title="Gửi thông báo"></item>
 </menu>

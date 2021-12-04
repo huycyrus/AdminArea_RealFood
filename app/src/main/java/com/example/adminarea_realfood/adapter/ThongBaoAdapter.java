@@ -1,6 +1,7 @@
 package com.example.adminarea_realfood.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,8 +21,12 @@ import com.example.adminarea_realfood.Model.CuaHang;
 import com.example.adminarea_realfood.Model.KhachHang;
 import com.example.adminarea_realfood.Model.ThongBao;
 import com.example.adminarea_realfood.R;
+import com.example.adminarea_realfood.Screen.XuLyShipper;
+import com.example.adminarea_realfood.Screen.XuLyShop;
 import com.example.adminarea_realfood.SetOnLongClick;
+import com.example.adminarea_realfood.TrangThai.TrangThaiBaoCao;
 import com.example.adminarea_realfood.TrangThai.TrangThaiThongBao;
+import com.google.gson.Gson;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -90,6 +95,38 @@ public class ThongBaoAdapter  extends RecyclerView.Adapter<ThongBaoAdapter.MyVie
             holder.tvThoiGian.setText(formatter.format(thongBao.getDate().getTime()));
 
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (thongBao.getLoaiThongBao())
+                {
+                    case BaoCaoShipper:
+                        if (thongBao.getBaoCaoShipper()!=null)
+                        {
+                            Intent intent = new Intent(context, XuLyShipper.class);
+                            Gson gson = new Gson();
+                            String data = gson.toJson(thongBao.getBaoCaoShipper());
+                            intent.putExtra("BaoCaoShipper", data);
+                            context.startActivity(intent);
+                            thongBao.setTrangThaiThongBao(TrangThaiThongBao.DaXem);
+                            firebase_manager.Ghi_ThongBao(thongBao);
+                        }
+                        break;
+                    case BaoCaoCuaHang:
+                        if (thongBao.getBaoCaoShop()!=null)
+                        {
+                            Intent intent = new Intent(context, XuLyShop.class);
+                            Gson gson = new Gson();
+                            String data = gson.toJson(thongBao.getBaoCaoShop());
+                            intent.putExtra("BaoCao", data);
+                            context.startActivity(intent);
+                            thongBao.setTrangThaiThongBao(TrangThaiThongBao.DaXem);
+                            firebase_manager.Ghi_ThongBao(thongBao);
+                        }
+                        break;
+                }
+            }
+        });
     }
 
     @Override
