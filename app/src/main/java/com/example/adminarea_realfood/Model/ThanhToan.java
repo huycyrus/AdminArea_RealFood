@@ -3,6 +3,7 @@ package com.example.adminarea_realfood.Model;
 import android.net.Uri;
 
 import com.example.adminarea_realfood.Screen.TaiKhoanNganHangAdmin;
+import com.example.adminarea_realfood.TrangThai.TrangThaiThanhToan;
 
 import java.util.Date;
 
@@ -10,27 +11,50 @@ public class ThanhToan {
     String idBill;
     String idCuaHang;
     String NoiDung;
-    Float soTien;
 
+    Float soTien;
+    String tenNguoiGui;
+    String soTaiKhoan;
+    String tenNganHang;
     Date ngayThanhToan;
     Uri imageImage;
+    TrangThaiThanhToan trangThaiThanhToan;
 
-    public Uri getImageImage() {
-        return imageImage;
+    public String getTenNguoiGui() {
+        return tenNguoiGui;
     }
 
-    public void setImageImage(Uri imageImage) {
-        this.imageImage = imageImage;
+    public void setTenNguoiGui(String tenNguoiGui) {
+        this.tenNguoiGui = tenNguoiGui;
     }
 
-    public ThanhToan(String idBill, String idCuaHang, String noiDung, Float soTien, Date ngayThanhToan, Uri imageImage) {
+    public String getSoTaiKhoan() {
+        return soTaiKhoan;
+    }
+
+    public void setSoTaiKhoan(String soTaiKhoan) {
+        this.soTaiKhoan = soTaiKhoan;
+    }
+
+    public String getTenNganHang() {
+        return tenNganHang;
+    }
+
+    public void setTenNganHang(String tenNganHang) {
+        this.tenNganHang = tenNganHang;
+    }
+
+    public ThanhToan(String idBill, String idCuaHang, String noiDung, Float soTien, String tenNguoiGui, String soTaiKhoan, String tenNganHang, Date ngayThanhToan, Uri imageImage, TrangThaiThanhToan trangThaiThanhToan) {
         this.idBill = idBill;
         this.idCuaHang = idCuaHang;
         NoiDung = noiDung;
         this.soTien = soTien;
-
+        this.tenNguoiGui = tenNguoiGui;
+        this.soTaiKhoan = soTaiKhoan;
+        this.tenNganHang = tenNganHang;
         this.ngayThanhToan = ngayThanhToan;
         this.imageImage = imageImage;
+        this.trangThaiThanhToan = trangThaiThanhToan;
     }
 
     public ThanhToan() {
@@ -68,7 +92,6 @@ public class ThanhToan {
         this.soTien = soTien;
     }
 
-
     public Date getNgayThanhToan() {
         return ngayThanhToan;
     }
@@ -76,4 +99,21 @@ public class ThanhToan {
     public void setNgayThanhToan(Date ngayThanhToan) {
         this.ngayThanhToan = ngayThanhToan;
     }
+
+    public Uri getImageImage() {
+        return imageImage;
+    }
+
+    public void setImageImage(Uri imageImage) {
+        this.imageImage = imageImage;
+    }
+
+    public TrangThaiThanhToan getTrangThaiThanhToan() {
+        return trangThaiThanhToan;
+    }
+
+    public void setTrangThaiThanhToan(TrangThaiThanhToan trangThaiThanhToan) {
+        this.trangThaiThanhToan = trangThaiThanhToan;
+    }
+
 }

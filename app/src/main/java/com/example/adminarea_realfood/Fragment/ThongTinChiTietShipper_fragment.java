@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.developer.kalert.KAlertDialog;
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.Shipper;
+import com.example.adminarea_realfood.Model.StorePassword;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.TrangThai.TrangThaiShipper;
 import com.example.adminarea_realfood.Validate;
@@ -59,6 +60,7 @@ public class ThongTinChiTietShipper_fragment extends Fragment implements DatePic
     Uri avaTar;
     Firebase_Manager firebase_manager = new Firebase_Manager();
     Validate validate = new Validate();
+    StorePassword storePassword ;
     private String passWord;
 
     public ThongTinChiTietShipper_fragment(Shipper shipper) {
@@ -74,6 +76,7 @@ public class ThongTinChiTietShipper_fragment extends Fragment implements DatePic
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        storePassword = new StorePassword(getContext());
         setHasOptionsMenu(true);
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.thongtinchitietshipper_fragment, container, false);
@@ -264,12 +267,12 @@ public class ThongTinChiTietShipper_fragment extends Fragment implements DatePic
                     KAlertDialog kAlertDialog = new KAlertDialog(getContext(), KAlertDialog.PROGRESS_TYPE).setContentText("Loading");
                     kAlertDialog.show();
                     if (shipper == null) {
+                        String email = firebase_manager.auth.getCurrentUser().getEmail();
                         firebase_manager.auth.createUserWithEmailAndPassword(edtTk.getText().toString(), edtMk.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
                                 String uuid = authResult.getUser().getUid();
-
-                                Shipper shipper = new Shipper(uuid, "",edtTk.getText().toString(), edtMk.getText().toString(), edtTen.getText().toString(), edtDiaChi.getText().toString(), "", edtNgaysinh.getText().toString(), edtMaxe.getText().toString(), edtSdt.getText().toString(), TrangThaiShipper.KhongHoatDong, "Hệ thống");
+                                Shipper shipper = new Shipper(uuid, "", edtTk.getText().toString(), edtMk.getText().toString(), edtTen.getText().toString(), edtDiaChi.getText().toString(), "", edtNgaysinh.getText().toString(), edtMaxe.getText().toString(), edtSdt.getText().toString(), TrangThaiShipper.KhongHoatDong, "Hệ thống");
                                 firebase_manager.Ghi_Shipper(shipper).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
@@ -277,6 +280,8 @@ public class ThongTinChiTietShipper_fragment extends Fragment implements DatePic
                                         kAlertDialog.setContentText("Đã tạo tài khoản thành công");
                                         firebase_manager.Up2MatCMND(cmndTrc, cmndSau, uuid);
                                         firebase_manager.UpAvatar(avaTar, uuid);
+                                        firebase_manager.auth.signOut();
+                                        firebase_manager.auth.signInWithEmailAndPassword(email,storePassword.getPassword());
                                     }
                                 });
                             }

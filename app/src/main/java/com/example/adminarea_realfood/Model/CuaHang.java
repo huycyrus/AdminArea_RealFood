@@ -20,6 +20,15 @@ public class CuaHang {
     Date timeStart,timeEnd;
     Date createdDate;
     Date ngayThanhToan;
+    String ghiChu;
+
+    public String getGhiChu() {
+        return ghiChu;
+    }
+
+    public void setGhiChu(String ghiChu) {
+        this.ghiChu = ghiChu;
+    }
 
     public Date getNgayThanhToan() {
         return ngayThanhToan;

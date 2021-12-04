@@ -16,6 +16,8 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.Admin;
+import com.example.adminarea_realfood.Model.ThanhToan;
+import com.example.adminarea_realfood.Screen.DanhSachHoaDonActivity;
 import com.example.adminarea_realfood.Screen.DoanhThuCuaHangActivity;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.Screen.DanhSachKhachHang;
@@ -37,7 +39,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class TrangChu_fragment extends Fragment {
     CircleImageView circleImageView;
-    LinearLayout lnDanhsachcuahang, lnShipper,lnThanhKhoan, lnDanhsachkhanhhang, lnDoanhthuhethong, lnDoanhthucuahang, lnThongke, lnLoaisanpham,lnSuKien;
+    LinearLayout lnDanhsachcuahang,lnSuKien, lnShipper,lnThanhKhoan, lnDanhsachkhanhhang, lnDoanhthuhethong, lnDoanhthucuahang, lnThongke, lnLoaisanpham;
     TextView txtTenadmin,txtSoCuaHang,txtDonHang,txtShipper,txtKhachHnag;
     public TrangChu_fragment() {
         // Required empty public constructor
@@ -152,7 +154,7 @@ public class TrangChu_fragment extends Fragment {
         lnThanhKhoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ThanhToanActivity.class);
+                Intent intent = new Intent(getActivity(), DanhSachHoaDonActivity.class);
                 startActivity(intent);
             }
         });

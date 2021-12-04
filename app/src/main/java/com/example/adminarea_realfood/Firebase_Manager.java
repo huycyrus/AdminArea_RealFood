@@ -13,8 +13,11 @@ import com.example.adminarea_realfood.Model.SanPham;
 import com.example.adminarea_realfood.Model.Shipper;
 import com.example.adminarea_realfood.Model.TaiKhoanNganHang;
 import com.example.adminarea_realfood.Model.ThongBao;
+import com.example.adminarea_realfood.TrangThai.LoaiThongBao;
 import com.example.adminarea_realfood.TrangThai.TrangThaiCuaHang;
 import com.example.adminarea_realfood.TrangThai.TrangThaiShipper;
+import com.example.adminarea_realfood.TrangThai.TrangThaiThanhToan;
+import com.example.adminarea_realfood.TrangThai.TrangThaiThongBao;
 import com.example.adminarea_realfood.adapter.SanPhamAdapter;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +31,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.UUID;
 
 public class    Firebase_Manager {
     public  DatabaseReference mDatabase ;
@@ -79,7 +84,13 @@ public class    Firebase_Manager {
     {
         return  mDatabase.child("BaoCao_CuaHang_Shipper").child(baoCaoShipper.getIdBaoCao()).setValue(baoCaoShipper);
     }
-
+    public Task<Void> Ghi_ThongBao_random(String IDUser, String title, String noiDung, LoaiThongBao normal)
+    {
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+        ThongBao thongBao = new ThongBao(uuid,noiDung,title,"",IDUser,"", TrangThaiThongBao.ChuaXem,new Date());
+        thongBao.setLoaiThongBao(normal);
+        return  mDatabase.child("ThongBao").child(IDUser).child(uuid).setValue(thongBao);
+    }
     public void Up2MatCMND(Uri cmndTrc, Uri cmndSau, String iDShipper)
     {
         storageRef.child("Shipper").child(iDShipper).child("CMND_MatTruoc").putFile(cmndTrc);
@@ -160,6 +171,7 @@ public class    Firebase_Manager {
             textView.setTextColor(Color.parseColor("#BBBBBB"));
         }
 
+
     }
 
     public String GetStringTrangThaiShipper(TrangThaiShipper trangThaiShipper){
@@ -179,6 +191,30 @@ public class    Firebase_Manager {
         return res;
     }
 
+    public String GetStringTrangThaiHoaDon(TrangThaiThanhToan trangThaiThanhToan){
+        String res = "";
+        if(trangThaiThanhToan == TrangThaiThanhToan.ChoXacNhan){
+            res = "Chờ shop xác nhận";
+        }
+        if(trangThaiThanhToan == TrangThaiThanhToan.DaXacNhan){
+            res = "Đã xác nhận";
+        }
+        return res;
+    }
+
+    public void SetColorTrangThaiHoaDonr(TrangThaiThanhToan trangThai, TextView textView){
+
+        if (trangThai == TrangThaiThanhToan.ChoXacNhan)
+        {
+
+            textView.setTextColor(Color.parseColor("#F0BE00"));
+        }
+        if (trangThai==  TrangThaiThanhToan.DaXacNhan)
+        {
+
+            textView.setTextColor(Color.parseColor("#00D772"));
+        }
+    }
     public void SetColorTrangThaiShipper(TrangThaiShipper trangThai, TextView textView){
         String res = "";
         if (trangThai == TrangThaiShipper.DangHoatDong)

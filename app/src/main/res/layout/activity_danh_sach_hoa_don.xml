@@ -1,0 +1,46 @@
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/swipeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:background="@drawable/edittext_background_v1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+                <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
+                    android:paddingLeft="15dp"
+                    android:id="@+id/spCuaHang"
+                    android:layout_width="match_parent"
+                    android:layout_height="59dp"
+                    app:SearchViewBackgroundColor="#F2F2F2"
+                    app:RevealViewBackgroundColor="#F2F2F2"
+                    app:DoneSearchTintColor="@android:color/holo_purple"
+                    app:RevealEmptyText="Nhấp vào để chọn cửa hàng"
+                    app:StartSearchTintColor="@android:color/white" />
+            </FrameLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_danhsachshipper"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                />
+        </LinearLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_add"
+            app:backgroundTint="#E4E4E4"/>
+    </FrameLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -1,5 +1,6 @@
 package com.example.adminarea_realfood.Model;
 
+import com.example.adminarea_realfood.TrangThai.LoaiThongBao;
 import com.example.adminarea_realfood.TrangThai.TrangThaiThongBao;
 
 import java.util.Date;
@@ -12,7 +13,33 @@ public class ThongBao {
     String IDUSer;
     String Image;
     TrangThaiThongBao trangThaiThongBao;
+    LoaiThongBao loaiThongBao;
+    DonHang donHang;
+    SanPham sanPham;
     Date date;
+    public LoaiThongBao getLoaiThongBao() {
+        return loaiThongBao;
+    }
+
+    public void setLoaiThongBao(LoaiThongBao loaiThongBao) {
+        this.loaiThongBao = loaiThongBao;
+    }
+
+    public DonHang getDonHang() {
+        return donHang;
+    }
+
+    public void setDonHang(DonHang donHang) {
+        this.donHang = donHang;
+    }
+
+    public SanPham getSanPham() {
+        return sanPham;
+    }
+
+    public void setSanPham(SanPham sanPham) {
+        this.sanPham = sanPham;
+    }
 
     public ThongBao(String IDThongBao, String noiDung, String tieuDe, String theme, String IDUSer, String image, TrangThaiThongBao trangThaiThongBao, Date date) {
         this.IDThongBao = IDThongBao;
@@ -24,6 +51,7 @@ public class ThongBao {
         this.trangThaiThongBao = trangThaiThongBao;
         this.date = date;
     }
+
 
     public Date getDate() {
         return date;

@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.developer.kalert.KAlertDialog;
+import com.example.adminarea_realfood.Model.StorePassword;
 import com.example.adminarea_realfood.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -25,7 +26,7 @@ public class DangNhap extends AppCompatActivity {
     Button btnDangnhap;
     FirebaseAuth auth;
     KAlertDialog kAlertDialog;
-
+    StorePassword storePassword = new StorePassword(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +58,7 @@ public class DangNhap extends AppCompatActivity {
                     auth.signInWithEmailAndPassword(edtTK.getText().toString(), edtMK.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
+                            storePassword.insertProduct(auth.getCurrentUser().getEmail(),edtMK.getText().toString());
                             kAlertDialog.setTitleText("Gửi thành công ");
                             kAlertDialog.show();
                             kAlertDialog.changeAlertType(KAlertDialog.SUCCESS_TYPE);

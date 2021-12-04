@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Screen.TaiKhoanNganHangAdmin">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Phần trăm / Giá trị đơn hàng"
+        app:boxStrokeWidth="0dp"
+        android:layout_gravity="top"
+        app:boxStrokeWidthFocused="0dp"
+        app:suffixText="%"
+        >
+        <EditText
+            android:textSize="14dp"
+            android:id="@+id/edtPhanTram"
+            android:background="@drawable/edittext_background_v1"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_margin="10dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <android.widget.Button
+        style="@style/Button_v2_Green"
+        android:id="@+id/btnLuuThongTin"
+        android:text="Lưu"
+        android:layout_gravity="bottom"
+        />
+</FrameLayout>

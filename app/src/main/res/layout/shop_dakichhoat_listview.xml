@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp"
+    android:layout_margin="5dp"
+   >
 
     <LinearLayout
+        android:background="#229F9F9F"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="5dp">
+        >
 
         <ImageView
+            android:layout_weight="1.8"
             android:id="@+id/image_profile_shop"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
             android:padding="5dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@drawable/picturefrontpremium"/>
 
         <LinearLayout
+            android:layout_weight="1"
+            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -31,6 +37,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:textStyle="bold"
                     android:id="@+id/tv_tencuahang_shop"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -40,6 +47,7 @@
                     android:textColor="@color/black"/>
 
                 <TextView
+                    android:textStyle="bold"
                     android:id="@+id/tv_trangthai_shop"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -49,7 +57,24 @@
                     android:textColor="#19EB3C"/>
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:id="@+id/tvTrangThai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Chưa đóng tiền"
+                    android:textSize="14dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -75,27 +100,31 @@
                     android:textColor="@color/black"/>
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_moidongphi_shop"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tvGhiChu"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/m_i_ng_ph"
-                    android:textAllCaps="false"
-                    android:layout_marginStart="150dp"
-                    android:layout_marginEnd="30dp"
-                    />
-
+                    android:layout_weight="1.5"
+                    android:text=""
+                    android:textSize="12dp"
+                    android:textColor="@color/black"/>
             </LinearLayout>
-
         </LinearLayout>
-
+        <ImageButton
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_baseline_more_vert_24"
+            android:id="@+id/btn_moidongphi_shop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            />
     </LinearLayout>
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>

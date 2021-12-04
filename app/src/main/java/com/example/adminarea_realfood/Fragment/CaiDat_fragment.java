@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.developer.kalert.KAlertDialog;
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.Admin;
+import com.example.adminarea_realfood.PhanTranTrenDonHangActivity;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.Screen.DoiMatKhau;
 import com.example.adminarea_realfood.Screen.SuaTaiKhoanAdmin;
@@ -43,7 +44,7 @@ public class CaiDat_fragment extends Fragment {
 
     CircleImageView civImage;
     Button btnLuu, btnDangXuat;
-    TextView tvSua, tvTen, tvNgaySinh, tvSdt, tvEmail, tvTaiKhoanNH, tvTroGiup, tvRiengTu, tvChinhSach,tvDoiMatKhau;
+    TextView tvSua, tvTen,tvMucHoaHong, tvNgaySinh, tvSdt, tvEmail, tvTaiKhoanNH, tvTroGiup, tvRiengTu, tvChinhSach,tvDoiMatKhau;
     EditText edtMKCu, edtMKMoi, edtNhapLai;
     Admin admin;
     Firebase_Manager firebase_manager = new Firebase_Manager();
@@ -82,8 +83,15 @@ public class CaiDat_fragment extends Fragment {
         edtNhapLai = view.findViewById(R.id.edt_nhaplai_admin);
         btnDangXuat = view.findViewById(R.id.btn_dangxuat_admin);
         tvDoiMatKhau = view.findViewById(R.id.tv_DoiMatKhau);
+        tvMucHoaHong = view.findViewById(R.id.tvMucHoaHong);
 
-
+        tvMucHoaHong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), PhanTranTrenDonHangActivity.class);
+                startActivity(intent);
+            }
+        });
 
         tvSua.setOnClickListener(new View.OnClickListener() {
             @Override

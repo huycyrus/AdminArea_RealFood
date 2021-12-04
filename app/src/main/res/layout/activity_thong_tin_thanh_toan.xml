@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ThongTinThanhToanActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_image"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:backgroundTint="@color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/picturefrontpremium" />
+            <View
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/md_blue_200"/>
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_weight="1.5"
+                    style="@style/Title_Label_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Thông tin chi tiết "
+                    android:textSize="18dp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/opacity"/>
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_weight="1.5"
+                    style="@style/Title_Label_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ID : "
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/tvIdBill"
+                    style="@style/Title_Label_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="17dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_weight="1.5"
+                    style="@style/Title_Label_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tên cửa hàng : "
+                    android:textSize="17dp"
+                    android:textStyle="normal"/>
+
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/tvTenCuaHang"
+                    style="@style/Title_Label_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="17dp"
+                    android:textStyle="normal"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_weight="1.5"
+                    style="@style/Title_Label_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Số tiền : "
+                    android:textSize="17dp"
+                    android:textStyle="normal"/>
+
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/tvSoTien"
+                    style="@style/Title_Label_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="17dp"
+                    android:textStyle="normal"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_weight="1.5"
+                    style="@style/Title_Label_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nội dung : "
+                    android:textSize="17dp"
+                    android:textStyle="normal"/>
+
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/tvNoiDung"
+                    style="@style/Title_Label_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="17dp"
+                    android:textStyle="normal"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_weight="1.5"
+                    style="@style/Title_Label_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tên người gửi : "
+                    android:textSize="17dp"
+                    android:textStyle="normal"/>
+
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/tvTenNguoiGui"
+                    style="@style/Title_Label_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textStyle="normal"
+                    android:textSize="17dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_weight="1.5"
+                    style="@style/Title_Label_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Số tài khoản: "
+                    android:textStyle="normal"
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/tvSoTaiKhoan"
+                    style="@style/Title_Label_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textStyle="normal"
+                    android:textSize="17dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_weight="1.5"
+                    style="@style/Title_Label_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tên ngân hàng : "
+                    android:textStyle="normal"
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/tvTenNganHang"
+                    style="@style/Title_Label_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+
+                    android:textStyle="normal"
+                    android:textSize="17dp" />
+            </LinearLayout>
+            <android.widget.Button
+                android:paddingLeft="30dp"
+                android:paddingRight="40dp"
+                android:drawableLeft="@drawable/ic_baseline_phone_24"
+                android:id="@+id/btnLienHeShop"
+                style="@style/Button_v2_Green"
+                android:text="Liên hệ shop" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

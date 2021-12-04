@@ -16,17 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminArea_RealFood">
         <activity
-            android:name=".Screen.SuKienActivity"
-            android:label="Sự kiện"
-            android:parentActivityName=".Screen.TrangChu"></activity>
-        <activity
             android:name=".Screen.TaoSuKien"
             android:label="Tạo sự kiện"
             android:parentActivityName=".Screen.SuKienActivity" />
-        <activity
-            android:name=".ThanhToanActivity"
-            android:label="Thanh Toán"
-            android:parentActivityName=".Screen.TrangChu" />
+        <activity android:name=".Screen.SuKienActivity" android:label="Danh sách sự kiên" android:parentActivityName=".Screen.SuKienActivity"></activity>
+
+        <activity android:name=".ThanhToanActivity" android:label="Thanh Toán" android:parentActivityName=".Screen.TrangChu"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -38,7 +33,10 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
+        <activity
+            android:name=".Screen.DanhSachHoaDonActivity"
+            android:label="Danh sách hóa đơn"
+            android:parentActivityName=".Screen.TrangChu" />
         <activity
             android:name=".Map.MapsActivity"
             android:label="@string/title_activity_maps"
@@ -48,8 +46,17 @@
             android:label="@string/doimatkhau"
             android:parentActivityName=".Screen.TrangChu" />
         <activity
-            android:name=".Screen.DoanhThuCuaHangActivity"
-            android:label="Doanh thu cửa hàng"
+            android:name=".GuiThongBaoActivity"
+            android:label="Gửi thông báo"
+            android:parentActivityName=".Screen.TrangChu" />
+
+        <activity
+            android:name=".ThongTinThanhToanActivity"
+            android:label="Thông tin hóa đơn"
+            android:parentActivityName=".Screen.TrangChu" />
+        <activity
+            android:name=".PhanTranTrenDonHangActivity"
+            android:label="Hoa Hồng"
             android:parentActivityName=".Screen.TrangChu" />
         <activity
             android:name=".Screen.DoanhThuHeThong"
