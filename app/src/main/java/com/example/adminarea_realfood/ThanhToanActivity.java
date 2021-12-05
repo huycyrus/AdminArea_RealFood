@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.developer.kalert.KAlertDialog;
 import com.example.adminarea_realfood.Model.CuaHang;
 import com.example.adminarea_realfood.Model.DonHang;
@@ -57,14 +58,17 @@ public class ThanhToanActivity extends AppCompatActivity {
     NumberFormat formatter = new DecimalFormat("#0.0");
     boolean check = false;
     int tongtien;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityThanhToanBinding.inflate(getLayoutInflater());
         cuaHang_spinner_adapter = new CuaHang_Spinner_Adapter(this, R.layout.sp_cuahang_item, R.id.tvTenCuaHang, cuaHangs);
         setContentView(binding.getRoot());
-        setEvent();
         LoadData();
+
+        setEvent();
+
 
     }
 
@@ -93,29 +97,32 @@ public class ThanhToanActivity extends AppCompatActivity {
             public void onItemSelected(View view, int position, long id) {
                 CuaHang temp = cuaHang_spinner_adapter.getItem(position);
                 cuaHang = temp;
-                if (cuaHang.getNgayThanhToan() != null) {
-                    long noDay = (new Date().getTime() - cuaHang.getNgayThanhToan().getTime()) / (24 * 3600 * 1000);
-                    ;
-                    if (noDay < 30) {
+                if (thanhToan==null)
+                {
+                    if (cuaHang.getNgayThanhToan() != null) {
+                        long noDay = (new Date().getTime() - cuaHang.getNgayThanhToan().getTime()) / (24 * 3600 * 1000);
+                        ;
+                        if (noDay < 30) {
+                            Alerter.create(ThanhToanActivity.this)
+                                    .setTitle("Thông báo")
+                                    .setText("Cửa hàng " + cuaHang.getTenCuaHang() + " đã thanh toán " + noDay + " ngày trước")
+                                    .setBackgroundColorRes(R.color.warning_stroke_color) // or setBackgroundColorInt(Color.CYAN)
+                                    .show();
+                        }
+                        if (noDay > 30) {
+                            Alerter.create(ThanhToanActivity.this)
+                                    .setTitle("Thông báo")
+                                    .setText("Cửa hàng " + cuaHang.getTenCuaHang() + " chưa thanh toán trong vòng " + noDay + " ngày")
+                                    .setBackgroundColorRes(R.color.error_stroke_color) // or setBackgroundColorInt(Color.CYAN)
+                                    .show();
+                        }
+                    } else {
                         Alerter.create(ThanhToanActivity.this)
                                 .setTitle("Thông báo")
-                                .setText("Cửa hàng " + cuaHang.getTenCuaHang() + " đã thanh toán " + noDay + " trước")
+                                .setText("Cửa hàng " + cuaHang.getTenCuaHang() + " chưa tạo hóa đơn nào !")
                                 .setBackgroundColorRes(R.color.warning_stroke_color) // or setBackgroundColorInt(Color.CYAN)
                                 .show();
                     }
-                    if (noDay > 30) {
-                        Alerter.create(ThanhToanActivity.this)
-                                .setTitle("Thông báo")
-                                .setText("Cửa hàng " + cuaHang.getTenCuaHang() + " chưa thanh toán trong vòng " + noDay + " ngày")
-                                .setBackgroundColorRes(R.color.error_stroke_color) // or setBackgroundColorInt(Color.CYAN)
-                                .show();
-                    }
-                } else {
-                    Alerter.create(ThanhToanActivity.this)
-                            .setTitle("Thông báo")
-                            .setText("Cửa hàng " + cuaHang.getTenCuaHang() + " chưa tạo hóa đơn nào !")
-                            .setBackgroundColorRes(R.color.warning_stroke_color) // or setBackgroundColorInt(Color.CYAN)
-                            .show();
                 }
                 firebase_manager.mDatabase.child("DonHang").get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                     @Override
@@ -127,7 +134,7 @@ public class ThanhToanActivity extends AppCompatActivity {
                             check = true;
                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                 DonHang donHang = snapshot.getValue(DonHang.class);
-                                if (donHang.getTrangThai() == TrangThaiDonHang.Shipper_DaChuyenTien&&donHang.getIDCuaHang().equals(cuaHang.getIDCuaHang())) {
+                                if (donHang.getTrangThai() == TrangThaiDonHang.Shipper_DaChuyenTien && donHang.getIDCuaHang().equals(cuaHang.getIDCuaHang())) {
                                     //nếu chưa tạo hóa đơn
                                     if (cuaHang.getNgayThanhToan() == null) {
                                         tongtien += donHang.getTongTien();
@@ -137,7 +144,7 @@ public class ThanhToanActivity extends AppCompatActivity {
                                         if (donHang.getNgayGiaoHang() != null) {
                                             if (donHang.getNgayGiaoHang().after(cuaHang.getNgayThanhToan())) {
                                                 tongtien += donHang.getTongTien();
-                                                Log.d("ID",donHang.getIDDonHang());
+                                                Log.d("ID", donHang.getIDDonHang());
                                             }
                                         }
                                     }
@@ -147,13 +154,14 @@ public class ThanhToanActivity extends AppCompatActivity {
                             firebase_manager.mDatabase.child("LoiNhuan").get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                                 @Override
                                 public void onSuccess(DataSnapshot dataSnapshot) {
-                                    Long hoaHong  = dataSnapshot.getValue(Long.class);
-                                    binding.edtSoTien.setText(formatter.format(tongtien*((double)hoaHong/100))+"");
-
+                                    Long hoaHong = dataSnapshot.getValue(Long.class);
+                                    binding.edtSoTien.setText(formatter.format(tongtien * ((double) hoaHong / 100)) + "");
+                                    if (thanhToan!=null)
+                                    {
+                                        binding.edtSoTien.setText(thanhToan.getSoTien()+"");
+                                    }
                                 }
                             });
-
-
                         } else {
                             Alerter.create(ThanhToanActivity.this)
                                     .setTitle("Thông báo")
@@ -189,68 +197,110 @@ public class ThanhToanActivity extends AppCompatActivity {
         binding.btnLuuThongTin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cuaHang != null) {
-                    if (avaTar != null) {
-                        if (!validate.isBlank(binding.edtSoTien) && !validate.isBlank(binding.edtNoiDung)
-                                && !validate.isBlank(binding.edtSoTaiKhoan) && !validate.isBlank(binding.edtTenNguoiGui)
-                                && !validate.isBlank(binding.edtTenNganHang)) {
-                            if (check=true)
-                            {
-                                String uuid = UUID.randomUUID().toString().replace("-", "");
-                                firebase_manager.storageRef.child("ThanhToan").child(uuid).putFile(avaTar).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                if (thanhToan==null)
+                {
+                    if (cuaHang != null) {
+                        if (avaTar != null) {
+                            if (!validate.isBlank(binding.edtSoTien) && !validate.isBlank(binding.edtNoiDung)
+                                    && !validate.isBlank(binding.edtSoTaiKhoan) && !validate.isBlank(binding.edtTenNguoiGui)
+                                    && !validate.isBlank(binding.edtTenNganHang)) {
+                                if (check = true) {
+                                    String uuid = UUID.randomUUID().toString().replace("-", "");
+                                    firebase_manager.storageRef.child("ThanhToan").child(uuid).putFile(avaTar).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+
+                                        }
+                                    });
+                                    if (thanhToan == null) {
+                                        ThanhToan temp = new ThanhToan(uuid, cuaHang.getIDCuaHang(),
+                                                binding.edtNoiDung.getText().toString(), Float.parseFloat(binding.edtSoTien.getText().toString()), binding.edtTenNguoiGui.getText().toString(),
+                                                binding.edtSoTaiKhoan.getText().toString(), binding.edtTenNganHang.getText().toString(), new Date(), null, TrangThaiThanhToan.ChoXacNhan);
+                                        thanhToan = temp;
+                                    }
+
+                                    firebase_manager.mDatabase.child("ThanhToan").child(uuid).setValue(thanhToan);
+                                    cuaHang.setNgayThanhToan(new Date());
+                                    cuaHang.setGhiChu(null);
+                                    firebase_manager.mDatabase.child("CuaHang").child(cuaHang.getIDCuaHang()).setValue(cuaHang);
+                                    Alerter.create(ThanhToanActivity.this)
+                                            .setTitle("Thông báo")
+                                            .setText("Đã xác nhận hóa đơn cho cửa hàng : " + cuaHang.getTenCuaHang() + " với giá trị : " + binding.edtSoTien.getText().toString() + " Ngày thanh toán:  " + new Date().toString())
+                                            .setBackgroundColorRes(R.color.success_stroke_color) // or setBackgroundColorInt(Color.CYAN)
+                                            .show();
+
+                                    finish();
+                                } else {
+                                    Alerter.create(ThanhToanActivity.this)
+                                            .setTitle("Lỗi")
+                                            .setText("Cửa hàng này chưa có đơn hàng nào")
+                                            .setBackgroundColorRes(R.color.error_stroke_color) // or setBackgroundColorInt(Color.CYAN)
+                                            .show();
+                                }
+
+                            }
+                        } else {
+                            Alerter.create(ThanhToanActivity.this)
+                                    .setTitle("Lỗi")
+                                    .setText("Vui lòng chọn ảnh hóa đơn")
+                                    .setBackgroundColorRes(R.color.error_stroke_color) // or setBackgroundColorInt(Color.CYAN)
+                                    .show();
+                        }
+                    } else {
+                        Alerter.create(ThanhToanActivity.this)
+                                .setTitle("Lỗi")
+                                .setText("Vui lòng chọn cửa hàng")
+                                .setBackgroundColorRes(R.color.error_stroke_color) // or setBackgroundColorInt(Color.CYAN)
+                                .show();
+                    }
+                }
+                else {
+                    if (cuaHang != null) {
+                        if (avaTar != null) {
+                            if (!validate.isBlank(binding.edtSoTien) && !validate.isBlank(binding.edtNoiDung)
+                                    && !validate.isBlank(binding.edtSoTaiKhoan) && !validate.isBlank(binding.edtTenNguoiGui)
+                                    && !validate.isBlank(binding.edtTenNganHang)) {
+
+                                    ThanhToan temp = new ThanhToan(thanhToan.getIdBill(), cuaHang.getIDCuaHang(),
+                                    binding.edtNoiDung.getText().toString(), Float.parseFloat(binding.edtSoTien.getText().toString()), binding.edtTenNguoiGui.getText().toString(),
+                                            binding.edtSoTaiKhoan.getText().toString(), binding.edtTenNganHang.getText().toString(), thanhToan.getNgayThanhToan(), null, TrangThaiThanhToan.ChoXacNhan);
+                                    thanhToan = temp;
+                                    firebase_manager.storageRef.child("ThanhToan").child(thanhToan.getIdBill()).putFile(avaTar).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                     @Override
                                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                         // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
 
                                     }
-                                });
-                                if (thanhToan == null) {
-                                    ThanhToan temp = new ThanhToan(uuid, cuaHang.getIDCuaHang(),
-                                            binding.edtNoiDung.getText().toString(), Float.parseFloat(binding.edtSoTien.getText().toString()), binding.edtTenNguoiGui.getText().toString(),
-                                            binding.edtSoTaiKhoan.getText().toString(), binding.edtTenNganHang.getText().toString(), new Date(), null, TrangThaiThanhToan.ChoXacNhan);
-                                    thanhToan = temp;
+                                    });
+                                    firebase_manager.mDatabase.child("ThanhToan").child(thanhToan.getIdBill()).setValue(thanhToan);
+                                    cuaHang.setNgayThanhToan(thanhToan.getNgayThanhToan());
+                                    cuaHang.setGhiChu(null);
+                                    firebase_manager.mDatabase.child("CuaHang").child(cuaHang.getIDCuaHang()).setValue(cuaHang);
+                                    Alerter.create(ThanhToanActivity.this)
+                                            .setTitle("Thông báo")
+                                            .setText("Đã cập nhật hóa đơn cho cửa hàng : " + cuaHang.getTenCuaHang() + " với giá trị : " + binding.edtSoTien.getText().toString() + " Ngày thanh toán:  " + new Date().toString())
+                                            .setBackgroundColorRes(R.color.success_stroke_color) // or setBackgroundColorInt(Color.CYAN)
+                                            .show();
+
+                                    firebase_manager.mDatabase.child("CuaHang").child(cuaHang.getIDCuaHang()).setValue(cuaHang);
+                                } else {
+                                    Alerter.create(ThanhToanActivity.this)
+                                            .setTitle("Lỗi")
+                                            .setText("Cửa hàng này chưa có đơn hàng nào")
+                                            .setBackgroundColorRes(R.color.error_stroke_color) // or setBackgroundColorInt(Color.CYAN)
+                                            .show();
                                 }
 
-                                firebase_manager.mDatabase.child("ThanhToan").child(uuid).setValue(thanhToan);
-                                cuaHang.setNgayThanhToan(new Date());
-                                firebase_manager.mDatabase.child("CuaHang").child(cuaHang.getIDCuaHang()).setValue(cuaHang);
-                                Alerter.create(ThanhToanActivity.this)
-                                        .setTitle("Thông báo")
-                                        .setText("Đã xác nhận hóa đơn cho cửa hàng : " + cuaHang.getTenCuaHang() + " với giá trị : " + binding.edtSoTien.getText().toString() + " Ngày thanh toán:  " + new Date().toString())
-                                        .setBackgroundColorRes(R.color.success_stroke_color) // or setBackgroundColorInt(Color.CYAN)
-                                        .show();
-                                cuaHang.setGhiChu(null);
-                                firebase_manager.mDatabase.child("CuaHang").child(cuaHang.getIDCuaHang()).setValue(cuaHang);
-                                finish();
-                            }
-                            else {
-                                Alerter.create(ThanhToanActivity.this)
-                                        .setTitle("Lỗi")
-                                        .setText("Cửa hàng này chưa có đơn hàng nào")
-                                        .setBackgroundColorRes(R.color.error_stroke_color) // or setBackgroundColorInt(Color.CYAN)
-                                        .show();
-                            }
 
-
-                        }
-                    } else {
-                        Alerter.create(ThanhToanActivity.this)
-                                .setTitle("Lỗi")
-                                .setText("Vui lòng chọn ảnh hóa đơn")
-                                .setBackgroundColorRes(R.color.error_stroke_color) // or setBackgroundColorInt(Color.CYAN)
-                                .show();
-                    }
-                } else {
-                    Alerter.create(ThanhToanActivity.this)
-                            .setTitle("Lỗi")
-                            .setText("Vui lòng chọn cửa hàng")
-                            .setBackgroundColorRes(R.color.error_stroke_color) // or setBackgroundColorInt(Color.CYAN)
-                            .show();
                 }
 
-            }
-        });
+
+
+                    }}}}
+        );
     }
+
 
     private void LoadData() {
         firebase_manager.mDatabase.child("CuaHang").addValueEventListener(new ValueEventListener() {
@@ -264,25 +314,61 @@ public class ThanhToanActivity extends AppCompatActivity {
                 binding.spCuaHang.setAdapter(cuaHang_spinner_adapter);
                 cuaHang_spinner_adapter.notifyDataSetChanged();
                 if (getIntent() != null && getIntent().getExtras() != null) {
+
                     Intent intent = getIntent();
-                    String dataDonHang = intent.getStringExtra("cuaHang");
-                    Gson gson = new Gson();
-                    cuaHang = gson.fromJson(dataDonHang, CuaHang.class);
-                    AtomicInteger positon = new AtomicInteger();
-                    cuaHangs.forEach(temp -> {
-                        if (temp.getIDCuaHang().equals(cuaHang.getIDCuaHang()))
-                        {
-                            binding.spCuaHang.setSelected(true);
-                            binding.spCuaHang.setActivated(true);
-                            binding.spCuaHang.dispatchSetSelected(true);
-                            binding.spCuaHang.setSelectedItem(positon.get());
-                        }
-                        positon.getAndIncrement();
-                    });
+                    if (intent.getStringExtra("cuaHang")!=null)
+                    {
+                        String dataDonHang = intent.getStringExtra("cuaHang");
+                        Gson gson = new Gson();
+                        cuaHang = gson.fromJson(dataDonHang, CuaHang.class);
+                        AtomicInteger positon = new AtomicInteger();
+                        cuaHangs.forEach(temp -> {
+                            if (temp.getIDCuaHang().equals(cuaHang.getIDCuaHang())) {
+                                binding.spCuaHang.setSelected(true);
+                                binding.spCuaHang.setActivated(true);
+                                binding.spCuaHang.dispatchSetSelected(true);
+                                binding.spCuaHang.setSelectedItem(positon.get());
+                            }
+                            positon.getAndIncrement();
+                        });
+                    }
+                    if (intent.getStringExtra("thanhToan") != null) {
+                        String data = intent.getStringExtra("thanhToan");
+                        Gson gsons = new Gson();
+                        thanhToan = gsons.fromJson(data, ThanhToan.class);
+                        AtomicInteger positons = new AtomicInteger();
+                        cuaHangs.forEach(temp -> {
+                            if (temp.getIDCuaHang().equals(thanhToan.getIdCuaHang())) {
+                                binding.spCuaHang.setSelected(true);
+                                binding.spCuaHang.setActivated(true);
+                                binding.spCuaHang.dispatchSetSelected(true);
+                                binding.spCuaHang.setSelectedItem(positons.get());
+                            }
+                            positons.getAndIncrement();
+                        });
+                        binding.edtSoTien.setText(thanhToan.getSoTien()+"");
+                        binding.edtNoiDung.setText(thanhToan.getNoiDung()+"");
+                        binding.edtTenNganHang.setText(thanhToan.getTenNganHang()+"");
+                        binding.edtSoTaiKhoan.setText(thanhToan.getSoTaiKhoan()+"");
+                        binding.edtTenNguoiGui.setText(thanhToan.getTenNguoiGui()+"");
+                        firebase_manager.storageRef.child("ThanhToan").child(thanhToan.getIdBill()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                try {
+                                    Glide.with(ThanhToanActivity.this)
+                                            .load(uri.toString())
+                                            .into(binding.ibImage);
+                                    avaTar =uri;
+                                }
+                                catch (Exception e)
+                                {
 
-
-
+                                }
+                            }
+                        });
+                    }
                 }
+
             }
 
             @Override

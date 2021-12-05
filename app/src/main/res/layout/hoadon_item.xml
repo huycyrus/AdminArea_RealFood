@@ -6,7 +6,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="12dp"
     android:orientation="horizontal">
+    <com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dragEdge="right"
+        app:mode="same_level">
+        <!--RIGHT-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="right"
+            >
+            <LinearLayout
+                android:id="@+id/lnInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <android.widget.Button
+                    android:id="@+id/btnChinhSua"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="#009688"
+                    android:gravity="center"
+                    android:textAllCaps="false"
+                    android:text="Chỉnh sửa"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+                <android.widget.Button
+                    android:id="@+id/btnXoa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="#A83128"
+                    android:gravity="center"
+                    android:textAllCaps="false"
+                    android:text="Xóa"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+            </LinearLayout>
 
+        </LinearLayout>
     <LinearLayout
         android:background="#EAEAEA"
         android:layout_width="match_parent"
@@ -119,5 +158,5 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
+    </com.chauthai.swipereveallayout.SwipeRevealLayout>
 </androidx.cardview.widget.CardView>

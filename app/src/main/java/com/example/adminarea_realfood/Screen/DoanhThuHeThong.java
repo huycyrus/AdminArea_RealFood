@@ -20,9 +20,12 @@ import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Fragment.DoanhThuHeThong_fragment;
 import com.example.adminarea_realfood.Model.CuaHang;
 import com.example.adminarea_realfood.Model.DonHang;
+import com.example.adminarea_realfood.Model.ThanhToan;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.TrangThai.TrangThaiDonHang;
+import com.example.adminarea_realfood.TrangThai.TrangThaiThanhToan;
 import com.example.adminarea_realfood.adapter.CuaHangAdapter;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -30,6 +33,8 @@ import com.google.firebase.database.ValueEventListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -38,9 +43,11 @@ import java.util.stream.Collectors;
 
 public class DoanhThuHeThong extends AppCompatActivity {
     int giaoThanhCong = 0, giaoKhongThanhCong = 0;
+    NumberFormat formatter = new DecimalFormat("#0.0");
+
     String[] info = {"Giao thành công", "Giao không thành công"};
     Firebase_Manager firebase_manager = new Firebase_Manager();
-    TextView tvTongDoanhThu, tvGiaoThanhCong, tvGiaoKhongThanhCong, tvTongCuaHang;
+    TextView tvTongDoanhThu, tvGiaoThanhCong,tvDathu, tvGiaoKhongThanhCong, tvTongCuaHang,tvHoaHong,tvShipper;
     Button btnNgayBatDau, btnNgayKetThuc;
     ProgressBar progressBar;
     LinearLayout linearLayout;
@@ -182,9 +189,7 @@ public class DoanhThuHeThong extends AppCompatActivity {
         linearLayout.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
         for (DonHang donHang : donHangs) {
-            if (donHang.getTrangThai() == TrangThaiDonHang.Shipper_GiaoThanhCong ||
-                    donHang.getTrangThai() == TrangThaiDonHang.ChoShopXacNhan_Tien ||
-                    donHang.getTrangThai() == TrangThaiDonHang.Shipper_DaChuyenTien) {
+            if ( donHang.getTrangThai() == TrangThaiDonHang.Shipper_DaChuyenTien) {
                 giaoThanhCong++;
                 tong += donHang.getTongTien();
             }
@@ -199,6 +204,40 @@ public class DoanhThuHeThong extends AppCompatActivity {
         }
         LoadPieChart();
         tvTongDoanhThu.setText(tong + " VNĐ");
+        double finalTong = tong;
+        firebase_manager.mDatabase.child("LoiNhuan").get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                Long hoaHong = dataSnapshot.getValue(Long.class);
+                tvHoaHong.setText(formatter.format(finalTong * ((double) hoaHong / 100)) + " VND");
+            }
+        });
+        firebase_manager.mDatabase.child("Shipper").get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                tvShipper.setText(dataSnapshot.getChildrenCount()+"");
+            }
+        });
+        firebase_manager.mDatabase.child("ThanhToan").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                int tong =0;
+                for (DataSnapshot dataSnapshot:snapshot.getChildren())
+                {
+                    ThanhToan thanhToan = dataSnapshot.getValue(ThanhToan.class);
+                    if (thanhToan.getTrangThaiThanhToan()== TrangThaiThanhToan.DaXacNhan)
+                    {
+                        tong+=  thanhToan.getSoTien();
+                    }
+                }
+                tvDathu.setText(tong+" VND");
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
         tvGiaoThanhCong.setText(giaoThanhCong + "");
         tvGiaoKhongThanhCong.setText(giaoKhongThanhCong + "");
         linearLayout.setVisibility(View.VISIBLE);
@@ -227,6 +266,9 @@ public class DoanhThuHeThong extends AppCompatActivity {
         linearLayout = findViewById(R.id.lnLayout);
         progressBar = findViewById(R.id.progessbar);
         rcvDanhSachCuaHang = findViewById(R.id.rcvDanhSachCuaHang);
+        tvHoaHong = findViewById(R.id.tvHoaHong);
+        tvShipper = findViewById(R.id.tvTongShipper);
+        tvDathu = findViewById(R.id.tvDathu);
     }
 
     @Override

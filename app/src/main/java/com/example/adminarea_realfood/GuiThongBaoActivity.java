@@ -115,7 +115,7 @@ public class GuiThongBaoActivity extends AppCompatActivity {
         binding.btnLuuThongTin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firebase_manager.Ghi_ThongBao_random(shipper.getiDShipper(),"Thông báo",noidung, LoaiThongBao.NORMAL).addOnSuccessListener(new OnSuccessListener<Void>() {
+                firebase_manager.Ghi_ThongBao_random(shipper.getiDShipper(),"Thông báo",binding.edtNoiDung.getText().toString(), LoaiThongBao.NORMAL).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         new KAlertDialog(GuiThongBaoActivity.this,KAlertDialog.SUCCESS_TYPE).setContentText("Đã gửi thông báo đến shipper  "+ shipper.getHoVaTen()).setConfirmText("Ok").setConfirmClickListener(new KAlertDialog.KAlertClickListener() {

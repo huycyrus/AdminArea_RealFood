@@ -21,7 +21,7 @@
             android:parentActivityName=".Screen.SuKienActivity" />
         <activity android:name=".Screen.SuKienActivity" android:label="Danh sách sự kiên" android:parentActivityName=".Screen.SuKienActivity"></activity>
 
-        <activity android:name=".ThanhToanActivity" android:label="Thanh Toán" android:parentActivityName=".Screen.TrangChu"></activity>
+        <activity android:name=".ThanhToanActivity" android:label="Thanh Toán" android:parentActivityName=".Screen.DanhSachHoaDonActivity"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

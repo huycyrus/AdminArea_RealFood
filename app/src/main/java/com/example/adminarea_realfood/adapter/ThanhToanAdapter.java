@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -17,6 +18,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.developer.kalert.KAlertDialog;
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.CuaHang;
 import com.example.adminarea_realfood.Model.ThanhToan;
@@ -112,6 +114,47 @@ public class ThanhToanAdapter extends RecyclerView.Adapter<ThanhToanAdapter.MyVi
                     context.startActivity(intent);
                 }
             });
+            holder.btnXoa.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    KAlertDialog kAlertDialog = new KAlertDialog(context,KAlertDialog.WARNING_TYPE)
+                            .setContentText("Bạn có chắc chắn hủy hóa đơn này?").setCancelText("Không")
+                            .setConfirmText("Có");
+                    kAlertDialog.show();
+                    kAlertDialog.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                        @Override
+                        public void onClick(KAlertDialog kAlertDialog) {
+                            kAlertDialog.changeAlertType(KAlertDialog.PROGRESS_TYPE);
+                            kAlertDialog.setContentText("Loading");
+                            firebase_manager.mDatabase.child("ThanhToan").child(thanhToan.getIdBill()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    kAlertDialog.changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                                    kAlertDialog.setContentText("Đã xóa thành công");
+                                    kAlertDialog.setConfirmText("Oke");
+                                    kAlertDialog.showCancelButton(false);
+                                    kAlertDialog.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog kAlertDialog) {
+                                                kAlertDialog.dismiss();
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+            holder.btnChinhSua.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, ThanhToanActivity.class);
+                    Gson gson = new Gson();
+                    String data = gson.toJson(thanhToan);
+                    intent.putExtra("thanhToan", data);
+                    context.startActivity(intent);
+                }
+            });
         }
 
     }
@@ -133,7 +176,7 @@ public class ThanhToanAdapter extends RecyclerView.Adapter<ThanhToanAdapter.MyVi
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tvTenCuaHang,idThanhToan,tvSoTien,tvThoiGian,tvTrangThai;
         ImageView ivThanhToan;
-
+        Button btnXoa,btnChinhSua;
         public MyViewHolder(View itemView) {
             super(itemView);
             idThanhToan = itemView.findViewById(R.id.idThanhToan);
@@ -142,6 +185,8 @@ public class ThanhToanAdapter extends RecyclerView.Adapter<ThanhToanAdapter.MyVi
             tvThoiGian = itemView.findViewById(R.id.tvThoiGian);
             ivThanhToan = itemView.findViewById(R.id.ivThanhToan);
             tvTrangThai = itemView.findViewById(R.id.tvTrangThai);
+            btnXoa = itemView.findViewById(R.id.btnXoa);
+            btnChinhSua = itemView.findViewById(R.id.btnChinhSua);
         }
     }
 
@@ -157,7 +202,7 @@ public class ThanhToanAdapter extends RecyclerView.Adapter<ThanhToanAdapter.MyVi
                 }else {
                     List<ThanhToan> list = new ArrayList<>();
                     for (ThanhToan thanhToan : arrayList){
-                        if(thanhToan.getIdCuaHang().toLowerCase().contains(keyWord.toLowerCase())){
+                        if(thanhToan.getIdCuaHang().toLowerCase().equals(keyWord.toLowerCase())||thanhToan.getIdBill().toLowerCase().contains(keyWord.toLowerCase())){
                             list.add(thanhToan);
                         }
                     }
