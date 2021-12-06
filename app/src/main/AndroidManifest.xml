@@ -56,7 +56,7 @@
             android:parentActivityName=".Screen.TrangChu" />
         <activity
             android:name=".Screen.DoanhThuCuaHangActivity"
-            android:label="Thông tin hóa đơn"
+            android:label="Doanh thu cửa hàng"
             android:parentActivityName=".Screen.TrangChu" />
         <activity
             android:name=".PhanTranTrenDonHangActivity"
