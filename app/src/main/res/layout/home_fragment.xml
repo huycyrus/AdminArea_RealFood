@@ -526,7 +526,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Cửa hàng thanh khoản"
+                            android:text="Cửa hàng thanh toán"
                             android:textColor="@color/black"
                             android:textStyle="bold"
                             android:textSize="15dp"/>
