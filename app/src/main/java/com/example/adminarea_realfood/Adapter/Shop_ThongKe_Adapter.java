@@ -1,16 +1,14 @@
-package com.example.adminarea_realfood.adapter;
+package com.example.adminarea_realfood.Adapter;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -21,12 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.CuaHang;
-import com.example.adminarea_realfood.Model.SanPham;
-import com.example.adminarea_realfood.Model.Shipper;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.Screen.ThongKe_CuaHang_Activity;
-import com.example.adminarea_realfood.Screen.ThongTinChiTietShop;
-import com.example.adminarea_realfood.SetOnLongClick;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,7 +31,6 @@ import com.google.gson.Gson;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 

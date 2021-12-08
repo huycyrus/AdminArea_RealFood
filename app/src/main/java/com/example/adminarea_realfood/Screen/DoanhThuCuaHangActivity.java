@@ -10,15 +10,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.CuaHang;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.TrangThai.TrangThaiCuaHang;
-import com.example.adminarea_realfood.adapter.Shop_ThongKe_Adapter;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.example.adminarea_realfood.Adapter.Shop_ThongKe_Adapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;

@@ -1,4 +1,4 @@
-package com.example.adminarea_realfood;
+package com.example.adminarea_realfood.Screen;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,18 +8,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.developer.kalert.KAlertDialog;
+import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.CuaHang;
 import com.example.adminarea_realfood.Model.DonHang;
 import com.example.adminarea_realfood.Model.TaiKhoanNganHang;
 import com.example.adminarea_realfood.Model.ThanhToan;
-import com.example.adminarea_realfood.TrangThai.LoaiThongBao;
+import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.TrangThai.TrangThaiDonHang;
 import com.example.adminarea_realfood.TrangThai.TrangThaiThanhToan;
-import com.example.adminarea_realfood.adapter.CuaHang_Spinner_Adapter;
+import com.example.adminarea_realfood.Adapter.CuaHang_Spinner_Adapter;
+import com.example.adminarea_realfood.Validate;
 import com.example.adminarea_realfood.databinding.ActivityThanhToanBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -38,7 +38,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;

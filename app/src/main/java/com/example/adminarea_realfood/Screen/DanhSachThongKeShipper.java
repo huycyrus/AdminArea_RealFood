@@ -11,7 +11,7 @@ import androidx.appcompat.widget.SearchView;
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.Shipper;
 import com.example.adminarea_realfood.R;
-import com.example.adminarea_realfood.adapter.ThongKeShipperAdapter;
+import com.example.adminarea_realfood.Adapter.ThongKeShipperAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;

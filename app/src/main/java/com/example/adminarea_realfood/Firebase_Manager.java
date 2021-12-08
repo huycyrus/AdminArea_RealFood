@@ -18,7 +18,7 @@ import com.example.adminarea_realfood.TrangThai.TrangThaiCuaHang;
 import com.example.adminarea_realfood.TrangThai.TrangThaiShipper;
 import com.example.adminarea_realfood.TrangThai.TrangThaiThanhToan;
 import com.example.adminarea_realfood.TrangThai.TrangThaiThongBao;
-import com.example.adminarea_realfood.adapter.SanPhamAdapter;
+import com.example.adminarea_realfood.Adapter.SanPhamAdapter;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;

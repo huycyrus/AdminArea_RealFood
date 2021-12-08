@@ -24,7 +24,7 @@ import com.example.adminarea_realfood.Model.ThanhToan;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.TrangThai.TrangThaiDonHang;
 import com.example.adminarea_realfood.TrangThai.TrangThaiThanhToan;
-import com.example.adminarea_realfood.adapter.CuaHangAdapter;
+import com.example.adminarea_realfood.Adapter.CuaHangAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

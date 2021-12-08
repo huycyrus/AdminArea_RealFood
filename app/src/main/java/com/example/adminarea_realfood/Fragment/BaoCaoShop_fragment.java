@@ -17,7 +17,7 @@ import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.BaoCaoShop;
 import com.example.adminarea_realfood.Model.CuaHang;
 import com.example.adminarea_realfood.R;
-import com.example.adminarea_realfood.adapter.BaoCaoShopAdapter;
+import com.example.adminarea_realfood.Adapter.BaoCaoShopAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;

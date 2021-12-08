@@ -8,14 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.SuKien;
 import com.example.adminarea_realfood.R;
-import com.example.adminarea_realfood.adapter.SuKienAdapter;
+import com.example.adminarea_realfood.Adapter.SuKienAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

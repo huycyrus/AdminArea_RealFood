@@ -1,4 +1,4 @@
-package com.example.adminarea_realfood.adapter;
+package com.example.adminarea_realfood.Adapter;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.adminarea_realfood.Model.SanPham;
 import com.example.adminarea_realfood.R;
-import com.example.adminarea_realfood.SetOnLongClick;
+import com.example.adminarea_realfood.Model.SetOnLongClick;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;

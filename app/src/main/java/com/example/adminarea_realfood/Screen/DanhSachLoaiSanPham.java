@@ -14,7 +14,7 @@ import androidx.appcompat.widget.SearchView;
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.LoaiSanPham;
 import com.example.adminarea_realfood.R;
-import com.example.adminarea_realfood.adapter.LoaiSanPhamAdapter;
+import com.example.adminarea_realfood.Adapter.LoaiSanPhamAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

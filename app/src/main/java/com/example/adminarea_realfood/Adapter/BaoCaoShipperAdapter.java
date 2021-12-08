@@ -1,4 +1,4 @@
-package com.example.adminarea_realfood.adapter;
+package com.example.adminarea_realfood.Adapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,7 +22,7 @@ import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.BaoCaoShipper;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.Screen.XuLyShipper;
-import com.example.adminarea_realfood.SetOnLongClick;
+import com.example.adminarea_realfood.Model.SetOnLongClick;
 import com.example.adminarea_realfood.TrangThai.TrangThaiBaoCao;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;

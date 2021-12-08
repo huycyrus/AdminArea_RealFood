@@ -1,4 +1,4 @@
-package com.example.adminarea_realfood;
+package com.example.adminarea_realfood.Screen;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,13 +10,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.SearchView;
 
 import com.bumptech.glide.Glide;
 import com.developer.kalert.KAlertDialog;
+import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.CuaHang;
-import com.example.adminarea_realfood.Model.Shipper;
 import com.example.adminarea_realfood.Model.ThanhToan;
+import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.databinding.ActivityThongTinThanhToanBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;

@@ -11,7 +11,7 @@ import androidx.appcompat.widget.SearchView;
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.KhachHang;
 import com.example.adminarea_realfood.R;
-import com.example.adminarea_realfood.adapter.KhachHangAdapter;
+import com.example.adminarea_realfood.Adapter.KhachHangAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;

@@ -1,4 +1,4 @@
-package com.example.adminarea_realfood.adapter;
+package com.example.adminarea_realfood.Adapter;
 
 import android.content.Context;
 import android.util.Log;

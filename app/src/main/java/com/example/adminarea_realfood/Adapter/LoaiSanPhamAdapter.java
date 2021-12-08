@@ -1,4 +1,4 @@
-package com.example.adminarea_realfood.adapter;
+package com.example.adminarea_realfood.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,45 +8,43 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
-import com.example.adminarea_realfood.Model.KhachHang;
+import com.example.adminarea_realfood.Model.LoaiSanPham;
 import com.example.adminarea_realfood.R;
-import com.example.adminarea_realfood.Screen.ThongTinChiTietKhachHang;
+import com.example.adminarea_realfood.Screen.SuaLoaiSanPham;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
-public class KhachHangAdapter extends ArrayAdapter {
+public class LoaiSanPhamAdapter extends ArrayAdapter implements Filterable {
 
     Context context;
     int resource;
-    ArrayList<KhachHang> khachHangs;
-    ArrayList<KhachHang> khachHangs1;
+    ArrayList<LoaiSanPham> data;
+    ArrayList<LoaiSanPham> data1;
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
-    public KhachHangAdapter(@NonNull Context context, int resource, ArrayList<KhachHang> khachHangs) {
-        super(context, resource, khachHangs);
+    public LoaiSanPhamAdapter(@NonNull Context context, int resource, ArrayList<LoaiSanPham> data) {
+        super(context, resource, data);
         this.context = context;
         this.resource = resource;
-        this.khachHangs = khachHangs;
-        this.khachHangs1 = khachHangs;
-
+        this.data = data;
+        this.data1 = data;
     }
 
     @Override
     public int getCount() {
-        return khachHangs.size();
+        return data.size();
     }
 
     @NonNull
@@ -55,31 +53,29 @@ public class KhachHangAdapter extends ArrayAdapter {
 
         convertView = LayoutInflater.from(context).inflate(resource, null);
 
-        CircleImageView civImageKH = convertView.findViewById(R.id.image_danhsachkhachhang);
-        TextView tvTenKH = convertView.findViewById(R.id.tv_tenkhachhang_danhsachkhachhang);
-        TextView tvSdtKH = convertView.findViewById(R.id.tv_sdt_danhsachkhachhang);
-        TextView tvEmailKH = convertView.findViewById(R.id.tv_email_danhsachkhachhang);
+        TextView tvStt =  convertView.findViewById(R.id.tv_soTT);
+        TextView tvTenloai =  convertView.findViewById(R.id.tv_tenLoai);
+        ImageView ivImage = convertView.findViewById(R.id.image_loaisanpham);
 
-        KhachHang khachHang = khachHangs.get(position);
-        tvTenKH.setText(khachHang.getTenKhachHang());
-        tvSdtKH.setText(khachHang.getSoDienThoai());
-        tvEmailKH.setText(khachHang.getEmail());
-        storageReference.child("KhachHang").child(khachHang.getIDKhachHang()).child("AvatarKhachHang").getDownloadUrl(  ).addOnSuccessListener(new OnSuccessListener<Uri>() {
+        LoaiSanPham loaiSanPham = data.get(position);
+        tvStt.setText(loaiSanPham.getsTT());
+        tvTenloai.setText(loaiSanPham.getTenLoai());
+        storageReference.child("LoaiSanPham").child(loaiSanPham.getiDLoai()).child("Loại sản phẩm").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Glide.with(context)
                         .load(uri.toString())
-                        .into(civImageKH);
+                        .into(ivImage);
             }
         });
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ThongTinChiTietKhachHang.class);
+                Intent intent = new Intent(getContext(), SuaLoaiSanPham.class);
                 Gson gson = new Gson();
-                String data = gson.toJson(khachHang);
-                intent.putExtra("KhachHang", data);
+                String data = gson.toJson(loaiSanPham);
+                intent.putExtra("LoaiSanPham", data);
                 getContext().startActivity(intent);
             }
         });
@@ -95,24 +91,24 @@ public class KhachHangAdapter extends ArrayAdapter {
             protected FilterResults performFiltering(CharSequence constraint) {
                 String keyWord = constraint.toString();
                 if(keyWord.isEmpty()){
-                    khachHangs = khachHangs1;
+                    data = data1;
                 }else {
-                    List<KhachHang> list = new ArrayList<>();
-                    for (KhachHang khachHang : khachHangs1){
-                        if(khachHang.getTenKhachHang().toLowerCase().contains(keyWord.toLowerCase())){
-                            list.add(khachHang);
+                    ArrayList<LoaiSanPham> list = new ArrayList<>();
+                    for (LoaiSanPham loaiSanPham : data1){
+                        if(loaiSanPham.getTenLoai().toLowerCase().contains(keyWord.toLowerCase())){
+                            list.add(loaiSanPham);
                         }
                     }
-                    khachHangs = (ArrayList<KhachHang>) list;
+                    data = list;
                 }
                 FilterResults filterResults = new FilterResults();
-                filterResults.values = khachHangs;
+                filterResults.values = data;
                 return filterResults    ;
             }
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                khachHangs = (ArrayList<KhachHang>) results.values;
+                data = (ArrayList<LoaiSanPham>) results.values;
                 notifyDataSetChanged();
             }
         };

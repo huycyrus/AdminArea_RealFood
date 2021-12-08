@@ -21,7 +21,7 @@
             android:parentActivityName=".Screen.SuKienActivity" />
         <activity android:name=".Screen.SuKienActivity" android:label="Danh sách sự kiên" android:parentActivityName=".Screen.SuKienActivity"></activity>
 
-        <activity android:name=".ThanhToanActivity" android:label="Thanh Toán" android:parentActivityName=".Screen.DanhSachHoaDonActivity"></activity>
+        <activity android:name=".Screen.ThanhToanActivity" android:label="Thanh Toán" android:parentActivityName=".Screen.DanhSachHoaDonActivity"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -46,12 +46,12 @@
             android:label="@string/doimatkhau"
             android:parentActivityName=".Screen.TrangChu" />
         <activity
-            android:name=".GuiThongBaoActivity"
+            android:name=".Screen.GuiThongBaoActivity"
             android:label="Gửi thông báo"
             android:parentActivityName=".Screen.TrangChu" />
 
         <activity
-            android:name=".ThongTinThanhToanActivity"
+            android:name=".Screen.ThongTinThanhToanActivity"
             android:label="Thông tin hóa đơn"
             android:parentActivityName=".Screen.TrangChu" />
         <activity
@@ -59,7 +59,7 @@
             android:label="Doanh thu cửa hàng"
             android:parentActivityName=".Screen.TrangChu" />
         <activity
-            android:name=".PhanTranTrenDonHangActivity"
+            android:name=".Screen.PhanTranTrenDonHangActivity"
             android:label="Hoa Hồng"
             android:parentActivityName=".Screen.TrangChu" />
         <activity

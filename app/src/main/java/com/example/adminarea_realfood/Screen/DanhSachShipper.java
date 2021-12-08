@@ -13,7 +13,7 @@ import androidx.appcompat.widget.SearchView;
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.Shipper;
 import com.example.adminarea_realfood.R;
-import com.example.adminarea_realfood.adapter.ShipperAdapter;
+import com.example.adminarea_realfood.Adapter.ShipperAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

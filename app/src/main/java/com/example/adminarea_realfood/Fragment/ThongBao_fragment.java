@@ -19,7 +19,7 @@ import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.ThongBao;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.TrangThai.TrangThaiThongBao;
-import com.example.adminarea_realfood.adapter.ThongBaoAdapter;
+import com.example.adminarea_realfood.Adapter.ThongBaoAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;

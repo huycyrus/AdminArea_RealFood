@@ -1,8 +1,7 @@
-package com.example.adminarea_realfood.adapter;
+package com.example.adminarea_realfood.Adapter;
 
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.CuaHang;
-import com.example.adminarea_realfood.Model.NganHang;
 import com.example.adminarea_realfood.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 

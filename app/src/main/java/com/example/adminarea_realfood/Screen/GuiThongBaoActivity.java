@@ -1,4 +1,4 @@
-package com.example.adminarea_realfood;
+package com.example.adminarea_realfood.Screen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,14 +10,13 @@ import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.developer.kalert.KAlertDialog;
+import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.CuaHang;
-import com.example.adminarea_realfood.Model.KhachHang;
 import com.example.adminarea_realfood.Model.Shipper;
 import com.example.adminarea_realfood.TrangThai.LoaiThongBao;
 import com.example.adminarea_realfood.databinding.ActivityGuiThongBaoBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
-import com.tapadoo.alerter.Alerter;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.CuaHang;
 import com.example.adminarea_realfood.R;
-import com.example.adminarea_realfood.adapter.ShopAdapter;
+import com.example.adminarea_realfood.Adapter.ShopAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;

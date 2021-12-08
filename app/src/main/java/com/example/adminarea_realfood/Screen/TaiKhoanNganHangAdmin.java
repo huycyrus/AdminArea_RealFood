@@ -17,7 +17,7 @@ import com.example.adminarea_realfood.Model.NganHangWrapper;
 import com.example.adminarea_realfood.Model.TaiKhoanNganHang;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.Validate;
-import com.example.adminarea_realfood.adapter.NganHangAdapter;
+import com.example.adminarea_realfood.Adapter.NganHangAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

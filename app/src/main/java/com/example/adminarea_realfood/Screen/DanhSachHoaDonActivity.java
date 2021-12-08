@@ -9,19 +9,16 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.CuaHang;
 import com.example.adminarea_realfood.Model.ThanhToan;
 import com.example.adminarea_realfood.R;
-import com.example.adminarea_realfood.ThanhToanActivity;
-import com.example.adminarea_realfood.adapter.CuaHang_Spinner_Adapter;
-import com.example.adminarea_realfood.adapter.ThanhToanAdapter;
+import com.example.adminarea_realfood.Adapter.CuaHang_Spinner_Adapter;
+import com.example.adminarea_realfood.Adapter.ThanhToanAdapter;
 import com.example.adminarea_realfood.databinding.ActivityDanhSachHoaDonBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

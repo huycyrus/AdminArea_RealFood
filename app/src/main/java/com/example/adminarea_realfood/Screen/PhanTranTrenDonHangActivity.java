@@ -1,25 +1,17 @@
-package com.example.adminarea_realfood;
+package com.example.adminarea_realfood.Screen;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.SearchView;
 
-import com.developer.kalert.KAlertDialog;
+import com.example.adminarea_realfood.Firebase_Manager;
+import com.example.adminarea_realfood.R;
+import com.example.adminarea_realfood.Validate;
 import com.example.adminarea_realfood.databinding.ActivityPhanTranTrenDonHangBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.tapadoo.alerter.Alerter;
-
-import java.util.Date;
 
 public class PhanTranTrenDonHangActivity extends AppCompatActivity {
     ActivityPhanTranTrenDonHangBinding binding;

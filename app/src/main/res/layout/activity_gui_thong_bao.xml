@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".GuiThongBaoActivity">
+    tools:context=".Screen.GuiThongBaoActivity">
     <LinearLayout
         android:background="#FFFFFF"
         android:layout_width="match_parent"

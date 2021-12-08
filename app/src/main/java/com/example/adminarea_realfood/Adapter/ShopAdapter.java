@@ -1,4 +1,4 @@
-package com.example.adminarea_realfood.adapter;
+package com.example.adminarea_realfood.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,36 +12,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
-import com.developer.kalert.KAlertDialog;
 import com.example.adminarea_realfood.Firebase_Manager;
-import com.example.adminarea_realfood.GuiThongBaoActivity;
+import com.example.adminarea_realfood.Screen.GuiThongBaoActivity;
 import com.example.adminarea_realfood.Model.CuaHang;
 import com.example.adminarea_realfood.Model.DonHang;
 import com.example.adminarea_realfood.Model.TaiKhoanNganHang;
-import com.example.adminarea_realfood.Model.ThongBao;
-import com.example.adminarea_realfood.PhanTranTrenDonHangActivity;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.Screen.ThongTinChiTietShop;
-import com.example.adminarea_realfood.ThanhToanActivity;
+import com.example.adminarea_realfood.Screen.ThanhToanActivity;
 import com.example.adminarea_realfood.TrangThai.TrangThaiCuaHang;
 import com.example.adminarea_realfood.TrangThai.TrangThaiDonHang;
-import com.example.adminarea_realfood.TrangThai.TrangThaiThongBao;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -59,7 +51,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 public class ShopAdapter extends ArrayAdapter implements Filterable {
 

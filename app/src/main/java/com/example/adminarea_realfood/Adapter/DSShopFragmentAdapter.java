@@ -1,4 +1,4 @@
-package com.example.adminarea_realfood.adapter;
+package com.example.adminarea_realfood.Adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

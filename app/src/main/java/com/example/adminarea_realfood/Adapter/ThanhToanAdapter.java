@@ -1,4 +1,4 @@
-package com.example.adminarea_realfood.adapter;
+package com.example.adminarea_realfood.Adapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,9 +22,8 @@ import com.example.adminarea_realfood.Firebase_Manager;
 import com.example.adminarea_realfood.Model.CuaHang;
 import com.example.adminarea_realfood.Model.ThanhToan;
 import com.example.adminarea_realfood.R;
-import com.example.adminarea_realfood.Screen.ThongKe_CuaHang_Activity;
-import com.example.adminarea_realfood.ThanhToanActivity;
-import com.example.adminarea_realfood.ThongTinThanhToanActivity;
+import com.example.adminarea_realfood.Screen.ThanhToanActivity;
+import com.example.adminarea_realfood.Screen.ThongTinThanhToanActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -104,7 +102,7 @@ public class ThanhToanAdapter extends RecyclerView.Adapter<ThanhToanAdapter.MyVi
 
                 }
             });
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
+            holder.ivThanhToan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, ThongTinThanhToanActivity.class);

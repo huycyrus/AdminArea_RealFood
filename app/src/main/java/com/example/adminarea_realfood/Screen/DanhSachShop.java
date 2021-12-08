@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.adminarea_realfood.R;
-import com.example.adminarea_realfood.adapter.DSShopFragmentAdapter;
+import com.example.adminarea_realfood.Adapter.DSShopFragmentAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class   DanhSachShop extends AppCompatActivity {
