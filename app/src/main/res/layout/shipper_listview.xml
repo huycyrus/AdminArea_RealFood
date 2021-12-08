@@ -70,7 +70,16 @@
                     android:textSize="13dp"/>
 
             </LinearLayout>
+            <TextView
 
+                android:gravity="center"
+                android:text="Thuộc cửa hàng"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtTenCuaHang"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

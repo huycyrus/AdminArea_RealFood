@@ -19,14 +19,20 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 
 import com.example.adminarea_realfood.Firebase_Manager;
+import com.example.adminarea_realfood.Model.CuaHang;
 import com.example.adminarea_realfood.Screen.GuiThongBaoActivity;
 import com.example.adminarea_realfood.Model.Shipper;
 import com.example.adminarea_realfood.R;
 import com.example.adminarea_realfood.Screen.ThongTinChiTietShipper;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +75,27 @@ public class ShipperAdapter extends ArrayAdapter implements Filterable {
         ImageView ivImage = convertView.findViewById(R.id.image_profile);
 
         Shipper shipper = data.get(position);
+        TextView txtTenCuaHang = convertView.findViewById(R.id.txtTenCuaHang);
+        if (!shipper.getIdCuaHang().isEmpty())
+        {
+            firebase_manager.mDatabase.child("CuaHang").child(shipper.getIdCuaHang()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                    CuaHang cuaHang = snapshot.getValue(CuaHang.class);
+                    txtTenCuaHang.setText("Thuộc cửa hàng : "+cuaHang.getTenCuaHang());
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                }
+            });
+            txtTenCuaHang.setVisibility(View.VISIBLE);
+        }
+        else {
+            txtTenCuaHang.setVisibility(View.GONE);
+        }
         firebase_manager.SetColorTrangThaiShipper(shipper.getTrangThaiShipper(), tvTrangthai);
         tvHoten.setText(shipper.getHoVaTen());
         tvSdt.setText(shipper.getSoDienThoai());
